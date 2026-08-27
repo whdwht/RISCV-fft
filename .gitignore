@@ -1,0 +1,51 @@
+# ============ 厂商库与工艺文件 (NDA, 永不入库) ============
+*.db
+*.lib
+*.lef
+*.tf
+*.tluplus
+*.tluplus.map
+*.clf
+tcbn65*
+RA1HD*
+sramlib_*
+dw_foundation*
+*.gds2
+
+# ============ 大二进制产物 (走本地留存, 不进 git) ============
+*.gds
+*.spef
+*.sdf
+*.ddc
+*.fsdb
+*.vcd
+*.vpd
+*.vg
+
+# ============ 仿真 / 工具中间物 ============
+simv*
+csrc/
+*.daidir
+ucli.key
+novas.*
+cm.log
+*.syn
+*.pvl
+*.svf
+*.mr
+*_LIB/
+WORK/
+alib-52*
+command.log
+filenames.log
+
+# ============ 编辑器 / 系统垃圾 ============
+*.swp
+*.swo
+*.swn
+.DS_Store
+._*
+
+# ============ 课程材料 (不公开传播) ============
+*.mp4
+*.pdf

@@ -1,0 +1,12 @@
+;(auLoadCLF)
+;(setFormField "Load CLF File" "Load CLF File Without Timing Related Information" "1")
+;(setFormField "Load CLF File" "Library Name" "/home/wangwx/RISCV_SOC_65/65_sram/sram_hde/sramlib_4k")
+;(setFormField "Load CLF File" "CLF File Name" "/home/wangwx/RISCV_SOC_65/65_sram/sram_hde/gen_hde/RA1HD_4KB_ant.clf")
+;(formOK "Load CLF File")
+
+;(auLoadCLF)
+;(setFormField "Load CLF File" "Load CLF File Without Timing Related Information" "1")
+;(setFormField "Load CLF File" "Library Name" "/home/wangwx/RISCV_SOC_65/65_sram/home/wangzb/lib1/TSMC65/tcbn65gplusbwp12t_200a/TSMCHOME/digital/Front_End/timing_power_noise/NLDM/tcbn65gplusbwp12t_200a/tcbn65gplusbwp12tlt")
+;(setFormField "Load CLF File" "CLF File Name" "/home/wangwx/RISCV_SOC_65/65_sram/home/wangzb/lib1/TSMC65/tcbn65gplusbwp12t_200a/TSMCHOME/digital/Back_End/milkyway/tcbn65gplusbwp12t_200a/clf/antenna_tcbn65gplusbwp12t.clf")
+;(formOK "Load CLF File")
+(exit)

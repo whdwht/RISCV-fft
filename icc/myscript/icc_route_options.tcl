@@ -1,0 +1,5 @@
+set_route_options -same_net_notch check_and_fix
+set_route_mode_options -zroute true
+
+set_route_zrt_common_options -rotate_default_vias true
+set_route_zrt_detail_options -var_spacing_to_same_net true

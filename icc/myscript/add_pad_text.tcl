@@ -1,0 +1,59 @@
+set TEXTHEIGHT 2
+
+# pins text
+create_text -origin [list 1.1  0.05] -height $TEXTHEIGHT -layer TEXT4 sys_clk
+create_text -origin [list 22.9 0.05] -height $TEXTHEIGHT -layer TEXT4 rstn
+create_text -origin [list 44.5 0.05] -height $TEXTHEIGHT -layer TEXT4 load_en
+create_text -origin [list 66.3 0.05] -height $TEXTHEIGHT -layer TEXT4 uart_rx
+create_text -origin [list 87.9 0.05] -height $TEXTHEIGHT -layer TEXT4 uart_tx
+create_text -origin [list 109.7 0.05] -height $TEXTHEIGHT -layer TEXT4 spi_rstn
+create_text -origin [list 131.3 0.05] -height $TEXTHEIGHT -layer TEXT4 cs_n_ext
+create_text -origin [list 153.1 0.05] -height $TEXTHEIGHT -layer TEXT4 sclk_ext
+create_text -origin [list 174.7 0.05] -height $TEXTHEIGHT -layer TEXT4 cs_n
+create_text -origin [list 196.5 0.05] -height $TEXTHEIGHT -layer TEXT4 sclk
+create_text -origin [list 218.1 0.05] -height $TEXTHEIGHT -layer TEXT4 spi_do
+create_text -origin [list 239.9 0.05] -height $TEXTHEIGHT -layer TEXT4 spi_di
+create_text -origin [list 261.5 0.05] -height $TEXTHEIGHT -layer TEXT4 rx_dma_ack
+create_text -origin [list 283.3 0.05] -height $TEXTHEIGHT -layer TEXT4 tx_dma_ack
+create_text -origin [list 304.9 0.05] -height $TEXTHEIGHT -layer TEXT4 rx_dma_req
+create_text -origin [list 326.7 0.05] -height $TEXTHEIGHT -layer TEXT4 tx_dma_req
+create_text -origin [list 348.3 0.05] -height $TEXTHEIGHT -layer TEXT4 sda_ext
+create_text -origin [list 370.1 0.05] -height $TEXTHEIGHT -layer TEXT4 scl_ext
+create_text -origin [list 391.7 0.05] -height $TEXTHEIGHT -layer TEXT4 sda
+create_text -origin [list 413.5 0.05] -height $TEXTHEIGHT -layer TEXT4 scl
+create_text -origin [list 435.1 0.05] -height $TEXTHEIGHT -layer TEXT4 inst_write
+create_text -origin [list 456.9 0.05] -height $TEXTHEIGHT -layer TEXT4 write_start
+
+create_text -origin [list 1.1 728] -height 2 -layer TEXT4 inst_wdata[31]
+create_text -origin [list 15.9 728] -height 2 -layer TEXT4 inst_wdata[30]
+create_text -origin [list 30.5 728] -height 2 -layer TEXT4 inst_wdata[29]
+create_text -origin [list 45.3 728] -height 2 -layer TEXT4 inst_wdata[28]
+create_text -origin [list 59.9 728] -height 2 -layer TEXT4 inst_wdata[27]
+create_text -origin [list 74.7 728] -height 2 -layer TEXT4 inst_wdata[26]
+create_text -origin [list 89.3 728] -height 2 -layer TEXT4 inst_wdata[25]
+create_text -origin [list 104.1 728] -height 2 -layer TEXT4 inst_wdata[24]
+create_text -origin [list 118.7 728] -height 2 -layer TEXT4 inst_wdata[23]
+create_text -origin [list 133.5 728] -height 2 -layer TEXT4 inst_wdata[22]
+create_text -origin [list 148.1 728] -height 2 -layer TEXT4 inst_wdata[21]
+create_text -origin [list 162.9 728] -height 2 -layer TEXT4 inst_wdata[20]
+create_text -origin [list 177.5 728] -height 2 -layer TEXT4 inst_wdata[19]
+create_text -origin [list 192.3 728] -height 2 -layer TEXT4 inst_wdata[18]
+create_text -origin [list 206.9 728] -height 2 -layer TEXT4 inst_wdata[17]
+create_text -origin [list 221.7 728] -height 2 -layer TEXT4 inst_wdata[16]
+create_text -origin [list 236.3 728] -height 2 -layer TEXT4 inst_wdata[15]
+create_text -origin [list 251.1 728] -height 2 -layer TEXT4 inst_wdata[14]
+create_text -origin [list 265.7 728] -height 2 -layer TEXT4 inst_wdata[13]
+create_text -origin [list 280.5 728] -height 2 -layer TEXT4 inst_wdata[12]
+create_text -origin [list 295.1 728] -height 2 -layer TEXT4 inst_wdata[11]
+create_text -origin [list 309.9 728] -height 2 -layer TEXT4 inst_wdata[10]
+create_text -origin [list 324.5 728] -height 2 -layer TEXT4 inst_wdata[9]
+create_text -origin [list 339.3 728] -height 2 -layer TEXT4 inst_wdata[8]
+create_text -origin [list 353.9 728] -height 2 -layer TEXT4 inst_wdata[7]
+create_text -origin [list 368.7 728] -height 2 -layer TEXT4 inst_wdata[6]
+create_text -origin [list 383.3 728] -height 2 -layer TEXT4 inst_wdata[5]
+create_text -origin [list 398.1 728] -height 2 -layer TEXT4 inst_wdata[4]
+create_text -origin [list 412.7 728] -height 2 -layer TEXT4 inst_wdata[3]
+create_text -origin [list 427.5 728] -height 2 -layer TEXT4 inst_wdata[2]
+create_text -origin [list 442.1 728] -height 2 -layer TEXT4 inst_wdata[1]
+create_text -origin [list 456.9 728] -height 2 -layer TEXT4 inst_wdata[0]
+
