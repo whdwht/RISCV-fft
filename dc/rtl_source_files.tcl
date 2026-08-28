@@ -1,13 +1,20 @@
 ################################################################################
 # Define rtl search paths
 ################################################################################
-# day1 RISC_V 工程根目录(含 FFT 的 SoC)
-set DAY1_RV "/home/master/project/IC_class/RISC_V"
+# day1 RISC_V 工程根目录与当前项目的 FFT RTL 目录。
+# SOC_ROOT and PROJECT_ROOT are exported through compile.sh.
+foreach env_var {SOC_ROOT PROJECT_ROOT} {
+    if {![info exists env(${env_var})] || $env(${env_var}) eq ""} {
+        error "Required environment variable ${env_var} is not set; run dc/compile.sh"
+    }
+}
+set DAY1_RV [file normalize $env(SOC_ROOT)]
+set FFT_RTL_ROOT [file normalize [file join $env(PROJECT_ROOT) hw fft8]]
 
 # 各子目录加入搜索路径(含 inc/ 以便解析 `include "prim_assert.svh"` 等)
 append RTL_SEARCH_PATHS " ${DAY1_RV}/rtl"
 append RTL_SEARCH_PATHS " ${DAY1_RV}/rtl/soc"
-append RTL_SEARCH_PATHS " ${DAY1_RV}/rtl/fft"
+append RTL_SEARCH_PATHS " ${FFT_RTL_ROOT}"
 append RTL_SEARCH_PATHS " ${DAY1_RV}/ibex"
 append RTL_SEARCH_PATHS " ${DAY1_RV}/inc"
 

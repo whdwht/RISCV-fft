@@ -1,0 +1,615 @@
+Hold timing before hold fixing
+ 
+****************************************
+Report : timing
+        -path end
+        -delay min
+        -max_paths 10
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Fri Aug 28 15:43:27 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: BCCOM   Library: tcbn65gplusbwp12tbc
+Wire Load Model Mode: segmented
+
+Endpoint                         Path Delay     Path Required     Slack
+------------------------------------------------------------------------
+x_data_sram/i_sram_block/GWEN (RA1HD_4KB)
+                                  0.0716 f          0.1884      -0.1168
+x_isram_ahbl/i_sram_block/GWEN (RA1HD_4KB)
+                                  0.1049 f          0.1878      -0.0829
+x_data_sram/i_sram_block/A[0] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[1] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[2] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[3] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[4] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[5] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[6] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+x_data_sram/i_sram_block/A[7] (RA1HD_4KB)
+                                  0.0925 f          0.1410      -0.0485
+
+1
+
+ 
+****************************************
+Report : timing
+        -path full_clock
+        -delay min
+        -input_pins
+        -nets
+        -max_paths 10
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Fri Aug 28 15:43:27 2026
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: BCCOM   Library: tcbn65gplusbwp12tbc
+Wire Load Model Mode: segmented
+
+  Startpoint: x_data_sram/ahbl_hwrite_d0_reg
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_hwrite_d0_reg/CP (DFCNQD1BWP12T)     0.0000 #   0.0000 r
+  x_data_sram/ahbl_hwrite_d0_reg/Q (DFCNQD1BWP12T)      0.0560     0.0560 r
+  x_data_sram/ahbl_hwrite_d0 (net)              3       0.0000     0.0560 r
+  x_data_sram/U24/A1 (NR2D0BWP12T)                      0.0000     0.0560 r
+  x_data_sram/U24/ZN (NR2D0BWP12T)                      0.0157     0.0716 f
+  x_data_sram/GWEN (net)                        1       0.0000     0.0716 f
+  x_data_sram/i_sram_block/GWEN (RA1HD_4KB)             0.0000     0.0716 f
+  data arrival time                                                0.0716
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.1384     0.1884
+  data required time                                               0.1884
+  --------------------------------------------------------------------------
+  data required time                                               0.1884
+  data arrival time                                               -0.0716
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.1168
+
+
+  Startpoint: x_isram_ahbl/ahbl_hwrite_d0_reg/CP
+              (internal path startpoint clocked by clk1)
+  Endpoint: x_isram_ahbl/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  input external delay                                  0.0000     0.0000 r
+  x_isram_ahbl/ahbl_hwrite_d0_reg/CP (DFCNQD1BWP12T)    0.0000 #   0.0000 r
+  x_isram_ahbl/ahbl_hwrite_d0_reg/Q (DFCNQD1BWP12T)     0.0533     0.0533 r
+  x_isram_ahbl/ahbl_hwrite_d0 (net)             2       0.0000     0.0533 r
+  x_isram_ahbl/U4/A2 (IAO21D0BWP12T)                    0.0000     0.0533 r
+  x_isram_ahbl/U4/ZN (IAO21D0BWP12T)                    0.0318     0.0851 r
+  x_isram_ahbl/n16 (net)                        2       0.0000     0.0851 r
+  x_isram_ahbl/U85/A2 (NR2D0BWP12T)                     0.0000     0.0851 r
+  x_isram_ahbl/U85/ZN (NR2D0BWP12T)                     0.0197     0.1049 f
+  x_isram_ahbl/GWEN (net)                       1       0.0000     0.1049 f
+  x_isram_ahbl/i_sram_block/GWEN (RA1HD_4KB)            0.0000     0.1049 f
+  data arrival time                                                0.1049
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_isram_ahbl/i_sram_block/CLK (RA1HD_4KB)             0.0000     0.0500 r
+  library hold time                                     0.1378     0.1878
+  data required time                                               0.1878
+  --------------------------------------------------------------------------
+  data required time                                               0.1878
+  data arrival time                                               -0.1049
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0829
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[2]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[2]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[2]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[2] (net)            1       0.0000     0.0540 f
+  x_data_sram/U15/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U15/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[0] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[0] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[3]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[3]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[3]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[3] (net)            1       0.0000     0.0540 f
+  x_data_sram/U14/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U14/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[1] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[1] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[4]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[4]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[4]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[4] (net)            1       0.0000     0.0540 f
+  x_data_sram/U13/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U13/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[2] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[2] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[5]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[5]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[5]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[5] (net)            1       0.0000     0.0540 f
+  x_data_sram/U12/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U12/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[3] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[3] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[6]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[6]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[6]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[6] (net)            1       0.0000     0.0540 f
+  x_data_sram/U11/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U11/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[4] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[4] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[7]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[7]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[7]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[7] (net)            1       0.0000     0.0540 f
+  x_data_sram/U10/I0 (MUX2D0BWP12T)                     0.0000     0.0540 f
+  x_data_sram/U10/Z (MUX2D0BWP12T)                      0.0385     0.0925 f
+  x_data_sram/ADDR[5] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[5] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[8]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[8]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[8]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[8] (net)            1       0.0000     0.0540 f
+  x_data_sram/U9/I0 (MUX2D0BWP12T)                      0.0000     0.0540 f
+  x_data_sram/U9/Z (MUX2D0BWP12T)                       0.0385     0.0925 f
+  x_data_sram/ADDR[6] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[6] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+  Startpoint: x_data_sram/ahbl_haddr_d0_reg[9]
+              (rising edge-triggered flip-flop clocked by clk1)
+  Endpoint: x_data_sram/i_sram_block
+            (rising edge-triggered flip-flop clocked by clk1)
+  Path Group: clk1
+  Path Type: min
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  ibex_register_file_ff_0_00000020_0
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  prim_clock_gating  ZeroWireload          tcbn65gplusbwp12tbc
+  rom_32x64          ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_pl            ZeroWireload          tcbn65gplusbwp12tbc
+  decoder            ZeroWireload          tcbn65gplusbwp12tbc
+  ibex_core_00000000_00000000
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  rom                ZeroWireload          tcbn65gplusbwp12tbc
+  inst_sram_I_dahbl_slave_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  fft8_top_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  data_sram_I_slave0_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__
+                     ZeroWireload          tcbn65gplusbwp12tbc
+  soc_ahblite        ZeroWireload          tcbn65gplusbwp12tbc
+  sub_system         ZeroWireload          tcbn65gplusbwp12tbc
+
+  Point                                       Fanout      Incr       Path
+  --------------------------------------------------------------------------
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  x_data_sram/ahbl_haddr_d0_reg[9]/CP (DFCNQD1BWP12T)   0.0000 #   0.0000 r
+  x_data_sram/ahbl_haddr_d0_reg[9]/Q (DFCNQD1BWP12T)    0.0540     0.0540 f
+  x_data_sram/ahbl_haddr_d0[9] (net)            1       0.0000     0.0540 f
+  x_data_sram/U8/I0 (MUX2D0BWP12T)                      0.0000     0.0540 f
+  x_data_sram/U8/Z (MUX2D0BWP12T)                       0.0385     0.0925 f
+  x_data_sram/ADDR[7] (net)                     1       0.0000     0.0925 f
+  x_data_sram/i_sram_block/A[7] (RA1HD_4KB)             0.0000     0.0925 f
+  data arrival time                                                0.0925
+
+  clock clk1 (rise edge)                                0.0000     0.0000
+  clock network delay (ideal)                           0.0000     0.0000
+  clock uncertainty                                     0.0500     0.0500
+  x_data_sram/i_sram_block/CLK (RA1HD_4KB)              0.0000     0.0500 r
+  library hold time                                     0.0910     0.1410
+  data required time                                               0.1410
+  --------------------------------------------------------------------------
+  data required time                                               0.1410
+  data arrival time                                               -0.0925
+  --------------------------------------------------------------------------
+  slack (VIOLATED)                                                -0.0485
+
+
+1
