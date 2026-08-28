@@ -3,7 +3,7 @@
 Report : area
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Fri Aug 28 15:44:12 2026
+Date   : Fri Aug 28 16:11:45 2026
 ****************************************
 
 Library(s) Used:
@@ -12,21 +12,21 @@ Library(s) Used:
     USERLIB_4KB_nldm_ss_0p90v_0p90v_125c (File: /home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ss_0p90v_0p90v_125c.db)
 
 Number of ports:                        12339
-Number of nets:                         26545
-Number of cells:                        17510
-Number of combinational cells:          14172
+Number of nets:                         27705
+Number of cells:                        18538
+Number of combinational cells:          15200
 Number of sequential cells:              3283
 Number of macros/black boxes:               2
-Number of buf/inv:                       3026
-Number of references:                      20
+Number of buf/inv:                       3119
+Number of references:                      21
 
-Combinational area:              45690.719693
-Buf/Inv area:                     4656.480112
-Noncombinational area:           36029.760396
+Combinational area:              52144.800184
+Buf/Inv area:                     5290.080126
+Noncombinational area:           36601.920311
 Macro/Black Box area:            78944.937500
 Net Interconnect area:      undefined  (Wire load has zero net area)
 
-Total cell area:                160665.417589
+Total cell area:                167691.657995
 Total area:                 undefined
 
 Hierarchical area distribution
@@ -37,85 +37,85 @@ Hierarchical area distribution
 Hierarchical cell                 Absolute     Percent  Combi-      Noncombi-   Black-
                                   Total        Total    national    national    boxes       Design
 --------------------------------  -----------  -------  ----------  ----------  ----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-soc_ahblite                       160665.4176    100.0    351.3600    144.0000      0.0000  soc_ahblite
-u_fft8_top                         29351.5200     18.3   1727.0400   2798.4001      0.0000  soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
-u_fft8_top/u_fft                   24826.0799     15.5    988.8000  10487.9999      0.0000  soc_ahblite_fft8_pl_0
-u_fft8_top/u_fft/u_s1               2833.9200      1.8      0.0000      0.0000      0.0000  soc_ahblite_fft8_stage1_0
+soc_ahblite                       167691.6580    100.0    353.2800    144.0000      0.0000  soc_ahblite
+u_fft8_top                         30607.1999     18.3   1728.0000   2800.3201      0.0000  soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
+u_fft8_top/u_fft                   26078.8798     15.6    947.0400  10938.2398      0.0000  soc_ahblite_fft8_pl_0
+u_fft8_top/u_fft/u_s1               2833.9200      1.7      0.0000      0.0000      0.0000  soc_ahblite_fft8_stage1_0
 u_fft8_top/u_fft/u_s1/b0             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_0
 u_fft8_top/u_fft/u_s1/b1             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_11
 u_fft8_top/u_fft/u_s1/b2             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_10
 u_fft8_top/u_fft/u_s1/b3             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_9
-u_fft8_top/u_fft/u_s2               3003.8400      1.9    169.9200      0.0000      0.0000  soc_ahblite_fft8_stage2_0
+u_fft8_top/u_fft/u_s2               3003.8400      1.8    169.9200      0.0000      0.0000  soc_ahblite_fft8_stage2_0
 u_fft8_top/u_fft/u_s2/b0             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_8
 u_fft8_top/u_fft/u_s2/b1             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_7
 u_fft8_top/u_fft/u_s2/b2             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_6
 u_fft8_top/u_fft/u_s2/b3             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_5
-u_fft8_top/u_fft/u_s3               7511.5200      4.7   4677.6000      0.0000      0.0000  soc_ahblite_fft8_stage3_0
+u_fft8_top/u_fft/u_s3               8355.8400      5.0   5376.4800      0.0000      0.0000  soc_ahblite_fft8_stage3_0
 u_fft8_top/u_fft/u_s3/b0             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_4
-u_fft8_top/u_fft/u_s3/b1             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_3
+u_fft8_top/u_fft/u_s3/b1             791.5200      0.5    791.5200      0.0000      0.0000  soc_ahblite_butterfly2_3
 u_fft8_top/u_fft/u_s3/b2             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_2
-u_fft8_top/u_fft/u_s3/b3             708.4800      0.4    708.4800      0.0000      0.0000  soc_ahblite_butterfly2_1
-x_data_fabric                       1022.4000      0.6    731.0400      0.0000      0.0000  soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
-x_data_fabric/x_decoder              291.3600      0.2    122.4000    168.9600      0.0000  soc_ahblite_decoder_0
-x_data_sram                        39802.2288     24.8    149.7600    180.0000  39472.4688  soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
-x_isram_ahbl                       40153.5888     25.0    374.4000    306.7200  39472.4688  soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
-x_rom_ahbl                          1110.2400      0.7     43.2000     95.0400      0.0000  soc_ahblite_rom_0
-x_rom_ahbl/rom_block                 972.0000      0.6    557.2800    414.7200      0.0000  soc_ahblite_rom_32x64_0
-x_sub_system                       48730.0801     30.3    296.6400    359.0400      0.0000  soc_ahblite_sub_system_0
-x_sub_system/x_core                48074.4001     29.9     48.9600     21.1200      0.0000  soc_ahblite_ibex_core_00000000_00000000_0
+u_fft8_top/u_fft/u_s3/b3             770.8800      0.5    770.8800      0.0000      0.0000  soc_ahblite_butterfly2_1
+x_data_fabric                        935.5200      0.6    620.6400      0.0000      0.0000  soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
+x_data_fabric/x_decoder              314.8800      0.2    144.0000    170.8800      0.0000  soc_ahblite_decoder_0
+x_data_sram                        39865.1088     23.8    212.6400    180.0000  39472.4688  soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
+x_isram_ahbl                       40169.4288     24.0    388.3200    308.6400  39472.4688  soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
+x_rom_ahbl                          1188.0000      0.7     42.7200     95.0400      0.0000  soc_ahblite_rom_0
+x_rom_ahbl/rom_block                1050.2400      0.6    598.0800    452.1600      0.0000  soc_ahblite_rom_32x64_0
+x_sub_system                       54429.1206     32.5    381.1200    359.0400      0.0000  soc_ahblite_sub_system_0
+x_sub_system/x_core                53688.9605     32.0     50.8800     21.1200      0.0000  soc_ahblite_ibex_core_00000000_00000000_0
 x_sub_system/x_core/core_clock_gate_i
                                       10.5600      0.0      1.4400      9.1200      0.0000  soc_ahblite_prim_clock_gating_0
 x_sub_system/x_core/cs_registers_i
-                                    9061.4399      5.6   2241.6000     43.2000      0.0000  soc_ahblite_ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0_0
+                                    9377.2800      5.6   2352.4800     44.1600      0.0000  soc_ahblite_ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0_0
 x_sub_system/x_core/cs_registers_i/mcycle_counter_i
-                                    1544.6400      1.0    868.8000    675.8400      0.0000  soc_ahblite_ibex_counter_CounterWidth64_0
+                                    1612.8000      1.0    936.9600    675.8400      0.0000  soc_ahblite_ibex_counter_CounterWidth64_0
 x_sub_system/x_core/cs_registers_i/minstret_counter_i
-                                    1544.6400      1.0    868.8000    675.8400      0.0000  soc_ahblite_ibex_counter_CounterWidth64_1
+                                    1667.0400      1.0    991.2000    675.8400      0.0000  soc_ahblite_ibex_counter_CounterWidth64_1
 x_sub_system/x_core/cs_registers_i/u_dcsr_csr
                                      145.9200      0.1      8.6400    137.2800      0.0000  soc_ahblite_ibex_csr_32_0_40000003_0
 x_sub_system/x_core/cs_registers_i/u_depc_csr
-                                     450.2400      0.3      3.8400    446.4000      0.0000  soc_ahblite_ibex_csr_32_0_0_3
+                                     451.6800      0.3      5.2800    446.4000      0.0000  soc_ahblite_ibex_csr_32_0_0_2
 x_sub_system/x_core/cs_registers_i/u_dscratch0_csr
-                                     464.6400      0.3      3.8400    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_2
+                                     465.6000      0.3      4.8000    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_1
 x_sub_system/x_core/cs_registers_i/u_dscratch1_csr
-                                     464.6400      0.3      3.8400    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_1
+                                     465.6000      0.3      4.8000    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_5
 x_sub_system/x_core/cs_registers_i/u_mcause_csr
                                       86.4000      0.1      0.0000     86.4000      0.0000  soc_ahblite_ibex_csr_6_0_0_0
 x_sub_system/x_core/cs_registers_i/u_mepc_csr
-                                     450.2400      0.3      3.8400    446.4000      0.0000  soc_ahblite_ibex_csr_32_0_0_0
+                                     454.0800      0.3      7.6800    446.4000      0.0000  soc_ahblite_ibex_csr_32_0_0_0
 x_sub_system/x_core/cs_registers_i/u_mie_csr
-                                     261.1200      0.2      1.9200    259.2000      0.0000  soc_ahblite_ibex_csr_18_0_0_0
+                                     259.2000      0.2      0.0000    259.2000      0.0000  soc_ahblite_ibex_csr_18_0_0_0
 x_sub_system/x_core/cs_registers_i/u_mscratch_csr
-                                     464.6400      0.3      3.8400    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_5
+                                     462.7200      0.3      1.9200    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_3
 x_sub_system/x_core/cs_registers_i/u_mstatus_csr
-                                      87.3600      0.1      4.3200     83.0400      0.0000  soc_ahblite_ibex_csr_6_0_10_0
+                                      87.8400      0.1      4.8000     83.0400      0.0000  soc_ahblite_ibex_csr_6_0_10_0
 x_sub_system/x_core/cs_registers_i/u_mtval_csr
-                                     464.6400      0.3      3.8400    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_4
+                                     468.4800      0.3      7.6800    460.8000      0.0000  soc_ahblite_ibex_csr_32_0_0_4
 x_sub_system/x_core/cs_registers_i/u_mtvec_csr
-                                     347.5200      0.2      1.9200    345.6000      0.0000  soc_ahblite_ibex_csr_32_0_00000001_0
-x_sub_system/x_core/ex_block_i      9671.0400      6.0    551.0400     10.5600      0.0000  soc_ahblite_ibex_ex_block_2_0_0_0
+                                     353.2800      0.2      7.6800    345.6000      0.0000  soc_ahblite_ibex_csr_32_0_00000001_0
+x_sub_system/x_core/ex_block_i     12724.8001      7.6    676.8000     10.5600      0.0000  soc_ahblite_ibex_ex_block_2_0_0_0
 x_sub_system/x_core/ex_block_i/alu_i
-                                    2407.6800      1.5   2407.6800      0.0000      0.0000  soc_ahblite_ibex_alu_RV32B0_0
+                                    3454.5600      2.1   3454.5600      0.0000      0.0000  soc_ahblite_ibex_alu_RV32B0_0
 x_sub_system/x_core/ex_block_i/gen_multdiv_fast_multdiv_i
-                                    6701.7600      4.2   5621.2800   1080.4800      0.0000  soc_ahblite_ibex_multdiv_fast_RV32M2_0
+                                    8582.8800      5.1   7488.9601   1093.9200      0.0000  soc_ahblite_ibex_multdiv_fast_RV32M2_0
 x_sub_system/x_core/gen_regfile_ff_register_file_i
-                                   19259.0402     12.0   8783.5198  10475.5204      0.0000  soc_ahblite_ibex_register_file_ff_0_00000020_0_0
-x_sub_system/x_core/id_stage_i      2969.2800      1.8    910.0800    982.0800      0.0000  soc_ahblite_ibex_id_stage_0_2_0_0_0_0_0_0_0
+                                   20400.0005     12.2   9924.4800  10475.5204      0.0000  soc_ahblite_ibex_register_file_ff_0_00000020_0_0
+x_sub_system/x_core/id_stage_i      3396.9600      2.0   1050.2400    986.4000      0.0000  soc_ahblite_ibex_id_stage_0_2_0_0_0_0_0_0_0
 x_sub_system/x_core/id_stage_i/controller_i
-                                     464.6400      0.3    380.1600     84.4800      0.0000  soc_ahblite_ibex_controller_0_0_0
+                                     551.5200      0.3    463.2000     88.3200      0.0000  soc_ahblite_ibex_controller_0_0_0
 x_sub_system/x_core/id_stage_i/decoder_i
-                                     612.4800      0.4    612.4800      0.0000      0.0000  soc_ahblite_ibex_decoder_0_2_0_0_0
-x_sub_system/x_core/if_stage_i      5011.6800      3.1    506.4000   1101.6000      0.0000  soc_ahblite_ibex_if_stage_00000000_00000000_0_0_0_0_0_0
+                                     808.8000      0.5    808.8000      0.0000      0.0000  soc_ahblite_ibex_decoder_0_2_0_0_0
+x_sub_system/x_core/if_stage_i      5636.6400      3.4    618.7200   1154.8800      0.0000  soc_ahblite_ibex_if_stage_00000000_00000000_0_0_0_0_0_0
 x_sub_system/x_core/if_stage_i/compressed_decoder_i
                                      524.6400      0.3    524.6400      0.0000      0.0000  soc_ahblite_ibex_compressed_decoder_0
 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer_prefetch_buffer_i
-                                    2879.0400      1.8    256.8000    133.4400      0.0000  soc_ahblite_ibex_prefetch_buffer_0_0
+                                    3338.4000      2.0    336.9600    133.4400      0.0000  soc_ahblite_ibex_prefetch_buffer_0_0
 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer_prefetch_buffer_i/fifo_i
-                                    2488.8000      1.5   1174.5600   1314.2400      0.0000  soc_ahblite_ibex_fetch_fifo_00000002_0
+                                    2868.0000      1.7   1550.8800   1317.1200      0.0000  soc_ahblite_ibex_fetch_fifo_00000002_0
 x_sub_system/x_core/load_store_unit_i
-                                    1865.7600      1.2   1045.9200    819.8400      0.0000  soc_ahblite_ibex_load_store_unit_0
-x_sub_system/x_core/wb_stage_i       155.5200      0.1    155.5200      0.0000      0.0000  soc_ahblite_ibex_wb_stage_0_0
+                                    1894.0800      1.1   1074.2400    819.8400      0.0000  soc_ahblite_ibex_load_store_unit_0
+x_sub_system/x_core/wb_stage_i       176.6400      0.1    176.6400      0.0000      0.0000  soc_ahblite_ibex_wb_stage_0_0
 --------------------------------  -----------  -------  ----------  ----------  ----------  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Total                                                   45690.7197  36029.7604  78944.9375
+Total                                                   52144.8002  36601.9203  78944.9375
 
 1

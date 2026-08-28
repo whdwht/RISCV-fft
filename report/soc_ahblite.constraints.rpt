@@ -5,16 +5,16 @@ Report : constraint
         -verbose
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Fri Aug 28 15:44:13 2026
+Date   : Fri Aug 28 16:11:45 2026
 ****************************************
 
 
     Design: soc_ahblite
 
     max_leakage_power          0.00
-  - Current Leakage Power  1971851.75
+  - Current Leakage Power  2134851.50
   ----------------------------------
-    Slack                  -1971851.75  (VIOLATED)
+    Slack                  -2134851.50  (VIOLATED)
 
 
 1
@@ -24,7 +24,7 @@ Report : timing_requirements
         -attributes
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Fri Aug 28 15:44:13 2026
+Date   : Fri Aug 28 16:11:46 2026
 ****************************************
 
 Description                            Setup               Hold
