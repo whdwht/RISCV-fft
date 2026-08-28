@@ -87,6 +87,22 @@ module fft8_stage3 (
     output wire [127:0] out_im
 );
 
+    // Match C signed division semantics used by the course golden model.
+    // Arithmetic right shift rounds negative values toward -infinity, while
+    // signed integer division by 1024 truncates toward zero.
+    function automatic signed [15:0] q10_trunc_zero;
+        input signed [31:0] value;
+        reg signed [31:0] magnitude;
+        begin
+            if (value < 0) begin
+                magnitude = -value;
+                q10_trunc_zero = -(magnitude >>> 10);
+            end else begin
+                q10_trunc_zero = value >>> 10;
+            end
+        end
+    endfunction
+
 
     wire signed [15:0] xr [0:7];
     wire signed [15:0] xi [0:7];
@@ -116,8 +132,8 @@ module fft8_stage3 (
     wire signed [16:0] sum_5i = xi[5] - xr[5];
     wire signed [31:0] product_5r = 32'sd724 * sum_5r;
     wire signed [31:0] product_5i = 32'sd724 * sum_5i;
-    assign temp_r[5] = product_5r >> 10;
-    assign temp_i[5] = product_5i >> 10;
+    assign temp_r[5] = q10_trunc_zero(product_5r);
+    assign temp_i[5] = q10_trunc_zero(product_5i);
 
     assign temp_r[6]=xi[6]; assign temp_i[6]=-xr[6];      // W8^2 = -j
 
@@ -126,8 +142,8 @@ module fft8_stage3 (
     wire signed [16:0] sum_7i = -xr[7] - xi[7];
     wire signed [31:0] product_7r = 32'sd724 * sum_7r;
     wire signed [31:0] product_7i = 32'sd724 * sum_7i;
-    assign temp_r[7] = product_7r >> 10;
-    assign temp_i[7] = product_7i >> 10;
+    assign temp_r[7] = q10_trunc_zero(product_7r);
+    assign temp_i[7] = q10_trunc_zero(product_7i);
 
     butterfly2 b0 (.re0(temp_r[0]),.im0(temp_i[0]),.re1(temp_r[4]),.im1(temp_i[4]),.ore0(yr[0]),.oim0(yi[0]),.ore1(yr[4]),.oim1(yi[4]));
     butterfly2 b1 (.re0(temp_r[1]),.im0(temp_i[1]),.re1(temp_r[5]),.im1(temp_i[5]),.ore0(yr[1]),.oim0(yi[1]),.ore1(yr[5]),.oim1(yi[5]));

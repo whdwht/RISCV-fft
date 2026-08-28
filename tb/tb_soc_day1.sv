@@ -177,7 +177,9 @@ endtask
     $display("*****start to load program*****");
     //$readmemh("../sw/uart/uart.vmem",x_soc.x_isram_ahbl.sram_mem);
     //$readmemh("../sw/uart/uart.vmem",x_soc.x_isram_ahbl.i_sram_block.mem);
-    $readmemh("../../gcc/gcc.vmem",mem0);
+    // $readmemh("../../gcc/gcc.vmem",mem0);
+    $readmemh("../sw/gcc.vmem",mem0);
+
   end
 /*
   initial begin

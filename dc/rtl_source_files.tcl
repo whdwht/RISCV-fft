@@ -2,7 +2,7 @@
 # Define rtl search paths
 ################################################################################
 # day1 RISC_V 工程根目录(含 FFT 的 SoC)
-set DAY1_RV "/home/master/project1/day1/IC_class/RISC_V"
+set DAY1_RV "/home/master/project/IC_class/RISC_V"
 
 # 各子目录加入搜索路径(含 inc/ 以便解析 `include "prim_assert.svh"` 等)
 append RTL_SEARCH_PATHS " ${DAY1_RV}/rtl"
