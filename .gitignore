@@ -39,6 +39,7 @@ alib-52*
 command.log
 filenames.log
 sim/build/
+sim_16/build/
 
 # ============ 编辑器 / 系统垃圾 ============
 *.swp
