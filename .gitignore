@@ -38,6 +38,7 @@ WORK/
 alib-52*
 command.log
 filenames.log
+sim/build/
 
 # ============ 编辑器 / 系统垃圾 ============
 *.swp
@@ -49,3 +50,5 @@ filenames.log
 # ============ 课程材料 (不公开传播) ============
 *.mp4
 *.pdf
+
+测试/
