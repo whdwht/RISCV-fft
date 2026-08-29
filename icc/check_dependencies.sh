@@ -104,6 +104,69 @@ else
 fi
 check_nonnegative_number ICC_SETUP_UNCERTAINTY "${ICC_SETUP_UNCERTAINTY}"
 check_nonnegative_number ICC_HOLD_UNCERTAINTY "${ICC_HOLD_UNCERTAINTY}"
+check_nonnegative_number ICC_RESET_RELEASE_MIN "${ICC_RESET_RELEASE_MIN}"
+check_nonnegative_number ICC_RESET_RELEASE_MAX "${ICC_RESET_RELEASE_MAX}"
+check_nonnegative_number ICC_OPT_RESET_RELEASE_MIN "${ICC_OPT_RESET_RELEASE_MIN}"
+check_nonnegative_number ICC_MAX_FANOUT "${ICC_MAX_FANOUT}"
+check_nonnegative_number ICC_MAX_TRANSITION "${ICC_MAX_TRANSITION}"
+check_nonnegative_number ICC_MAX_CAPACITANCE "${ICC_MAX_CAPACITANCE}"
+check_nonnegative_number ICC_OPT_MAX_TRANSITION "${ICC_OPT_MAX_TRANSITION}"
+check_nonnegative_number ICC_OPT_MAX_CAPACITANCE "${ICC_OPT_MAX_CAPACITANCE}"
+check_nonnegative_number ICC_OPT_SRAM_DATA_MAX_TRANSITION \
+    "${ICC_OPT_SRAM_DATA_MAX_TRANSITION}"
+
+number_pattern='^([0-9]+([.][0-9]*)?|[.][0-9]+)$'
+if [[ "${ICC_RESET_RELEASE_MIN}" =~ ${number_pattern} && \
+      "${ICC_RESET_RELEASE_MAX}" =~ ${number_pattern} ]] && \
+    awk -v minimum="${ICC_RESET_RELEASE_MIN}" \
+        -v maximum="${ICC_RESET_RELEASE_MAX}" \
+        'BEGIN { exit !(minimum <= maximum) }'; then
+    printf 'ok   %-24s %s <= %s\n' ICC_RESET_RELEASE_RANGE \
+        "${ICC_RESET_RELEASE_MIN}" "${ICC_RESET_RELEASE_MAX}"
+else
+    printf 'BAD  %-24s min=%s max=%s (expected min <= max)\n' \
+        ICC_RESET_RELEASE_RANGE \
+        "${ICC_RESET_RELEASE_MIN}" "${ICC_RESET_RELEASE_MAX}" >&2
+    errors=$((errors + 1))
+fi
+unset number_pattern
+
+check_not_greater() {
+    local implementation_name=$1
+    local implementation_value=$2
+    local signoff_name=$3
+    local signoff_value=$4
+
+    if [[ "${implementation_value}" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ && \
+          "${signoff_value}" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] && \
+        awk -v implementation="${implementation_value}" \
+            -v signoff="${signoff_value}" \
+            'BEGIN { exit !(implementation <= signoff) }'; then
+        printf 'ok   %-24s %s <= %s (%s)\n' \
+            "${implementation_name}" "${implementation_value}" \
+            "${signoff_value}" "${signoff_name}"
+    else
+        printf 'BAD  %-24s %s must be <= %s=%s\n' \
+            "${implementation_name}" "${implementation_value}" \
+            "${signoff_name}" "${signoff_value}" >&2
+        errors=$((errors + 1))
+    fi
+}
+
+check_not_greater ICC_OPT_RESET_RELEASE_MIN \
+    "${ICC_OPT_RESET_RELEASE_MIN}" ICC_RESET_RELEASE_MIN \
+    "${ICC_RESET_RELEASE_MIN}"
+check_not_greater ICC_OPT_MAX_TRANSITION \
+    "${ICC_OPT_MAX_TRANSITION}" ICC_MAX_TRANSITION \
+    "${ICC_MAX_TRANSITION}"
+check_not_greater ICC_OPT_MAX_CAPACITANCE \
+    "${ICC_OPT_MAX_CAPACITANCE}" ICC_MAX_CAPACITANCE \
+    "${ICC_MAX_CAPACITANCE}"
+check_not_greater ICC_OPT_SRAM_DATA_MAX_TRANSITION \
+    "${ICC_OPT_SRAM_DATA_MAX_TRANSITION}" ICC_OPT_MAX_TRANSITION \
+    "${ICC_OPT_MAX_TRANSITION}"
+unset -f check_not_greater
+
 check_boolean ICC_ROUTE_OPT_AREA_RECOVERY "${ICC_ROUTE_OPT_AREA_RECOVERY}"
 
 case "${ICC_TOTAL_POWER_STRATEGY_EFFORT}" in

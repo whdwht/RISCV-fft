@@ -10,10 +10,10 @@
 | 指标 | 数值 | 条件 |
 |---|---|---|
 | 工艺 | TSMC 65nm `tcbn65gplusbwp12t`，9 层金属 | TLU+ 寄生 |
-| 频率 | **100 MHz** (10 ns) | wc(SS/0.9V/125℃) setup 收敛；bc(FF/1.1V/0℃) hold 收敛 |
+| 频率 | **333.33 MHz** (3 ns) | 当前 ICC 输出 SDC；wc(SS/0.9V/125℃) 查 setup，bc(FF/1.1V/0℃) 查 hold |
 | 面积 | cell 159.6k µm²（含 2×4KB SRAM 宏） | core 430.72×560，die 510.72×640 µm |
-| 平均功耗 | **9.736 mW** | tc 角 + spef.max + 门级 VCD（10.3–15.8µs 计算窗），time_based |
-| 16 点 FFT | **506 周期 / 5.06 µs** | 二次复位释放 → 末结果字写回，不含程序装载 |
+| 平均功耗 | 由 PT PX 重跑生成 | tc 角 + spef.max + 3 ns 门级执行窗 VCD，time_based |
+| 16 点 FFT | **506 周期 / 1.518 µs** | 3 ns 时钟；二次复位释放 → 末结果字写回，不含程序装载 |
 
 ## 16 点 FFT 任务划分（DIT）
 
@@ -37,8 +37,8 @@ W16^k: Q10 定点旋转因子 (946/392, 724/724, ...), CPU 用 M 扩展完成复
 ├── tb/             tb_soc_day1.sv(RTL仿真) tb_soc_postsim.sv(门级后仿+定向VCD)
 ├── dc/             DC 综合 4 脚本 + soc_ahblite.rpt(面积/时序报告)
 ├── icc/            ICC Makefile、dependencies.sh、rm_setup/、主流程 RM 与定制 floorplan/PG 脚本
-├── pt/             compile_bc/tc/wc.tcl(三角STA) compile_power.tcl(功耗)
-├── postsim/        sim_min/max.sh(VCS SDF反标后仿) test/filelist
+├── pt/             Makefile + 三角STA/SDF + PT PX功耗脚本，输出到 runs/
+├── postsim/        功能预跑/max/min SDF后仿 + 自检testbench，输出到 build/
 └── doc/results/    PT 三角时序报告 / 功耗报告 / ICC QoR
 ```
 
@@ -49,9 +49,100 @@ W16^k: Q10 定点旋转因子 (946/392, 724/724, ...), CPU 用 M 扩展完成复
 | 1. RTL 仿真 | VCS | `sw/` 编译出 vmem → tb 装载运行 | 验证 16 点 FFT 功能，与 `fft16.cpp` 对拍 |
 | 2. DC 综合 | Design Compiler | `dc/compile.sh` → `compile.tcl` | wc 角综合（与 PT 签核角一致），SRAM 以 .db 黑盒链接 |
 | 3. ICC 后端 | IC Compiler | `icc/` + RM Makefile | 2×SRAM 顶部摆放 / 双电源环 + gap 内 VDD/GND strap / 整带 blockage，`make ic` 到 GDS |
-| 4. PT 签核 | PrimeTime | `pt/compile_{wc,tc,bc}.tcl` | SPEF 反标率 100%（pin-to-pin），setup 看 wc、hold 看 bc |
-| 5. 门级后仿 | VCS | `postsim/sim_min/max.sh` | SDF 反标 `tb_soc.x_soc`，Verdi 核对 16 组结果字 |
-| 6. 功耗分析 | PrimeTime PX | `pt/compile_power.tcl` | tc 角 + SPEF + 门级 VCD（计算窗 10.3–15.8µs） |
+| 4. PT 签核 | PrimeTime | `make -C pt sta` | WC/max-RC、TC/min-RC、BC/min-RC，生成报告与 SDF |
+| 5. 门级后仿 | VCS | `make -C postsim all` | 功能预跑 + max/min SDF，testbench 自动核对 16 点结果 |
+| 6. 功耗分析 | PrimeTime PX | `make -C pt power_all` | BC/min SDF 生成执行窗 VCD；tc 角 + spef.max 统计 SoC/FFT 功耗与能量 |
+
+## PT 签核与门级后仿
+
+以下两个检查只验证工具、库、网表、约束和寄生文件是否存在，不会取许可证：
+
+```bash
+make -C pt check
+make -C postsim check
+```
+
+实际 STA、SDF 生成和 VCS 仿真需要 Synopsys 许可证，由用户在有许可证的终端运行：
+
+```bash
+# WC/TC/BC STA；报告和 SDF 位于 pt/runs/<corner>/
+make -C pt sta
+make -C pt verify_sta
+
+# func 使用 10 ns 且关闭 specify/timing check；max/min 使用 3 ns 且开启检查
+make -C postsim func
+make -C postsim timing
+# 或一次运行上述三项
+make -C postsim all
+```
+
+`sta` 成功表示三个 PT 会话均正常完成，并不等于所有签核检查都已通过。
+`verify_sta` 会检查 WC setup、BC hold、TC setup/hold，并在 PrimeTime/GCA 错误或
+max transition/capacitance/fanout 违例存在时返回非零；因此真实的 reset removal 和
+DRC 问题不会被“脚本运行成功”掩盖。max/min 后仿同样要求 testbench 报告
+`CPU+FFT16 TEST PASS`、SDF 无错误且日志中没有 timing-check violation。
+max/min/power 后仿会定义 `NTC` 和 `RECREM`，使 TSMC 标准单元模型使用
+`$recrem` 接收 PT SDF 中可能为负的 recovery/removal 限值；`SDFCOM_NL`
+会被结果验证器视为反标失败。
+
+`rstn` 采用低有效异步断言、同 `clk1` 上升沿同步发射的释放协议。静态约束使用
+0.20–0.50 ns 的外部 clock-to-Q 窗口，所有 testbench 使用 0.30 ns 标称值；复位
+上升沿仍执行 recovery/removal 检查。项目级 DRC 上限为 fanout 128、transition
+0.60 ns、capacitance 0.20 pF，库中更严格的电气限制仍然有效。ICC 中可通过
+`ICC_RESET_RELEASE_MIN/MAX`、`ICC_MAX_FANOUT`、`ICC_MAX_TRANSITION` 和
+`ICC_MAX_CAPACITANCE` 覆盖这些默认值。为吸收 ICC/PT 寄生与角落相关性误差，
+ICC 默认用 reset min 0.14 ns、transition 0.50 ns、capacitance 0.18 pF 做物理
+优化，并对数据 SRAM `D[*]` 使用 0.40 ns 局部 slew 目标；输出 SDC 前恢复上述
+签核值。实现 guardband 可分别通过
+`ICC_OPT_RESET_RELEASE_MIN`、`ICC_OPT_MAX_TRANSITION` 和
+`ICC_OPT_MAX_CAPACITANCE` 覆盖，SRAM 局部目标可通过
+`ICC_OPT_SRAM_DATA_MAX_TRANSITION` 覆盖。
+
+修改 DC/ICC 约束后必须完整重跑。以下清理命令会删除原有生成结果，必要时先备份：
+
+```bash
+dc/compile.sh
+make -C icc clean
+make -C icc ic
+make -C pt clean
+make -C pt sta
+make -C pt verify_sta
+make -C postsim all
+```
+
+功耗流程先用 BC/min SDF 生成仅含程序执行段的门级 VCD，再由 TC/TT PT PX 读取。
+推荐使用一键目标（会依次占用 VCS 和 PrimeTime/PrimePower 许可证）：
+
+```bash
+make -C pt power_all
+```
+
+也可以拆开运行，便于保留 VCD 后反复调整 PT 报告：
+
+```bash
+make -C postsim power_vcd  # 生成 postsim/build/power/tb_soc.vcd 和 power_window.rpt
+make -C pt power           # 复用上述文件，不再运行 VCS
+```
+
+testbench 在二次复位释放前开启 VCD，并在最后一个正确结果写回后关闭；同一次仿真
+会把绝对起止时间、持续时间和周期数写入 `power_window.rpt`。PT 脚本以这些数值调用
+`read_vcd -time`，因此不会把程序装载、复位或 VCD 时间零点误计入平均功耗。
+`pt/runs/power/` 中的主要结果为：
+
+- `power_vcd.rpt`：整个 SoC 在测量窗内的 time-based 功耗；
+- `power_fft8.rpt`：同一测量窗内 `u_fft8_top` 的功耗；
+- `power_vcd_hier.rpt`：层次化功耗明细；
+- `power_summary.rpt`：统一换算为 mW，并给出窗口能量 nJ、每周期能量 pJ 和 FFT 占比；
+- `power_window_used.rpt`：PT 实际采用的窗口、角落、SPEF 和 FFT 实例记录。
+
+若 FFT 实例名因网表层次改变，可设置 `POWER_FFT_INSTANCE`。功耗输入也可分别通过
+`POWER_VCD` 与 `POWER_WINDOW_FILE` 覆盖；两者必须来自同一次后仿真。
+
+主要外部路径集中在 `pt/dependencies.sh` 和 `postsim/dependencies.sh`。可通过同名
+环境变量覆盖，例如 `PT_SHELL_BIN`、`VCS_BIN`、`STD_CELL_*_DB`、`SRAM_*_DB`、
+`NETLIST`、`STD_CELL_MODEL`、`SRAM_MODEL`、`VMEM`、`WC_SDF`、`BC_SDF` 和
+`POWER_VCD`、`POWER_WINDOW_FILE` 和 `POWER_FFT_INSTANCE`，无需修改 Tcl、testbench
+或 Makefile。
 
 ## 第三方依赖（不随仓库分发，需自备）
 

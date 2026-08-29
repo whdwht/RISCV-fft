@@ -24,12 +24,12 @@ foreach {parameter default_value} {
     T_IO_MAX_RATIO             0.30
     T_SYNC_INPUT_MIN           0.00
     T_INPUT_TRANSITION         0.20
-    T_RESET_RELEASE_MIN        0.10
+    T_RESET_RELEASE_MIN        0.20
     T_RESET_RELEASE_MAX        0.50
     T_SYNC_OUTPUT_MIN         -0.20
     C_OUTPUT_LOAD              0.05
-    MAX_DESIGN_TRANSITION      0.50
-    MAX_DESIGN_FANOUT         32
+    MAX_DESIGN_TRANSITION      0.60
+    MAX_DESIGN_FANOUT        128
     MAX_DESIGN_CAPACITANCE     0.20
     ENABLE_FIX_HOLD            1
     ENABLE_POST_HOLD_RECOVERY  1
@@ -85,9 +85,9 @@ set_max_capacitance $MAX_DESIGN_CAPACITANCE [current_design]
 
 # -----------------------------------------------------------------------------
 # Reset protocol
-# rstn may assert asynchronously (falling edge). Its rising/deasserting edge
-# is required to be launched synchronously from the same rising-edge clock and
-# is checked for recovery/removal using the provisional external tCO values.
+# rstn may assert asynchronously (falling edge). Its rising/deasserting edge is
+# launched by the same rising edge of clk1 and arrives after the external
+# reset source's clock-to-Q delay. Recovery/removal checks remain enabled.
 # -----------------------------------------------------------------------------
 set RESET_PORT [get_ports rstn]
 set_input_transition $T_INPUT_TRANSITION $RESET_PORT

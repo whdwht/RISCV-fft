@@ -40,6 +40,8 @@ command.log
 filenames.log
 sim/build/
 sim_16/build/
+postsim/build/
+pt/runs/
 
 # ============ ICC 生成物 ============
 icc/logs_zrt/

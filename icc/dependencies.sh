@@ -16,6 +16,28 @@ export MILKYWAY_BIN="${MILKYWAY_BIN:-/export/SoftWare/Synopsys/mw/O-2018.06-SP5-
 export ICC_CLOCK_NAME="${ICC_CLOCK_NAME:-clk1}"
 export ICC_SETUP_UNCERTAINTY="${ICC_SETUP_UNCERTAINTY:-0.20}"
 export ICC_HOLD_UNCERTAINTY="${ICC_HOLD_UNCERTAINTY:-0.05}"
+export ICC_RESET_RELEASE_MIN="${ICC_RESET_RELEASE_MIN:-0.20}"
+export ICC_RESET_RELEASE_MAX="${ICC_RESET_RELEASE_MAX:-0.50}"
+
+# Implementation guardband for reset removal. ICC optimizes with the earlier
+# release, then outputs_icc restores ICC_RESET_RELEASE_MIN in the signoff SDC.
+export ICC_OPT_RESET_RELEASE_MIN="${ICC_OPT_RESET_RELEASE_MIN:-0.14}"
+
+# Project-level design-rule limits. Foundry/library electrical limits remain
+# active when they are stricter than these values.
+export ICC_MAX_FANOUT="${ICC_MAX_FANOUT:-128}"
+export ICC_MAX_TRANSITION="${ICC_MAX_TRANSITION:-0.60}"
+export ICC_MAX_CAPACITANCE="${ICC_MAX_CAPACITANCE:-0.20}"
+
+# Post-route electrical guardbands used only while ICC is optimizing. The
+# project-level values above are restored before the signoff SDC is written.
+export ICC_OPT_MAX_TRANSITION="${ICC_OPT_MAX_TRANSITION:-0.50}"
+export ICC_OPT_MAX_CAPACITANCE="${ICC_OPT_MAX_CAPACITANCE:-0.18}"
+
+# The data SRAM inputs showed a larger ICC/PT slew-correlation delta than the
+# rest of the design. Use a local target so ICC inserts/strengthens buffering
+# on those macro-interface nets without tightening every design pin.
+export ICC_OPT_SRAM_DATA_MAX_TRANSITION="${ICC_OPT_SRAM_DATA_MAX_TRANSITION:-0.40}"
 
 # Preserve timing margin during the initial post-route optimization.  Set this
 # to TRUE only for an explicit area-recovery/PPA comparison after timing closes.

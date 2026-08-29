@@ -1,6 +1,5 @@
-# VCS 门级后仿 filelist (从 post_sim/ 目录运行, 相对路径基于 post_sim/)
-
-../tcbn65gplusbwp12t.v
-../soc_ahblite.output.v
-/mnt/hgfs/share/sram_hde/gen_hde/RA1HD_4KB.v
+# Manual VCS fallback (resolve these paths from the postsim/ directory).
+../../IC_class/library/tcbn65gplusbwp12t.v
+../../3_PR/sram_hde/gen_hde/RA1HD_4KB.v
+../icc/results/soc_ahblite.output.v
 ./tb/tb_soc.sv

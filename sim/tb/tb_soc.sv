@@ -3,6 +3,7 @@
 module tb_soc;
   localparam int MEM_WORDS = 1024;
   localparam logic [31:0] FFT_BASE = 32'h4000_0000;
+  localparam realtime RESET_RELEASE_TCO_NS = 0.30;
 
   logic clk, rstn, load_en, uart_rx, inst_write, write_start;
   logic [31:0] inst_wdata, inst_wdata_d;
@@ -136,15 +137,16 @@ module tb_soc;
     completion_pending = 1'b0;
     finished = 1'b0;
 
-    #20 rstn = 1'b1;
+    repeat (2) @(posedge clk);
+    #(RESET_RELEASE_TCO_NS) rstn = 1'b1;
     #10 load_program();
     #100;
     load_en = 1'b0;
     rstn = 1'b0;
-    #20;
+    repeat (2) @(posedge clk);
     cycle_count = 32'h0;
     measure_enable = 1'b1;
-    rstn = 1'b1;
+    #(RESET_RELEASE_TCO_NS) rstn = 1'b1;
   end
 
   always @(posedge clk)

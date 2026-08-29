@@ -1,51 +1,12 @@
-# ============ compile_wc_max.tcl : wc角 + spef.max ============
-# 1. 设计名: 与顶层模块一致
-set DESIGN_NAME "soc_ahblite"
+# WC/SS maximum-RC signoff STA and maximum-delay SDF.
+if {![info exists env(PT_ROOT)] || $env(PT_ROOT) eq ""} {
+  error "Required environment variable PT_ROOT is not set"
+}
+source [file join $env(PT_ROOT) common_setup.tcl]
 
-# 2. 库路径 (TODO: 替换为你的实际绝对路径)
-set stdCell_path "/home/master/project1/day2/library"   ;# 例: /home/master/project1/day2/library
-set sram_path    "/mnt/hgfs/share/sram_hde/gen_hde"      ;# 例: /home/master/Project/icc_project/sram_hde/gen_hde
-set pt_data_path "/home/master/project1/day4/PT"   ;# 你拷贝ICC结果的目录, 例: /home/master/PT/data
+pt_read_design_and_constraints wc
+pt_read_parasitics $PT_SPEF_MAX wc_max
+pt_run_sta_reports wc_max setup
+write_sdf -version 2.1 -context verilog my_wc_max.sdf
 
-# 3. 搜索路径
-lappend search_path $stdCell_path
-lappend search_path $sram_path
-
-# 4. 目标库: wc典型角; SRAM按角配对ss
-set target_library "tcbn65gplusbwp12twc.db"
-set sram_library   "RA1HD_4KB_ss_0p90v_0p90v_125c.db"
-
-# 6. 链接库: 标准单元 + SRAM (缺SRAM会 link 报 RA1HD_4KB undefined)
-set_app_var link_library "* $target_library $sram_library"
-
-# Designware
-lappend synlib_wait_for_design_license "DesignWare-Foundation"
-
-# 7. 高精度延迟计算配置 (沿用模板)
-set_app_var delay_calc_waveform_analysis_mode full_design
-set_app_var read_parasitics_load_locations true
-set_app_var pba_recalculate_full_path true
-set timing_ocvm_enable_distance_analysis true
-set timing_reduce_parallel_arc false
-
-# 9. 读网表 & SDC (ICC输出, 已拷入 $pt_data_path)
-read_verilog $pt_data_path/soc_ahblite.output.v
-current_design $DESIGN_NAME
-link
-read_sdc $pt_data_path/soc_ahblite.output.sdc
-
-# 10. 读寄生参数: max分析配 spef.max
-read_parasitics -format spef $pt_data_path/soc_ahblite.output.spef.max
-report_annotated_parasitics -internal_nets -list_not_annotated -max_nets 320 -constant_arcs > "not_annotated_wc_max.rpt"
-
-#---------------- Report Section (文件名加后缀, 防三角互相覆盖) ----------------
-check_constraints -verbose > "check_constr_wc_max.rpt"
-
-update_timing -full
-check_timing -verbose > "check_timing_wc_max.rpt"   ;# 模板笔误 -verbos 已修正
-
-report_timing -exclude [all_outputs] -max_paths 20 -delay_type min_max -pba_mode path -derate -slack_lesser_than 100 > "timing_no_inout_wc_max.rpt"
-report_disable_timing > "disabled_timing_wc_max.rpt"
-
-# 13. 写SDF (命名带角, 避免与后续bc/wc冲突)
-write_sdf my_wc_max.sdf
+exit

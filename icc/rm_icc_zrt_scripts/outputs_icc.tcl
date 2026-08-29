@@ -14,6 +14,10 @@ set link_library   $LINK_LIB
 ##Open Design
 open_mw_cel $ICC_METAL_FILL_CEL -lib $MW_DESIGN_LIBRARY
 
+# Replace implementation guardbands with the project signoff constraints
+# before saving the output CEL and writing the SDC consumed by PrimeTime.
+source -echo [file join $::env(ICC_ROOT) myscript icc_signoff_constraints.tcl]
+
 # Wenxun: Add pin names to pins, Calibre in Virtuoso only recognize those text labels
 # Here we do not need pad, since it is not chip-level
 # source add_pad_text.tcl
