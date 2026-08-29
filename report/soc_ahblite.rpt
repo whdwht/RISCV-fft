@@ -1,0 +1,94 @@
+ 
+****************************************
+Report : qor
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:32 2026
+****************************************
+
+
+  Timing Path Group 'clk1'
+  -----------------------------------
+  Levels of Logic:              64.00
+  Critical Path Length:          2.71
+  Critical Path Slack:           0.00
+  Critical Path Clk Period:      3.00
+  Total Negative Slack:          0.00
+  No. of Violating Paths:        0.00
+  Worst Hold Violation:          0.00
+  Total Hold Violation:          0.00
+  No. of Hold Violations:        0.00
+  -----------------------------------
+
+
+  Cell Count
+  -----------------------------------
+  Hierarchical Cell Count:         53
+  Hierarchical Port Count:      12285
+  Leaf Cell Count:              18313
+  Buf/Inv Cell Count:            3309
+  Buf Cell Count:                 577
+  Inv Cell Count:                2732
+  CT Buf/Inv Cell Count:            0
+  Combinational Cell Count:     15028
+  Sequential Cell Count:         3283
+  Macro Count:                      2
+  -----------------------------------
+
+
+  Area
+  -----------------------------------
+  Combinational Area:    53646.720256
+  Noncombinational Area: 36471.360395
+  Buf/Inv Area:           5826.240145
+  Total Buffer Area:          1541.76
+  Total Inverter Area:        4284.48
+  Macro/Black Box Area:  78944.937500
+  Net Area:                  0.000000
+  -----------------------------------
+  Cell Area:            169063.018152
+  Design Area:          169063.018152
+
+
+  Design Rules
+  -----------------------------------
+  Total Number of Nets:         19159
+  Nets With Violations:             0
+  Max Trans Violations:             0
+  Max Cap Violations:               0
+  -----------------------------------
+
+
+  Hostname: icpc
+
+  Compile CPU Statistics
+  -----------------------------------------
+  Resource Sharing:                    0.01
+  Logic Optimization:                  0.96
+  Mapping Optimization:               73.07
+  -----------------------------------------
+  Overall Compile Time:               79.01
+  Overall Compile Wall Clock Time:    39.31
+
+  --------------------------------------------------------------------
+
+  Design  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+
+  Design (Hold)  WNS: 0.00  TNS: 0.00  Number of Violating Paths: 0
+
+  --------------------------------------------------------------------
+
+
+1
+
+Detailed reports:
+  soc_ahblite.check_design.rpt
+  soc_ahblite.check_timing.rpt
+  soc_ahblite.area.rpt
+  soc_ahblite.timing_setup.rpt
+  soc_ahblite.timing_hold.rpt
+  soc_ahblite.constraints.rpt
+  soc_ahblite.clocks.rpt
+  soc_ahblite.design.rpt
+  soc_ahblite.objects.rpt

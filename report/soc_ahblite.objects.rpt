@@ -1,0 +1,2053 @@
+ 
+****************************************
+Report : cell
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+Attributes:
+    b - black box (unknown)
+    h - hierarchical
+    n - noncombinational
+    p - parameterized
+    r - removable
+    u - contains unmapped logic
+
+Cell                      Reference       Library             Area  Attributes
+--------------------------------------------------------------------------------
+inst_addr_cnt_reg_0_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_1_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_2_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_3_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_4_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_5_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_6_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_7_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_8_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+inst_addr_cnt_reg_9_      EDFCNQD1BWP12T  tcbn65gplusbwp12twc
+                                                          14.400000 n
+u83                       TIEHBWP12T      tcbn65gplusbwp12twc
+                                                          1.440000  
+u84                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u85                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u86                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u87                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u88                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u89                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u90                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u91                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u92                       CKMUX2D0BWP12T  tcbn65gplusbwp12twc
+                                                          4.800000  
+u93                       TIELBWP12T      tcbn65gplusbwp12twc
+                                                          1.440000  
+u94                       MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u95                       ND2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u96                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u97                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u98                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u99                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u100                      NR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u101                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+                                                          1.920000  
+u102                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u103                      NR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u104                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+                                                          1.920000  
+u105                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u106                      NR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u107                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u108                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+                                                          1.920000  
+u109                      NR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u110                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+                                                          1.920000  
+u111                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u112                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u113                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u114                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u115                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u116                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u117                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u118                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u119                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u120                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u121                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u122                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u123                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u124                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u125                      IOA21D1BWP12T   tcbn65gplusbwp12twc
+                                                          3.360000  
+u126                      ND2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u127                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u128                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u129                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u130                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u131                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u132                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u133                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u134                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u135                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u136                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u137                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u138                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u139                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u140                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u141                      IOA21D1BWP12T   tcbn65gplusbwp12twc
+                                                          3.360000  
+u142                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u143                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u144                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u145                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u146                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u147                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u148                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u149                      MAOI22D0BWP12T  tcbn65gplusbwp12twc
+                                                          3.840000  
+u150                      MAOI22D0BWP12T  tcbn65gplusbwp12twc
+                                                          3.840000  
+u151                      OR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          2.880000  
+u152                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u153                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u154                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u155                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u156                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u157                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u158                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u159                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u160                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u161                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u162                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u163                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u164                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u165                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u166                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u167                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u168                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u169                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u170                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u171                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u172                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u173                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u174                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u175                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u176                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u177                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u178                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u179                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u180                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u181                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u182                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u183                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u184                      BUFFD1BWP12T    tcbn65gplusbwp12twc
+                                                          1.920000  
+u185                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u186                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u187                      OA21D0BWP12T    tcbn65gplusbwp12twc
+                                                          3.360000  
+u188                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u189                      OA21D0BWP12T    tcbn65gplusbwp12twc
+                                                          3.360000  
+u190                      BUFFD1BWP12T    tcbn65gplusbwp12twc
+                                                          1.920000  
+u191                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u192                      OA21D0BWP12T    tcbn65gplusbwp12twc
+                                                          3.360000  
+u193                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u194                      OA21D0BWP12T    tcbn65gplusbwp12twc
+                                                          3.360000  
+u195                      ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u196                      IOA21D2BWP12T   tcbn65gplusbwp12twc
+                                                          4.800000  
+u197                      ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u198                      IOA21D2BWP12T   tcbn65gplusbwp12twc
+                                                          4.800000  
+u199                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u200                      NR2D0BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u201                      ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u202                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u_fft8_top                soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
+                                                          30389.759917
+                                                                    h, n, p
+x_data_fabric             soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
+                                                          951.360014
+                                                                    h, n, p
+x_data_sram               soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
+                                                          39834.868756
+                                                                    b, h, n, p
+x_isram_ahbl              soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
+                                                          40175.668767
+                                                                    b, h, n, p
+x_rom_ahbl                soc_ahblite_rom_0               1193.279988
+                                                                    h, n
+x_sub_system              soc_ahblite_sub_system_0        56011.200704
+                                                                    b, h, n
+--------------------------------------------------------------------------------
+Total 136 cells                                           169063.018152
+1
+ 
+****************************************
+Report : reference
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+AOI21D0BWP12T      tcbn65gplusbwp12twc
+                                  2.880000       5     14.400001  
+BUFFD1BWP12T       tcbn65gplusbwp12twc
+                                  1.920000       2      3.840000  
+CKAN2D0BWP12T      tcbn65gplusbwp12twc
+                                  2.880000      32     92.160004  
+CKMUX2D0BWP12T     tcbn65gplusbwp12twc
+                                  4.800000       1      4.800000  
+CKND0BWP12T        tcbn65gplusbwp12twc
+                                  1.440000      18     25.920001  
+CKND2D0BWP12T      tcbn65gplusbwp12twc
+                                  1.920000       4      7.680000  
+EDFCNQD1BWP12T     tcbn65gplusbwp12twc
+                                 14.400000      10    143.999996  n
+IOA21D1BWP12T      tcbn65gplusbwp12twc
+                                  3.360000       2      6.720000  
+IOA21D2BWP12T      tcbn65gplusbwp12twc
+                                  4.800000       2      9.600000  
+MAOI22D0BWP12T     tcbn65gplusbwp12twc
+                                  3.840000       2      7.680000  
+MUX2D0BWP12T       tcbn65gplusbwp12twc
+                                  4.320000      34    146.880006  
+MUX2D1BWP12T       tcbn65gplusbwp12twc
+                                  4.800000       1      4.800000  
+ND2D0BWP12T        tcbn65gplusbwp12twc
+                                  1.920000       2      3.840000  
+ND2D1BWP12T        tcbn65gplusbwp12twc
+                                  1.920000       3      5.760000  
+NR2D0BWP12T        tcbn65gplusbwp12twc
+                                  1.920000       5      9.600000  
+OA21D0BWP12T       tcbn65gplusbwp12twc
+                                  3.360000       4     13.440000  
+OR2D0BWP12T        tcbn65gplusbwp12twc
+                                  2.880000       1      2.880000  
+TIEHBWP12T         tcbn65gplusbwp12twc
+                                  1.440000       1      1.440000  
+TIELBWP12T         tcbn65gplusbwp12twc
+                                  1.440000       1      1.440000  
+soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
+                                951.360014       1    951.360014  h, n
+soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
+                              39834.868756       1  39834.868756  b, h, n
+soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
+                              30389.759917       1  30389.759917  h, n
+soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
+                              40175.668767       1  40175.668767  b, h, n
+soc_ahblite_rom_0              1193.279988       1   1193.279988  h, n
+soc_ahblite_sub_system_0      56011.200704       1  56011.200704  b, h, n
+-----------------------------------------------------------------------------
+Total 25 references                                 169063.018152
+1
+ 
+****************************************
+Report : port
+        -verbose
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+
+                       Pin      Wire     Max     Max     Connection
+Port           Dir     Load     Load     Trans   Cap     Class      Attrs
+--------------------------------------------------------------------------------
+cs_n_ext       in      0.0000   0.0000   --      --      --         
+inst_wdata[0]  in      0.0000   0.0000   --      --      --         
+inst_wdata[1]  in      0.0000   0.0000   --      --      --         
+inst_wdata[2]  in      0.0000   0.0000   --      --      --         
+inst_wdata[3]  in      0.0000   0.0000   --      --      --         
+inst_wdata[4]  in      0.0000   0.0000   --      --      --         
+inst_wdata[5]  in      0.0000   0.0000   --      --      --         
+inst_wdata[6]  in      0.0000   0.0000   --      --      --         
+inst_wdata[7]  in      0.0000   0.0000   --      --      --         
+inst_wdata[8]  in      0.0000   0.0000   --      --      --         
+inst_wdata[9]  in      0.0000   0.0000   --      --      --         
+inst_wdata[10] in      0.0000   0.0000   --      --      --         
+inst_wdata[11] in      0.0000   0.0000   --      --      --         
+inst_wdata[12] in      0.0000   0.0000   --      --      --         
+inst_wdata[13] in      0.0000   0.0000   --      --      --         
+inst_wdata[14] in      0.0000   0.0000   --      --      --         
+inst_wdata[15] in      0.0000   0.0000   --      --      --         
+inst_wdata[16] in      0.0000   0.0000   --      --      --         
+inst_wdata[17] in      0.0000   0.0000   --      --      --         
+inst_wdata[18] in      0.0000   0.0000   --      --      --         
+inst_wdata[19] in      0.0000   0.0000   --      --      --         
+inst_wdata[20] in      0.0000   0.0000   --      --      --         
+inst_wdata[21] in      0.0000   0.0000   --      --      --         
+inst_wdata[22] in      0.0000   0.0000   --      --      --         
+inst_wdata[23] in      0.0000   0.0000   --      --      --         
+inst_wdata[24] in      0.0000   0.0000   --      --      --         
+inst_wdata[25] in      0.0000   0.0000   --      --      --         
+inst_wdata[26] in      0.0000   0.0000   --      --      --         
+inst_wdata[27] in      0.0000   0.0000   --      --      --         
+inst_wdata[28] in      0.0000   0.0000   --      --      --         
+inst_wdata[29] in      0.0000   0.0000   --      --      --         
+inst_wdata[30] in      0.0000   0.0000   --      --      --         
+inst_wdata[31] in      0.0000   0.0000   --      --      --         
+inst_write     in      0.0000   0.0000   --      --      --         
+load_en        in      0.0000   0.0000   --      --      --         
+rstn           in      0.0000   0.0000   --      --      --         
+rx_dma_ack     in      0.0000   0.0000   --      --      --         
+scl_ext        in      0.0000   0.0000   --      --      --         
+sclk_ext       in      0.0000   0.0000   --      --      --         
+sda_ext        in      0.0000   0.0000   --      --      --         
+spi_di         in      0.0000   0.0000   --      --      --         
+spi_rstn       in      0.0000   0.0000   --      --      --         
+sys_clk        in      0.0000   0.0000   --      --      --         
+tx_dma_ack     in      0.0000   0.0000   --      --      --         
+uart_rx        in      0.0000   0.0000   --      --      --         
+write_start    in      0.0000   0.0000   --      --      --         
+cs_n           out     0.0500   0.0000   --      --      --         
+rx_dma_req     out     0.0500   0.0000   --      --      --         
+scl            out     0.0500   0.0000   --      --      --         
+sclk           out     0.0500   0.0000   --      --      --         
+sda            out     0.0500   0.0000   --      --      --         
+spi_do         out     0.0500   0.0000   --      --      --         
+tx_dma_req     out     0.0500   0.0000   --      --      --         
+uart_tx        out     0.0500   0.0000   --      --      --         
+
+
+              External  Max             Min                Min       Min
+              Number    Wireload        Wireload           Pin       Wire
+Port          Points    Model           Model              Load      Load
+--------------------------------------------------------------------------------
+cs_n_ext           1      --              --              --        -- 
+inst_wdata[0]      1      --              --              --        -- 
+inst_wdata[1]      1      --              --              --        -- 
+inst_wdata[2]      1      --              --              --        -- 
+inst_wdata[3]      1      --              --              --        -- 
+inst_wdata[4]      1      --              --              --        -- 
+inst_wdata[5]      1      --              --              --        -- 
+inst_wdata[6]      1      --              --              --        -- 
+inst_wdata[7]      1      --              --              --        -- 
+inst_wdata[8]      1      --              --              --        -- 
+inst_wdata[9]      1      --              --              --        -- 
+inst_wdata[10]
+                   1      --              --              --        -- 
+inst_wdata[11]
+                   1      --              --              --        -- 
+inst_wdata[12]
+                   1      --              --              --        -- 
+inst_wdata[13]
+                   1      --              --              --        -- 
+inst_wdata[14]
+                   1      --              --              --        -- 
+inst_wdata[15]
+                   1      --              --              --        -- 
+inst_wdata[16]
+                   1      --              --              --        -- 
+inst_wdata[17]
+                   1      --              --              --        -- 
+inst_wdata[18]
+                   1      --              --              --        -- 
+inst_wdata[19]
+                   1      --              --              --        -- 
+inst_wdata[20]
+                   1      --              --              --        -- 
+inst_wdata[21]
+                   1      --              --              --        -- 
+inst_wdata[22]
+                   1      --              --              --        -- 
+inst_wdata[23]
+                   1      --              --              --        -- 
+inst_wdata[24]
+                   1      --              --              --        -- 
+inst_wdata[25]
+                   1      --              --              --        -- 
+inst_wdata[26]
+                   1      --              --              --        -- 
+inst_wdata[27]
+                   1      --              --              --        -- 
+inst_wdata[28]
+                   1      --              --              --        -- 
+inst_wdata[29]
+                   1      --              --              --        -- 
+inst_wdata[30]
+                   1      --              --              --        -- 
+inst_wdata[31]
+                   1      --              --              --        -- 
+inst_write         1      --              --              --        -- 
+load_en            1      --              --              --        -- 
+rstn               1      --              --              --        -- 
+rx_dma_ack         1      --              --              --        -- 
+scl_ext            1      --              --              --        -- 
+sclk_ext           1      --              --              --        -- 
+sda_ext            1      --              --              --        -- 
+spi_di             1      --              --              --        -- 
+spi_rstn           1      --              --              --        -- 
+sys_clk            1      --              --              --        -- 
+tx_dma_ack         1      --              --              --        -- 
+uart_rx            1      --              --              --        -- 
+write_start        1      --              --              --        -- 
+cs_n               1      --              --              --        -- 
+rx_dma_req         1      --              --              --        -- 
+scl                1      --              --              --        -- 
+sclk               1      --              --              --        -- 
+sda                1      --              --              --        -- 
+spi_do             1      --              --              --        -- 
+tx_dma_req         1      --              --              --        -- 
+uart_tx            1      --              --              --        -- 
+
+                    Input Delay
+                  Min             Max       Related   Max
+Input Port    Rise    Fall    Rise    Fall   Clock  Fanout
+--------------------------------------------------------------------------------
+cs_n_ext      --      --      --      --      --      -- 
+inst_wdata[0]
+              --      --      --      --      --      -- 
+inst_wdata[1]
+              --      --      --      --      --      -- 
+inst_wdata[2]
+              --      --      --      --      --      -- 
+inst_wdata[3]
+              --      --      --      --      --      -- 
+inst_wdata[4]
+              --      --      --      --      --      -- 
+inst_wdata[5]
+              --      --      --      --      --      -- 
+inst_wdata[6]
+              --      --      --      --      --      -- 
+inst_wdata[7]
+              --      --      --      --      --      -- 
+inst_wdata[8]
+              --      --      --      --      --      -- 
+inst_wdata[9]
+              --      --      --      --      --      -- 
+inst_wdata[10]
+              --      --      --      --      --      -- 
+inst_wdata[11]
+              --      --      --      --      --      -- 
+inst_wdata[12]
+              --      --      --      --      --      -- 
+inst_wdata[13]
+              --      --      --      --      --      -- 
+inst_wdata[14]
+              --      --      --      --      --      -- 
+inst_wdata[15]
+              --      --      --      --      --      -- 
+inst_wdata[16]
+              --      --      --      --      --      -- 
+inst_wdata[17]
+              --      --      --      --      --      -- 
+inst_wdata[18]
+              --      --      --      --      --      -- 
+inst_wdata[19]
+              --      --      --      --      --      -- 
+inst_wdata[20]
+              --      --      --      --      --      -- 
+inst_wdata[21]
+              --      --      --      --      --      -- 
+inst_wdata[22]
+              --      --      --      --      --      -- 
+inst_wdata[23]
+              --      --      --      --      --      -- 
+inst_wdata[24]
+              --      --      --      --      --      -- 
+inst_wdata[25]
+              --      --      --      --      --      -- 
+inst_wdata[26]
+              --      --      --      --      --      -- 
+inst_wdata[27]
+              --      --      --      --      --      -- 
+inst_wdata[28]
+              --      --      --      --      --      -- 
+inst_wdata[29]
+              --      --      --      --      --      -- 
+inst_wdata[30]
+              --      --      --      --      --      -- 
+inst_wdata[31]
+              --      --      --      --      --      -- 
+inst_write    --      --      --      --      --      -- 
+load_en       --      --      --      --      --      -- 
+rstn          0.10    --      0.50    --    clk1      --    
+rx_dma_ack    --      --      --      --      --      -- 
+scl_ext       --      --      --      --      --      -- 
+sclk_ext      --      --      --      --      --      -- 
+sda_ext       --      --      --      --      --      -- 
+spi_di        --      --      --      --      --      -- 
+spi_rstn      --      --      --      --      --      -- 
+sys_clk       --      --      --      --      --      -- 
+tx_dma_ack    --      --      --      --      --      -- 
+uart_rx       --      --      --      --      --      -- 
+write_start   --      --      --      --      --      -- 
+
+
+               Max Drive      Min Drive      Resistance    Min    Min       Cell
+Input Port    Rise    Fall   Rise    Fall   Max     Min    Cap    Fanout    Deg
+--------------------------------------------------------------------------------
+cs_n_ext      --      --     --      --     --      --     --     --        -- 
+inst_wdata[0]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[1]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[2]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[3]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[4]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[5]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[6]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[7]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[8]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[9]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[10]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[11]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[12]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[13]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[14]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[15]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[16]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[17]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[18]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[19]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[20]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[21]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[22]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[23]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[24]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[25]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[26]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[27]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[28]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[29]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[30]
+              --      --     --      --     --      --     --     --        -- 
+inst_wdata[31]
+              --      --     --      --     --      --     --     --        -- 
+inst_write    --      --     --      --     --      --     --     --        -- 
+load_en       --      --     --      --     --      --     --     --        -- 
+rstn          --      --     --      --     --      --     --     --        -- 
+rx_dma_ack    --      --     --      --     --      --     --     --        -- 
+scl_ext       --      --     --      --     --      --     --     --        -- 
+sclk_ext      --      --     --      --     --      --     --     --        -- 
+sda_ext       --      --     --      --     --      --     --     --        -- 
+spi_di        --      --     --      --     --      --     --     --        -- 
+spi_rstn      --      --     --      --     --      --     --     --        -- 
+sys_clk       --      --     --      --     --      --     --     --        -- 
+tx_dma_ack    --      --     --      --     --      --     --     --        -- 
+uart_rx       --      --     --      --     --      --     --     --        -- 
+write_start   --      --     --      --     --      --     --     --        -- 
+
+
+               Max Tran        Min Tran
+Input Port    Rise    Fall    Rise    Fall
+--------------------------------------------------------------------------------
+cs_n_ext      --      --      --      -- 
+inst_wdata[0]
+              --      --      --      -- 
+inst_wdata[1]
+              --      --      --      -- 
+inst_wdata[2]
+              --      --      --      -- 
+inst_wdata[3]
+              --      --      --      -- 
+inst_wdata[4]
+              --      --      --      -- 
+inst_wdata[5]
+              --      --      --      -- 
+inst_wdata[6]
+              --      --      --      -- 
+inst_wdata[7]
+              --      --      --      -- 
+inst_wdata[8]
+              --      --      --      -- 
+inst_wdata[9]
+              --      --      --      -- 
+inst_wdata[10]
+              --      --      --      -- 
+inst_wdata[11]
+              --      --      --      -- 
+inst_wdata[12]
+              --      --      --      -- 
+inst_wdata[13]
+              --      --      --      -- 
+inst_wdata[14]
+              --      --      --      -- 
+inst_wdata[15]
+              --      --      --      -- 
+inst_wdata[16]
+              --      --      --      -- 
+inst_wdata[17]
+              --      --      --      -- 
+inst_wdata[18]
+              --      --      --      -- 
+inst_wdata[19]
+              --      --      --      -- 
+inst_wdata[20]
+              --      --      --      -- 
+inst_wdata[21]
+              --      --      --      -- 
+inst_wdata[22]
+              --      --      --      -- 
+inst_wdata[23]
+              --      --      --      -- 
+inst_wdata[24]
+              --      --      --      -- 
+inst_wdata[25]
+              --      --      --      -- 
+inst_wdata[26]
+              --      --      --      -- 
+inst_wdata[27]
+              --      --      --      -- 
+inst_wdata[28]
+              --      --      --      -- 
+inst_wdata[29]
+              --      --      --      -- 
+inst_wdata[30]
+              --      --      --      -- 
+inst_wdata[31]
+              --      --      --      -- 
+inst_write    --      --      --      -- 
+load_en       --      --      --      -- 
+rstn          0.20    0.20    0.20    0.20
+rx_dma_ack    --      --      --      -- 
+scl_ext       --      --      --      -- 
+sclk_ext      --      --      --      -- 
+sda_ext       --      --      --      -- 
+spi_di        --      --      --      -- 
+spi_rstn      --      --      --      -- 
+sys_clk       --      --      --      -- 
+tx_dma_ack    --      --      --      -- 
+uart_rx       --      --      --      -- 
+write_start   --      --      --      -- 
+
+
+                    Output Delay
+                  Min             Max      Related  Fanout
+Output Port   Rise    Fall    Rise    Fall  Clock     Load
+--------------------------------------------------------------------------------
+cs_n          --      --      --      --      --      0.00
+rx_dma_req    --      --      --      --      --      0.00
+scl           --      --      --      --      --      0.00
+sclk          --      --      --      --      --      0.00
+sda           --      --      --      --      --      0.00
+spi_do        --      --      --      --      --      0.00
+tx_dma_req    --      --      --      --      --      0.00
+uart_tx       --      --      --      --      --      0.00
+
+1
+ 
+****************************************
+Report : isolate_ports
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+================================================================================
+Port Name     Cell Name      Inst.Name      Type      Forced Insertion
+================================================================================
+================================================================================
+1
+ 
+****************************************
+Report : net
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+
+Operating Conditions: WCCOM   Library: tcbn65gplusbwp12twc
+Wire Load Model Mode: segmented
+
+Design        Wire Load Model            Library
+------------------------------------------------
+soc_ahblite            ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_sub_system_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_rom_0      ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_core_00000000_00000000_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_decoder_0  ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_fft8_pl_0  ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_rom_32x64_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_prim_clock_gating_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_if_stage_00000000_00000000_0_0_0_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_id_stage_0_2_0_0_0_0_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_ex_block_2_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_load_store_unit_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_wb_stage_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_register_file_ff_0_00000020_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_fft8_stage1_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_fft8_stage2_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_fft8_stage3_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_prefetch_buffer_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_compressed_decoder_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_decoder_0_2_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_controller_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_alu_RV32B0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_multdiv_fast_RV32M2_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_6_0_10_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_18_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_3
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_6_0_0_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_4
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_00000001_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_40000003_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_2
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_5
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_1
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_counter_CounterWidth64_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_counter_CounterWidth64_1
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_11
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_10
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_9
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_8
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_7
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_6
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_5
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_4
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_3
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_2
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_butterfly2_1
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_fetch_fifo_00000002_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+
+
+Attributes:
+   dr - drc disabled
+    h - high fanout
+
+Net
+ Fanout    Fanin     Load      LoadUR    LoadUF    LoadLR    LoadLF    Resist    Pins      Attr
+-----------------------------------------------------------------------------------------------
+ahbl_ic0_haddr[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_haddr[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_haddr[2]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[3]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[4]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[5]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[6]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[7]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[8]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[9]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[10]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_haddr[11]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hsel
+     19         1        0.03      0.03      0.03      0.03      0.03      0.00      20    
+ahbl_ic0_hsize[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hsize[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_htrans_1_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic0_hwdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic0_hwrite
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+ahbl_ic3_haddr[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_haddr[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_haddr[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_haddr[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hready
+      8         1        0.01      0.01      0.01      0.01      0.01      0.00       9    
+ahbl_ic3_hsel
+      7         1        0.01      0.01      0.01      0.01      0.01      0.00       8    
+ahbl_ic3_htrans_1_
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic3_hwrite
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_haddr[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hsel
+     18         1        0.02      0.02      0.02      0.02      0.02      0.00      19    
+ahbl_ic4_hsize[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hsize[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_htrans_1_
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+ahbl_ic4_hwrite
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+cs_n
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+dahbl_haddr[0]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[1]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[2]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+dahbl_haddr[3]
+      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+dahbl_haddr[4]
+      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+dahbl_haddr[5]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+dahbl_haddr[6]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[7]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[8]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[9]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[10]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[11]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[28]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_haddr[29]
+      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+dahbl_haddr[30]
+      4         1        0.01      0.01      0.01      0.01      0.01      0.00       5    
+dahbl_haddr[31]
+      4         1        0.01      0.01      0.01      0.01      0.01      0.00       5    
+dahbl_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hready
+     15         1        0.02      0.02      0.02      0.02      0.02      0.00      16    
+dahbl_hsize[0]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+dahbl_hsize[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_htrans_1_
+     27         1        0.04      0.04      0.04      0.04      0.04      0.00      28    
+dahbl_hwdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+dahbl_hwrite
+      4         1        0.00      0.00      0.00      0.00      0.00      0.00       5    
+i_iahbl_hrdata[0]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[1]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[2]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[3]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[4]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[5]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[6]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[7]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[8]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[9]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[10]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[11]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[12]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[13]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[14]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[15]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[16]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[17]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[18]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[19]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[20]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[21]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[22]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[23]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[24]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[25]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[26]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[27]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[28]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[29]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[30]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+i_iahbl_hrdata[31]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+iahbl_haddr[2]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[3]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[4]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[5]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[6]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[7]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[8]
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_haddr[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_haddr[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_haddr[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_htrans_1_
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+iahbl_hwdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+iahbl_hwdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_addr_reg_2_
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_addr_reg_3_
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_addr_reg_4_
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+inst_addr_reg_5_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_addr_reg_6_
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+inst_addr_reg_7_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_addr_reg_8_
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+inst_addr_reg_9_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_addr_reg_10_
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+inst_addr_reg_11_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[2]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[3]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[4]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[5]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[6]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[7]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[8]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[9]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[10]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_addr[11]
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_sram_tran_1_
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+inst_wdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_wdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+inst_write
+     22         1        0.03      0.03      0.03      0.03      0.03      0.00      23    
+load_en
+      4         1        0.00      0.00      0.00      0.00      0.00      0.00       5    
+n28
+      4         1        0.00      0.00      0.00      0.00      0.00      0.00       5    
+n29
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n30
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n31
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n32
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n33
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n34
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n35
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n36
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n37
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n181
+     15         1        0.03      0.03      0.03      0.03      0.03      0.00      16    
+n182
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n183
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n184
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n185
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n186
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n187
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n188
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n189
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n190
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n191
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n192
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n193
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n194
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n195
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n196
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+n197
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n198
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n199
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n200
+     18         1        0.03      0.03      0.03      0.03      0.03      0.00      19    
+n201
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n202
+      5         1        0.01      0.01      0.01      0.01      0.01      0.00       6    
+n203
+     31         1        0.03      0.03      0.03      0.03      0.03      0.00      32    
+n204
+     32         1        0.07      0.07      0.07      0.07      0.07      0.00      33    
+n205
+     27         1        0.06      0.06      0.06      0.06      0.06      0.00      28    
+n232
+      8         1        0.01      0.01      0.01      0.01      0.01      0.00       9    dr
+net78997
+      0         1        0.00      0.00      0.00      0.00      0.00      0.00       1    dr
+r_iahbl_hrdata[0]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[1]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[2]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[3]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[4]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[5]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[6]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[7]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[8]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[9]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[10]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[11]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[12]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[13]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[14]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[15]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[16]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[17]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[18]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[19]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[20]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[21]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[22]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[23]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[24]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[25]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[26]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[27]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[28]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[29]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[30]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+r_iahbl_hrdata[31]
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+rstn
+     27         1        0.06      0.06      0.06      0.06      0.06      0.00      28    
+rx_dma_req
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+scl
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+sclk
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+sda
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+spi_do
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+sys_clk
+   2437         1     1001.00   1001.00   1001.00   1001.00   1001.00      0.00    2438    dr, h
+tx_dma_req
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+uart_tx
+      1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
+write_start
+     10         1        0.02      0.02      0.02      0.02      0.02      0.00      11    
+-----------------------------------------------------------------------------------------------
+Total 561 nets
+   3410       561     1002.67   1002.67   1002.63   1002.67   1002.63      0.00    3971
+Maximum
+   2437         1     1001.00   1001.00   1001.00   1001.00   1001.00      0.00    2438
+Average
+   6.08      1.00        1.79      1.79      1.79      1.79      1.79      0.00    7.08
+1

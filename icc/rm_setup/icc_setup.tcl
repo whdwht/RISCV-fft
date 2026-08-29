@@ -45,13 +45,12 @@ set BLOCK_Y0 [expr $INST_SRAM_Y - $SRAM_KEEPOUT]
 set BLOCK_X1 [expr $DATA_SRAM_X + $SRAM_W + $SRAM_KEEPOUT]
 set BLOCK_Y1 [expr $INST_SRAM_Y + $SRAM_H + $SRAM_KEEPOUT]
 
-set IP_ANTENNA_RULES_TCL "/home/master/project1/day3/home/wangzb/lib1/TSMC65/clf/antennaRule_n65_9lm.tcl"   
-set IP_ICC_ROUTE_OPTIONS_TCL "/home/master/project1/day3/fft/flow/ICC/myscript/icc_route_options.tcl"
+set IP_ANTENNA_RULES_TCL $::env(ANTENNA_RULES_TCL)
+set IP_ICC_ROUTE_OPTIONS_TCL [file join $::env(ICC_ROOT) myscript icc_route_options.tcl]
 set PADFILLER ""
 set TIEHICELL "TIEHBWP12T"
 set TIELOCELL "TIELBWP12T"
-set MAP_LAYER_FILE "/home/master/project1/day3/home/wangzb/lib1/TSMC65/tcbn65gplusbwp12t_200a/TSMCHOME/digital/Back_End/milkyway/tcbn65gplusbwp12t_200a/gdsout_6X2Z.map"
-#set MAP_LAYER_FILE "/home/tsmc65_2017/TSMC_65NM_CMOS_RF_MIXED_SIGNAL_GENERAL_PURPOSE_PLUS_SALICIDE_CU_LOWK_1.0_2.5V/t-n65-cm-sp-018-k3_1_0c_20101029/PDK_CRN65GP_v1.0c_official_IC61_20101010_all/PDK_CRN65GP_v1.0c_official_IC61_20101010/tsmcN65/tsmcN65.layermap"
+set MAP_LAYER_FILE $::env(GDS_LAYER_MAP)
 set TIEDOWN_RULE_PITCH 20
 ##########################################################################################
 # Variables for IC Compiler Reference Methodology, IC Compiler Design Planning Reference 
@@ -62,7 +61,7 @@ set TIEDOWN_RULE_PITCH 20
 ##########################################################################################
 
 # Sourcing the common variables
-source -echo ./rm_setup/common_setup.tcl 
+source -echo [file join $::env(ICC_ROOT) rm_setup common_setup.tcl]
 
 ###############################
 ## Flow Variables
@@ -81,7 +80,7 @@ set ICC_CUSTOM_MULTI_VTH_CONSTRAINT_SCRIPT ""  ;# script for customized set_mult
   				       ;# refer to rm_icc_scripts/multi_vth_constraint.example as an example.	   
 set DFT                           FALSE         ;# TRUE|FALSE; set TRUE to enable scan reordering flow and add -optimize_dft option to place_opt and clock_opt commands;
   				       ;# if set TRUE, you should also provide a valid $ICC_IN_SCAN_DEF_FILE
-set ICC_TIE_CELL_FLOW             FALSE        ;# TRUE|FALSE, set TRUE if you want TIE-CELLS to be used during optimizations instead of TIE-nets
+set ICC_TIE_CELL_FLOW             TRUE         ;# TRUE|FALSE, preserve explicit tie-cell drivers in functional output netlists
 set ICC_DBL_VIA                   TRUE         ;# TRUE|FALSE; set TRUE to enable redundant via insertion; more options in "Chipfinishing and Metal Fill Variables" section
 set ICC_FIX_ANTENNA               TRUE        ;# TRUE|FALSE: set TRUE to enable antenna fixing; more options in "Chipfinishing Variables" section
 set ADD_FILLER_CELL               TRUE        ;# TRUE|FALSE; set TRUE to enable std cells filler insertion; more options in "Chipfinishing Variables" section
@@ -95,10 +94,30 @@ set ICC_REPORTING_EFFORT          "MED"        ;# OFF|LOW|MED; if set to OFF, no
   				       ;# additionally, report_timing is skipped in clock_opt_cts
 set ICC_SANITY_CHECK              FALSE        ;# TRUE|FALSE, set TRUE to perform check_physical_design
 set ICC_ENABLE_CHECKPOINT    FALSE	       ;# TRUE|FALSE, set TRUE to perform checkpoint strategy for optimization commands 
-  				       ;# ensure there is enough disk space before enabling this feature. refer to the set_checkpoint_strategy man page for details.
+	  				       ;# ensure there is enough disk space before enabling this feature. refer to the set_checkpoint_strategy man page for details.
 
-set IMPROVED_DESIGN_CLOSURE_FLOW        FALSE   ;# FALSE|TRUE; set to TRUE to enable the postroute design closure flow after initial routing. 
+# ICC can return process status 0 even after an optimization command reports a
+# fatal error. Every main-flow stage calls this helper after core operations so
+# Make only writes a marker for a genuinely successful ICC session.
+proc rm_abort_on_errors {{context "ICC stage"}} {
+  set rm_errors [check_error -verbose]
+  if {$rm_errors != 0} {
+    puts stderr "RM-Error: $context failed with $rm_errors"
+    exit 2
+  }
+}
+
+set IMPROVED_DESIGN_CLOSURE_FLOW        TRUE   ;# FALSE|TRUE; set to TRUE to enable the postroute design closure flow after initial routing. 
                                                 ;# This will run two additional route_opt -incremental commands in route_opt_icc.tcl
+
+# Do not exchange the last setup margin for area until timing has closed.  This
+# is independently overridable so the area-recovery flow remains available for
+# a controlled PPA comparison.
+set ICC_ROUTE_OPT_AREA_RECOVERY [string toupper $::env(ICC_ROUTE_OPT_AREA_RECOVERY)]
+if {$ICC_ROUTE_OPT_AREA_RECOVERY != "TRUE" && $ICC_ROUTE_OPT_AREA_RECOVERY != "FALSE"} {
+  puts stderr "RM-Error: ICC_ROUTE_OPT_AREA_RECOVERY must be TRUE or FALSE"
+  exit 2
+}
 
 ###############################
 ## General Variables
@@ -120,10 +139,10 @@ set ICC_NUM_CPUS                  1              ;# number of cpus for distribut
   				       	;# specify a number greater than 1 to enable it for classic router based route_opt and insert_redundant_via commands
 set ICC_NUM_CORES                 1              ;# number of cores on the local host for multicore support; 
   				       	;# specify a number greater than 1 to enable it for the core commands
-set PLACE_OPT_EFFORT   	  "medium"      ;# low|medium|high; choose effort level for place_opt command
+set PLACE_OPT_EFFORT   	  "high"      ;# low|medium|high; choose effort level for place_opt command
 set PLACE_OPT_TRADEOFF_TIMING_FOR_POWER_AREA FALSE ;# TRUE|FALSE; set TRUE to enable timing, power and area tradeoff optimization for place_opt command.
   					   ;# It works for medium or high effort place_opt with -power option
-set ROUTE_OPT_EFFORT   	  "medium"      ;# low|medium|high; choose effort level for route_opt command
+set ROUTE_OPT_EFFORT   	  "high"      ;# low|medium|high; choose effort level for route_opt command
 set PLACE_OPT_CONGESTION_DRIVEN    TRUE          ;# TRUE|FALSE; set TRUE to enable congestion removal during place_opt command (place_opt_icc step) and 
   					;# clock_opt -only_psyn command (clock_opt_psyn_icc step) 
 
@@ -133,16 +152,16 @@ set PLACE_OPT_LAYER_OPTIMIZATION_EFFORT  "MEDIUM" ;# medium|high: Set to medium 
 
 set PLACE_OPT_CONSIDER_ROUTING  	"FALSE" ;# FALSE|TRUE: Default FALSE. Controls whether track RC based optimization is performed during place_opt
   					;# The RC models are generated from the current scenario so set the most critical scenario as the current scenario before running place_opt
-set ICC_TOTAL_POWER_STRATEGY_EFFORT  none	;# none|medium|high; set to medium or high to improve total power (leakage + dynamic)
+set ICC_TOTAL_POWER_STRATEGY_EFFORT  $::env(ICC_TOTAL_POWER_STRATEGY_EFFORT) ;# none|medium|high; set to medium or high to improve total power (leakage + dynamic)
   					;# A realistic SAIF will be needed to get accurate power savings
                                                 ;# For MCMM design an active scenario with dynamic_power, leakage_power, and setup enabled is necessary for total power optimization
   					;# Applies to place_opt -power, psynopt -power, and psynopt -only_power
 
 set ICC_HIGH_RESISTANCE_OPTIMIZATION  "FALSE" ;# FALSE|TRUE: Default FALSE. Setting to TRUE will enable the high resistance optimization for route_opt and focal_opt. This feature may see increased effect on 20nm and below designs. 
 
-set ICC_TNS_EFFORT_PREROUTE  	"MEDIUM" ;# MEDIUM|HIGH: Default MEDIUM. Controls the effort of preroute optimization to explore TNS improvements. When set to HIGH preroute optimzation will spend longer looking for TNS improvements. Affects place_opt, clock_opt -only_psyn, psynopt, and preroute_focal_opt.
+set ICC_TNS_EFFORT_PREROUTE  	"HIGH" ;# MEDIUM|HIGH: Default MEDIUM. Controls the effort of preroute optimization to explore TNS improvements. When set to HIGH preroute optimzation will spend longer looking for TNS improvements. Affects place_opt, clock_opt -only_psyn, psynopt, and preroute_focal_opt.
 
-set ICC_TNS_EFFORT_POSTROUTE  	"MEDIUM" ;# MEDIUM|HIGH: Default MEDIUM. Controls the effort of postroute optimization to explore TNS improvements. When set to HIGH postroute optimzation will spend longer looking for TNS improvements. Affects route_opt and focal_opt.
+set ICC_TNS_EFFORT_POSTROUTE  	"HIGH" ;# MEDIUM|HIGH: Default MEDIUM. Controls the effort of postroute optimization to explore TNS improvements. When set to HIGH postroute optimzation will spend longer looking for TNS improvements. Affects route_opt and focal_opt.
 
 set PLACE_OPT_PREROUTE_FOCALOPT_LAYER_OPTIMIZATION FALSE 
   					;# TRUE|FALSE; set TRUE to perform layer optimization (preroute_focal_opt -layer_optimization) 
@@ -157,16 +176,16 @@ set ICC_CREATE_GR_PNG             FALSE    ;# TRUE|FALSE; set TRUE to create a g
 set ICC_WRITE_FULL_CHIP_VERILOG   FALSE  	;# TRUE|FALSE; set TRUE for write_verilog in outputs_icc.tcl to write out module definitions for soft macros 
 
 if {![info exists MW_POWER_NET]} {
-set MW_POWER_NET   	  "VDD"
+set MW_POWER_NET   	  "VDD_SOC"
 }
 if {![info exists MW_POWER_PORT]} {
-set MW_POWER_PORT                 "VDD"
+set MW_POWER_PORT                 "VDD_SOC"
 }
 if {![info exists MW_GROUND_NET]} {
-set MW_GROUND_NET                 "VSS"
+set MW_GROUND_NET                 "GND_SOC"
 }
 if {![info exists MW_GROUND_PORT]} { 
-set MW_GROUND_PORT                "VSS"
+set MW_GROUND_PORT                "GND_SOC"
 }
 
 ###############################
@@ -186,6 +205,11 @@ set ICC_ECO_STARTING_CEL   $ICC_METAL_FILL_CEL         ;# CEL to run ECO on (con
 set ICC_ECO_CEL                "eco_icc"                   ;# CEL after running the ECO (contains new ECO netlist)
 set ICC_FOCAL_OPT_STARTING_CEL   $ICC_CHIP_FINISH_CEL        ;# CEL to run focal_opt on
 set ICC_FOCAL_OPT_CEL          "focal_opt_icc"             ;# CEL after running focal_opt
+set ICC_FOCAL_CLEANUP_STARTING_CEL $ICC_FOCAL_OPT_CEL       ;# CEL containing the setup/power focal result
+set ICC_FOCAL_CLEANUP_CEL      "focal_cleanup_icc"         ;# CEL after the final setup-only cleanup
+set ICC_FOCAL_TARGETED_STARTING_CEL $ICC_FOCAL_OPT_CEL      ;# Preserve the best focal result as the targeted ECO starting point
+set ICC_FOCAL_TARGETED_CEL     "focal_targeted_icc"        ;# CEL after optimizing only the remaining setup endpoint
+set ICC_FOCAL_TARGETED_SETUP_ENDPOINTS [file join $ICC_ROOT myscript focal_targeted_setup_endpoints.txt]
 set ICC_OUTPUTS_CEL  	"outputs_icc"		     ;# CEL after change_names for output
 set ICC_DP_CREATE_PLANGROUPS_CEL "create_plangroups_dp" 
 set ICC_DP_ROUTEABILITY_ON_PLANGROUPS_CEL "routeability_on_plangroups_dp"
@@ -195,7 +219,7 @@ set ICC_DP_COMMIT_CEL  	 "commit_dp"
 ############################################################
 ## Customized Constraint Script for Core Commands (Optional)
 ############################################################ 
-set CUSTOM_INIT_DESIGN_PRE_SCRIPT ""  	;# An optional Tcl file; if specified, will be sourced before the read_def command;
+set CUSTOM_INIT_DESIGN_PRE_SCRIPT [file join $ICC_ROOT myscript icc_timing_constraints.tcl] ;# Apply ICC-specific timing margins after DDC import and before floorplan creation;
   					;# review init_design_icc.tcl script for exact location where this is sourced to avoid overlap with existing constraints
 set CUSTOM_PLACE_OPT_PRE_SCRIPT ""  	;# An optional Tcl file; if specified, will be sourced right before the place_opt core command;
   					;# review place_opt_icc.tcl script for exact location where this is sourced to avoid overlap with existing constraints
@@ -304,8 +328,8 @@ set ICC_CTS_CLOCK_GATE_MERGE  FALSE		;# TRUE|FALSE; set TRUE to enable clock gat
 set ICC_CTS_CLOCK_GATE_SPLIT  FALSE		;# TRUE|FALSE; set TRUE to enable clock gate splitting for CTS for reducing enable pin violations; requires $POWER_OPTIMIZATION to be TRUE to be effective.
 set ICC_CTS_SELF_GATING  	FALSE		;# TRUE|FALSE; set TRUE to insert XOR self-gating logic during clock tree synthesis before clock tree construction
   					;# An optional gate-level SAIF file ($ICC_IN_SAIF_FILE) is recommended in order to provide clock activity information
-set ICC_IN_SAIF_FILE            "$DESIGN_NAME.saif" ;# An optional gate-level SAIF file for low power placement ($ICC_CTS_LOW_POWER_PLACEMENT) and self-gating ($ICC_CTS_SELF_GATING)
-set ICC_SAIF_INSTANCE_NAME      $DESIGN_NAME  ;# the instance in the SAIF file containing switching activity
+set ICC_IN_SAIF_FILE            $::env(ICC_SAIF_FILE) ;# Optional gate-level SAIF; empty selects vectorless activity estimation
+set ICC_SAIF_INSTANCE_NAME      $::env(ICC_SAIF_INSTANCE_NAME) ;# the instance in the SAIF file containing switching activity
 
 set ICC_POST_CLOCK_ROUTE_CTO  FALSE  	       	;# set TRUE if to perform post route clock tree optimization after clock routing at clock_opt_route_icc step
 
@@ -324,7 +348,7 @@ set ICC_DBL_VIA_DURING_INITIAL_ROUTING TRUE  ;# TRUE|FALSE - TRUE enables automa
   					;# FALSE runs insert_zrt_redundant_vias after "route_opt -initial"
 
 ## antenna fixing (ICC_FIX_ANTENNA) options
-set ANTENNA_RULES_FILE           "/home/wangwx/RISCV_SOC_65/65_sram/home/wangzb/lib1/TSMC65/clf/antennaRule_n65_9lm.tcl"             ;# defines the antenna rules
+set ANTENNA_RULES_FILE           $::env(ANTENNA_RULES_TCL) ;# defines the antenna rules
 set ICC_USE_DIODES               FALSE          ;# TRUE|FALSE; control variable to allow diodes to be inserted both by the 
                                                 ;# insert_port_protection_diodes command as well as the router
 set ICC_ROUTING_DIODES           "ANTENNABWP12T"             ;# space separated list of diode names
@@ -385,9 +409,9 @@ set ICC_METAL_FILL_TIMING_DRIVEN  TRUE          ;# enables timing driven metal f
 ###############################
 ## focal_opt Variables
 ###############################
-set ICC_FOCAL_OPT_HOLD_VIOLS     "all"          ;# filename|all - blank to skip; filename to fix violations from a file; specify "all" to fix all hold violations
-set ICC_FOCAL_OPT_SETUP_VIOLS    ""              ;# filename|all - blank to skip; filename to fix violations from a file; specify "all" to fix all setup violations
-set ICC_FOCAL_OPT_DRC_NET_VIOLS  "all"          ;# filename|all - blank to skip; filename to fix violations from a file; specify "all" to fix all DRC net violations
+set ICC_FOCAL_OPT_HOLD_VIOLS     ""             ;# Hold is already clean; avoid spending area/power on non-violating endpoints
+set ICC_FOCAL_OPT_SETUP_VIOLS    "all"          ;# Repair the remaining post-route setup endpoints
+set ICC_FOCAL_OPT_DRC_NET_VIOLS  ""             ;# Leave broad fanout/DRC repair out of this setup/power experiment
 set ICC_FOCAL_OPT_DRC_PIN_VIOLS  ""             ;# filename|all - blank to skip; filename to fix violations from a file; specify "all" to fix all DRC pin violations
 set ICC_FOCAL_OPT_XTALK_VIOLS    ""             ;# filename - blank to skip; filename to fix crosstalk violations from a file
 
@@ -591,18 +615,18 @@ set PNS_PAD_MASTER_FILE      	""		;# Only for top level design with power pads. 
 #####################################################################################################################################
 ## NO NEED TO CHANGE THE FOLLOWING IF Design Compiler Reference Metholodgy IS USED PRIOR TO IC Compiler Reference Methodology
 #####################################################################################################################################
-set ICC_IN_VERILOG_NETLIST_FILE "$DESIGN_NAME.sv" ;#1 to n verilog input files, spaced by blanks
-set ICC_IN_SDC_FILE             "$DESIGN_NAME.sdc"
-set ICC_IN_DDC_FILE             "$DESIGN_NAME.mapped.ddc"
-set ICC_IN_UPF_FILE             "$DESIGN_NAME.mapped.upf"
+set ICC_IN_VERILOG_NETLIST_FILE [file join $PROJECT_ROOT syn_rtl "$DESIGN_NAME.mapped.v"]
+set ICC_IN_SDC_FILE             [file join $PROJECT_ROOT sdc "$DESIGN_NAME.mapped.sdc"]
+set ICC_IN_DDC_FILE             [file join $PROJECT_ROOT syn_rtl "$DESIGN_NAME.mapped.ddc"]
+set ICC_IN_UPF_FILE             [file join $PROJECT_ROOT syn_rtl "$DESIGN_NAME.mapped.upf"]
 set ICC_IN_SCAN_DEF_FILE        ""   		;# default from Design Compiler Reference Metholodgy is $DESIGN_NAME.mapped.scandef
-set MW_DESIGN_LIBRARY           "${DESIGN_NAME}_LIB"    ;# Milkyway design library
+set MW_DESIGN_LIBRARY           [file join $ICC_ROOT "${DESIGN_NAME}_LIB"] ;# Milkyway design library
 set COPY_FROM_MW_DESIGN_LIBRARY ""  		;# specify a milkyway design library if you want reference methodology to copy it as MW_DESIGN_LIBRARY
   						;# only applies if ICC_INIT_DESIGN_INPUT is set to Milkyway
 
 
-set REPORTS_DIR                 "reports"               ;# Directory to write reports.
-set RESULTS_DIR                 "results"               ;# Directory to write output data files
+set REPORTS_DIR                 [file join $ICC_ROOT reports]
+set RESULTS_DIR                 [file join $ICC_ROOT results]
 set SOURCE_DIR   		$RESULTS_DIR		;# Source directory for analysis tasks such as FM and MVRC
 
 set REPORTS_DIR_INIT_DESIGN                     $REPORTS_DIR
@@ -647,8 +671,8 @@ if { ! [file exists $REPORTS_DIR_FORMALITY] } { file mkdir $REPORTS_DIR_FORMALIT
 
 
 ## Logical libraries
-  set_app_var search_path  ". ./rm_icc_scripts ./rm_icc_zrt_scripts ./rm_icc_dp_scripts ./$RESULTS_DIR $ADDITIONAL_SEARCH_PATH $search_path" 
-if {$synopsys_program_name != "mvrc" || $synopsys_program_name != "vsi" || $synopsys_program_name != "vcst"} {
+  set_app_var search_path  [concat [list . $ICC_ROOT/rm_icc_scripts $ICC_ROOT/rm_icc_zrt_scripts $RESULTS_DIR] $ADDITIONAL_SEARCH_PATH $search_path]
+if {$synopsys_program_name != "mvrc" && $synopsys_program_name != "vsi" && $synopsys_program_name != "vcst"} {
   set_app_var target_library  "$TARGET_LIBRARY_FILES"
   set_app_var link_library  "* $TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
 } else {

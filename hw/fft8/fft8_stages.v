@@ -87,6 +87,29 @@ module fft8_stage3 (
     output wire [127:0] out_im
 );
 
+    // Constant-coefficient multiplier for the W8 twiddle factors.
+    //
+    //   724 = 2^10 - 2^8 - 2^6 + 2^4 + 2^2
+    //
+    // Sign-extend before shifting so every intermediate keeps the same
+    // 32-bit signed semantics as the original 32'sd724 * value expression.
+    // The 17-bit input range cannot overflow these 32-bit intermediates.
+    function automatic signed [31:0] mul_724_shift_add;
+        input signed [16:0] value;
+        reg signed [31:0] value_ext;
+        reg signed [31:0] positive_terms;
+        reg signed [31:0] negative_terms;
+        begin
+            value_ext = {{15{value[16]}}, value};
+            positive_terms = (value_ext <<< 10)
+                           + (value_ext <<< 4)
+                           + (value_ext <<< 2);
+            negative_terms = (value_ext <<< 8)
+                           + (value_ext <<< 6);
+            mul_724_shift_add = positive_terms - negative_terms;
+        end
+    endfunction
+
     // Match C signed division semantics used by the course golden model.
     // Arithmetic right shift rounds negative values toward -infinity, while
     // signed integer division by 1024 truncates toward zero.
@@ -130,8 +153,8 @@ module fft8_stage3 (
     // W8^1
     wire signed [16:0] sum_5r = xr[5] + xi[5];
     wire signed [16:0] sum_5i = xi[5] - xr[5];
-    wire signed [31:0] product_5r = 32'sd724 * sum_5r;
-    wire signed [31:0] product_5i = 32'sd724 * sum_5i;
+    wire signed [31:0] product_5r = mul_724_shift_add(sum_5r);
+    wire signed [31:0] product_5i = mul_724_shift_add(sum_5i);
     assign temp_r[5] = q10_trunc_zero(product_5r);
     assign temp_i[5] = q10_trunc_zero(product_5i);
 
@@ -140,8 +163,8 @@ module fft8_stage3 (
     // W8^3
     wire signed [16:0] sum_7r = xi[7] - xr[7];
     wire signed [16:0] sum_7i = -xr[7] - xi[7];
-    wire signed [31:0] product_7r = 32'sd724 * sum_7r;
-    wire signed [31:0] product_7i = 32'sd724 * sum_7i;
+    wire signed [31:0] product_7r = mul_724_shift_add(sum_7r);
+    wire signed [31:0] product_7i = mul_724_shift_add(sum_7i);
     assign temp_r[7] = q10_trunc_zero(product_7r);
     assign temp_i[7] = q10_trunc_zero(product_7i);
 

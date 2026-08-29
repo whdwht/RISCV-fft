@@ -1,0 +1,45 @@
+ 
+****************************************
+Report : constraint
+        -all_violators
+        -verbose
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:32 2026
+****************************************
+
+
+    Design: soc_ahblite
+
+    max_leakage_power          0.00
+  - Current Leakage Power  2201099.25
+  ----------------------------------
+    Slack                  -2201099.25  (VIOLATED)
+
+
+1
+ 
+****************************************
+Report : timing_requirements
+        -attributes
+Design : soc_ahblite
+Version: O-2018.06-SP1
+Date   : Sat Aug 29 12:41:33 2026
+****************************************
+
+Description                            Setup               Hold
+--------------------------------------------------------------------------------
+TIMING EXCEPTION                       FALSE               FALSE
+	-fall_from    rstn
+TIMING EXCEPTION                       FALSE               FALSE
+	-from    { cs_n_ext\
+		   rx_dma_ack\
+		   scl_ext\
+		   sclk_ext\
+		   sda_ext\
+		   spi_di\
+		   spi_rstn\
+		   tx_dma_ack\
+		   uart_rx }
+
+1
