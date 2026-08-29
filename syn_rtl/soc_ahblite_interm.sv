@@ -1,7 +1,7 @@
 /////////////////////////////////////////////////////////////
 // Created by: Synopsys Design Compiler(R)
 // Version   : O-2018.06-SP1
-// Date      : Fri Aug 28 16:08:59 2026
+// Date      : Sat Aug 29 12:38:35 2026
 /////////////////////////////////////////////////////////////
 
 
@@ -2523,7 +2523,7 @@ module inst_sram_I_dahbl_slave_ahblite_interconnection__ ( clk, rstn, load_en,
          N47, N48, N49, N50, N51, N52, N53, N54, N55, N56, N57, N58, N59, N60,
          N61, N62, N63, N64, N65, N66, N67, N68, N69, N70, N71, N72, N73, N74,
          N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85, N86, N87, N88,
-         N89, N90, N91, net3175, net3176;
+         N89, N90, N91, net3174, net3175;
   wire   [2:0] ahbl_hsize_d0;
   wire   [11:0] ahbl_haddr_d0;
   wire   [2:0] dahbl_hsize_d0;
@@ -7927,28 +7927,58 @@ module fft8_stage3 ( in_re, in_im, out_re, out_im );
          \temp_i[7][12] , \temp_i[7][11] , \temp_i[7][10] , \temp_i[7][9] ,
          \temp_i[7][8] , \temp_i[7][7] , \temp_i[7][6] , \temp_i[7][5] ,
          \temp_i[7][4] , \temp_i[7][3] , \temp_i[7][2] , \temp_i[7][1] ,
-         \temp_i[7][0] , product_5r_31, product_5i_31, N4, N5, N6, N7, N8, N9,
-         N10, N11, N12, N13, N14, N15, N16, N17, N18, N19, N20, N21, N22, N23,
-         N24, N25, N26, N27, N28, N29, N30, N31, N32, N33, N34, N35, N36, N37,
-         N38, N39, N40, N41, N42, N43, N44, N45, N46, N47, N48, N49, N50, N51,
-         N52, N53, N54, N55, N56, N57, N58, N59, N60, N61, N62, N63, N64, N65,
-         N66, N67, N68, N69, N70, N71, N72, N73, N74, N75, N76, N77, N78, N79,
-         N80, N81, N82, N83, N84, N85, N86, N87, N88, product_7r_31,
-         product_7i_31, N89, N90, N91, N92, N93, N94, N95, N96, N97, N98, N99,
-         N100, N101, N102, N103, N104, N105, N106, N107, N108, N109, N110,
-         N111, N112, N113, N114, N115, N116, N117, N118, N119, N120, N121,
-         N122, N123, N124, N125, N126, N127, N128, N129, N130, N131, N132,
-         N133, N134, N135, N136, N137, N138, N139, N140, N141, N142, N143,
-         N144, N145, N146, N147, N148, N149, N150, N151, N152, N153, N154,
-         N155, N156;
+         \temp_i[7][0] , N4, N5, N6, N7, N8, N9, N10, N11, N12, N13, N14, N15,
+         N16, N17, N18, N19, N20, N21, N22, N23, N24, N25, N26, N27, N28, N29,
+         N30, N31, N32, N33, N34, N35, N36, N37, N38, N39, N40, N41, N42, N43,
+         N44, N45, N46, N47, N48, N49, N50, N51, N52, N53, N54, N55, N56, N57,
+         N58, N59, N60, N61, N62, N63, N64, N65, N66, N67, N68, N69, N70, N71,
+         N72, N73, N74, N75, N76, N77, N78, N79, N80, N81, N82, N83, N84, N85,
+         N86, product_5r_31, N87, N88, N89, N90, N91, N92, N93, N94, N95, N96,
+         N97, N98, N99, N100, N101, N102, N103, N104, N105, N106, N107, N108,
+         N109, N110, N111, N112, N113, N114, N115, N116, N117, N118, N119,
+         N120, N121, N122, N123, N124, N125, N126, N127, N128, N129, N130,
+         N131, N132, N133, N134, N135, N136, N137, N138, N139, N140, N141,
+         N142, N143, N144, N145, N146, N147, N148, N149, N150, N151, N152,
+         N153, N154, N155, N156, N157, N158, N159, N160, N161, N162, N163,
+         N164, N165, N166, N167, N168, N169, product_5i_31, N170, N171, N172,
+         N173, N174, N175, N176, N177, N178, N179, N180, N181, N182, N183,
+         N184, N185, N186, N187, N188, N189, N190, N191, N192, N193, N194,
+         N195, N196, N197, N198, N199, N200, N201, N202, N203, N204, N205,
+         N206, N207, N208, N209, N210, N211, N212, N213, N214, N215, N216,
+         N217, N218, N219, N220, N221, N222, N223, N224, N225, N226, N227,
+         N228, N229, N230, N231, N232, N233, N234, N235, N236, N237, N238,
+         N239, N240, N241, N242, N243, N244, N245, N246, N247, N248, N249,
+         N250, N251, N252, N253, N254, N255, N256, N257, N258, N259, N260,
+         N261, N262, N263, N264, N265, N266, N267, N268, N269, N270, N271,
+         N272, N273, N274, N275, N276, N277, N278, N279, N280, N281, N282,
+         N283, N284, N285, N286, N287, N288, N289, N290, N291, N292, N293,
+         N294, N295, N296, N297, N298, N299, N300, N301, N302, N303, N304,
+         N305, N306, N307, N308, N309, N310, N311, N312, N313, N314, N315,
+         N316, N317, N318, N319, N320, N321, N322, N323, N324, N325, N326,
+         N327, N328, N329, N330, N331, N332, N333, N334, N335, N336, N337,
+         product_7r_31, N338, N339, N340, N341, N342, N343, N344, N345, N346,
+         N347, N348, N349, N350, N351, N352, N353, N354, N355, N356, N357,
+         N358, N359, N360, N361, N362, N363, N364, N365, N366, N367, N368,
+         N369, N370, N371, N372, N373, N374, N375, N376, N377, N378, N379,
+         N380, N381, N382, N383, N384, N385, N386, N387, N388, N389, N390,
+         N391, N392, N393, N394, N395, N396, N397, N398, N399, N400, N401,
+         N402, N403, N404, N405, N406, N407, N408, N409, N410, N411, N412,
+         N413, N414, N415, N416, N417, N418, N419, N420, product_7i_31, N421,
+         N422, N423, N424, N425, N426, N427, N428, N429, N430, N431, N432,
+         N433, N434, N435, N436, N437, N438, N439, N440, N441, N442, N443,
+         N444, N445, N446, N447, N448, N449, N450, N451, N452, N453, N454,
+         N455, N456, N457, N458, N459, N460, N461, N462, N463, N464, N465,
+         N466, N467, N468, N469, N470, N471, N472, N473, N474, N475, N476,
+         N477, N478, N479, N480, N481, N482, N483, N484, N485, N486, N487,
+         N488;
   wire   [16:0] sum_5r;
   wire   [16:0] sum_5i;
-  wire   [26:0] product_5r;
-  wire   [26:0] product_5i;
+  wire   [28:0] product_5r;
+  wire   [28:0] product_5i;
   wire   [16:0] sum_7r;
   wire   [16:0] sum_7i;
-  wire   [26:0] product_7r;
-  wire   [26:0] product_7i;
+  wire   [28:0] product_7r;
+  wire   [28:0] product_7i;
   wire   SYNOPSYS_UNCONNECTED__0, SYNOPSYS_UNCONNECTED__1, 
         SYNOPSYS_UNCONNECTED__2, SYNOPSYS_UNCONNECTED__3, 
         SYNOPSYS_UNCONNECTED__4, SYNOPSYS_UNCONNECTED__5, 
@@ -7970,14 +8000,14 @@ module fft8_stage3 ( in_re, in_im, out_re, out_im );
         SYNOPSYS_UNCONNECTED__36, SYNOPSYS_UNCONNECTED__37, 
         SYNOPSYS_UNCONNECTED__38, SYNOPSYS_UNCONNECTED__39;
 
-  LT_TC_OP lt_97_C135 ( .A({product_5r_31, product_5r_31, product_5r_31, 
-        product_5r_31, product_5r_31, product_5r}), .B(1'b0), .Z(N4) );
-  LT_TC_OP lt_97_C136 ( .A({product_5i_31, product_5i_31, product_5i_31, 
-        product_5i_31, product_5i_31, product_5i}), .B(1'b0), .Z(N38) );
-  LT_TC_OP lt_97_C145 ( .A({product_7r_31, product_7r_31, product_7r_31, 
-        product_7r_31, product_7r_31, product_7r}), .B(1'b0), .Z(N89) );
-  LT_TC_OP lt_97_C146 ( .A({product_7i_31, product_7i_31, product_7i_31, 
-        product_7i_31, product_7i_31, product_7i}), .B(1'b0), .Z(N123) );
+  LT_TC_OP lt_120_C158 ( .A({product_5r_31, product_5r_31, product_5r_31, 
+        product_5r}), .B(1'b0), .Z(N170) );
+  LT_TC_OP lt_120_C159 ( .A({product_5i_31, product_5i_31, product_5i_31, 
+        product_5i}), .B(1'b0), .Z(N204) );
+  LT_TC_OP lt_120_C168 ( .A({product_7r_31, product_7r_31, product_7r_31, 
+        product_7r}), .B(1'b0), .Z(N421) );
+  LT_TC_OP lt_120_C169 ( .A({product_7i_31, product_7i_31, product_7i_31, 
+        product_7i}), .B(1'b0), .Z(N455) );
   butterfly2 b0 ( .re0(in_re[15:0]), .im0(in_im[15:0]), .re1(in_re[79:64]), 
         .im1(in_im[79:64]), .ore0(out_re[15:0]), .oim0(out_im[15:0]), .ore1(
         out_re[79:64]), .oim1(out_im[79:64]) );
@@ -8010,108 +8040,184 @@ module fft8_stage3 ( in_re, in_im, out_re, out_im );
         \temp_i[7][4] , \temp_i[7][3] , \temp_i[7][2] , \temp_i[7][1] , 
         \temp_i[7][0] }), .ore0(out_re[63:48]), .oim0(out_im[63:48]), .ore1(
         out_re[127:112]), .oim1(out_im[127:112]) );
-  ADD_TC_OP add_131 ( .A(in_re[95:80]), .B(in_im[95:80]), .Z(sum_5r) );
-  SUB_TC_OP sub_132 ( .A(in_im[95:80]), .B(in_re[95:80]), .Z(sum_5i) );
-  SUB_TC_OP sub_141 ( .A(in_im[127:112]), .B(in_re[127:112]), .Z(sum_7r) );
-  MULT_TC_OP mult_133 ( .A({1'b0, 1'b1, 1'b0, 1'b1, 1'b1, 1'b0, 1'b1, 1'b0, 
-        1'b1, 1'b0, 1'b0}), .B(sum_5r), .Z({product_5r_31, product_5r}) );
-  MULT_TC_OP mult_134 ( .A({1'b0, 1'b1, 1'b0, 1'b1, 1'b1, 1'b0, 1'b1, 1'b0, 
-        1'b1, 1'b0, 1'b0}), .B(sum_5i), .Z({product_5i_31, product_5i}) );
-  SUB_TC_OP sub_138_S2 ( .A(1'b0), .B(in_re[111:96]), .Z({\temp_i[6][15] , 
+  ADD_TC_OP add_154 ( .A(in_re[95:80]), .B(in_im[95:80]), .Z(sum_5r) );
+  SUB_TC_OP sub_155 ( .A(in_im[95:80]), .B(in_re[95:80]), .Z(sum_5i) );
+  SUB_TC_OP sub_164 ( .A(in_im[127:112]), .B(in_re[127:112]), .Z(sum_7r) );
+  ADD_TC_OP add_104_C156 ( .A({sum_5r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .B({sum_5r, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N31, N30, N29, N28, N27, N26, N25, N24, N23, N22, N21, N20, N19, N18, 
+        N17, N16, N15, N14, N13, N12, N11, N10, N9, N8, N7, N6, N5, N4}) );
+  ADD_TC_OP add_107_C156 ( .A({sum_5r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0}), .B({sum_5r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N86, N85, N84, N83, N82, N81, N80, N79, N78, N77, N76, N75, N74, N73, 
+        N72, N71, N70, N69, N68, N67, N66, N65, N64, N63, N62, N61}) );
+  ADD_TC_OP add_104_C157 ( .A({sum_5i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .B({sum_5i, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N114, N113, N112, N111, N110, N109, N108, N107, N106, N105, N104, N103, 
+        N102, N101, N100, N99, N98, N97, N96, N95, N94, N93, N92, N91, N90, 
+        N89, N88, N87}) );
+  ADD_TC_OP add_107_C157 ( .A({sum_5i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0}), .B({sum_5i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N169, N168, N167, N166, N165, N164, N163, N162, N161, N160, N159, N158, 
+        N157, N156, N155, N154, N153, N152, N151, N150, N149, N148, N147, N146, 
+        N145, N144}) );
+  SUB_TC_OP sub_161_S2 ( .A(1'b0), .B(in_re[111:96]), .Z({\temp_i[6][15] , 
         \temp_i[6][14] , \temp_i[6][13] , \temp_i[6][12] , \temp_i[6][11] , 
         \temp_i[6][10] , \temp_i[6][9] , \temp_i[6][8] , \temp_i[6][7] , 
         \temp_i[6][6] , \temp_i[6][5] , \temp_i[6][4] , \temp_i[6][3] , 
         \temp_i[6][2] , \temp_i[6][1] , \temp_i[6][0] }) );
-  SUB_TC_OP sub_142 ( .A(1'b0), .B(in_re[127:112]), .Z({N88, N87, N86, N85, 
-        N84, N83, N82, N81, N80, N79, N78, N77, N76, N75, N74, N73, N72}) );
-  MULT_TC_OP mult_143 ( .A({1'b0, 1'b1, 1'b0, 1'b1, 1'b1, 1'b0, 1'b1, 1'b0, 
-        1'b1, 1'b0, 1'b0}), .B(sum_7r), .Z({product_7r_31, product_7r}) );
-  SUB_TC_OP sub_142_2 ( .A({N88, N87, N86, N85, N84, N83, N82, N81, N80, N79, 
-        N78, N77, N76, N75, N74, N73, N72}), .B(in_im[127:112]), .Z(sum_7i) );
-  MULT_TC_OP mult_144 ( .A({1'b0, 1'b1, 1'b0, 1'b1, 1'b1, 1'b0, 1'b1, 1'b0, 
-        1'b1, 1'b0, 1'b0}), .B(sum_7i), .Z({product_7i_31, product_7i}) );
-  SUB_TC_OP sub_98_C135 ( .A(1'b0), .B(product_5r[25:0]), .Z({N21, N20, N19, 
-        N18, N17, N16, N15, N14, N13, N12, N11, N10, N9, N8, N7, N6, 
-        SYNOPSYS_UNCONNECTED__0, SYNOPSYS_UNCONNECTED__1, 
+  SUB_TC_OP sub_165 ( .A(1'b0), .B(in_re[127:112]), .Z({N254, N253, N252, N251, 
+        N250, N249, N248, N247, N246, N245, N244, N243, N242, N241, N240, N239, 
+        N238}) );
+  ADD_TC_OP add_104_C166 ( .A({sum_7r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .B({sum_7r, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N282, N281, N280, N279, N278, N277, N276, N275, N274, N273, N272, N271, 
+        N270, N269, N268, N267, N266, N265, N264, N263, N262, N261, N260, N259, 
+        N258, N257, N256, N255}) );
+  ADD_TC_OP add_107_C166 ( .A({sum_7r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0}), .B({sum_7r, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N337, N336, N335, N334, N333, N332, N331, N330, N329, N328, N327, N326, 
+        N325, N324, N323, N322, N321, N320, N319, N318, N317, N316, N315, N314, 
+        N313, N312}) );
+  ADD_TC_OP add_104_2_C156 ( .A({N31, N30, N29, N28, N27, N26, N25, N24, N23, 
+        N22, N21, N20, N19, N18, N17, N16, N15, N14, N13, N12, N11, N10, N9, 
+        N8, N7, N6, N5, N4}), .B({sum_5r, 1'b0, 1'b0}), .Z({N60, N59, N58, N57, 
+        N56, N55, N54, N53, N52, N51, N50, N49, N48, N47, N46, N45, N44, N43, 
+        N42, N41, N40, N39, N38, N37, N36, N35, N34, N33, N32}) );
+  ADD_TC_OP add_104_2_C157 ( .A({N114, N113, N112, N111, N110, N109, N108, 
+        N107, N106, N105, N104, N103, N102, N101, N100, N99, N98, N97, N96, 
+        N95, N94, N93, N92, N91, N90, N89, N88, N87}), .B({sum_5i, 1'b0, 1'b0}), .Z({N143, N142, N141, N140, N139, N138, N137, N136, N135, N134, N133, N132, 
+        N131, N130, N129, N128, N127, N126, N125, N124, N123, N122, N121, N120, 
+        N119, N118, N117, N116, N115}) );
+  SUB_TC_OP sub_165_2 ( .A({N254, N253, N252, N251, N250, N249, N248, N247, 
+        N246, N245, N244, N243, N242, N241, N240, N239, N238}), .B(
+        in_im[127:112]), .Z(sum_7i) );
+  ADD_TC_OP add_104_2_C166 ( .A({N282, N281, N280, N279, N278, N277, N276, 
+        N275, N274, N273, N272, N271, N270, N269, N268, N267, N266, N265, N264, 
+        N263, N262, N261, N260, N259, N258, N257, N256, N255}), .B({sum_7r, 
+        1'b0, 1'b0}), .Z({N311, N310, N309, N308, N307, N306, N305, N304, N303, 
+        N302, N301, N300, N299, N298, N297, N296, N295, N294, N293, N292, N291, 
+        N290, N289, N288, N287, N286, N285, N284, N283}) );
+  SUB_TC_OP sub_109_C156 ( .A({N60, N59, N58, N57, N56, N55, N54, N53, N52, 
+        N51, N50, N49, N48, N47, N46, N45, N44, N43, N42, N41, N40, N39, N38, 
+        N37, N36, N35, N34, N33, N32}), .B({N86, N85, N84, N83, N82, N81, N80, 
+        N79, N78, N77, N76, N75, N74, N73, N72, N71, N70, N69, N68, N67, N66, 
+        N65, N64, N63, N62, N61}), .Z({product_5r_31, product_5r}) );
+  SUB_TC_OP sub_109_C157 ( .A({N143, N142, N141, N140, N139, N138, N137, N136, 
+        N135, N134, N133, N132, N131, N130, N129, N128, N127, N126, N125, N124, 
+        N123, N122, N121, N120, N119, N118, N117, N116, N115}), .B({N169, N168, 
+        N167, N166, N165, N164, N163, N162, N161, N160, N159, N158, N157, N156, 
+        N155, N154, N153, N152, N151, N150, N149, N148, N147, N146, N145, N144}), .Z({product_5i_31, product_5i}) );
+  ADD_TC_OP add_104_C167 ( .A({sum_7i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0, 1'b0, 1'b0}), .B({sum_7i, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N365, N364, N363, N362, N361, N360, N359, N358, N357, N356, N355, N354, 
+        N353, N352, N351, N350, N349, N348, N347, N346, N345, N344, N343, N342, 
+        N341, N340, N339, N338}) );
+  ADD_TC_OP add_107_C167 ( .A({sum_7i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 
+        1'b0, 1'b0}), .B({sum_7i, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0, 1'b0}), .Z({
+        N420, N419, N418, N417, N416, N415, N414, N413, N412, N411, N410, N409, 
+        N408, N407, N406, N405, N404, N403, N402, N401, N400, N399, N398, N397, 
+        N396, N395}) );
+  SUB_TC_OP sub_109_C166 ( .A({N311, N310, N309, N308, N307, N306, N305, N304, 
+        N303, N302, N301, N300, N299, N298, N297, N296, N295, N294, N293, N292, 
+        N291, N290, N289, N288, N287, N286, N285, N284, N283}), .B({N337, N336, 
+        N335, N334, N333, N332, N331, N330, N329, N328, N327, N326, N325, N324, 
+        N323, N322, N321, N320, N319, N318, N317, N316, N315, N314, N313, N312}), .Z({product_7r_31, product_7r}) );
+  ADD_TC_OP add_104_2_C167 ( .A({N365, N364, N363, N362, N361, N360, N359, 
+        N358, N357, N356, N355, N354, N353, N352, N351, N350, N349, N348, N347, 
+        N346, N345, N344, N343, N342, N341, N340, N339, N338}), .B({sum_7i, 
+        1'b0, 1'b0}), .Z({N394, N393, N392, N391, N390, N389, N388, N387, N386, 
+        N385, N384, N383, N382, N381, N380, N379, N378, N377, N376, N375, N374, 
+        N373, N372, N371, N370, N369, N368, N367, N366}) );
+  SUB_TC_OP sub_109_C167 ( .A({N394, N393, N392, N391, N390, N389, N388, N387, 
+        N386, N385, N384, N383, N382, N381, N380, N379, N378, N377, N376, N375, 
+        N374, N373, N372, N371, N370, N369, N368, N367, N366}), .B({N420, N419, 
+        N418, N417, N416, N415, N414, N413, N412, N411, N410, N409, N408, N407, 
+        N406, N405, N404, N403, N402, N401, N400, N399, N398, N397, N396, N395}), .Z({product_7i_31, product_7i}) );
+  SUB_TC_OP sub_121_C158 ( .A(1'b0), .B(product_5r[25:0]), .Z({N187, N186, 
+        N185, N184, N183, N182, N181, N180, N179, N178, N177, N176, N175, N174, 
+        N173, N172, SYNOPSYS_UNCONNECTED__0, SYNOPSYS_UNCONNECTED__1, 
         SYNOPSYS_UNCONNECTED__2, SYNOPSYS_UNCONNECTED__3, 
         SYNOPSYS_UNCONNECTED__4, SYNOPSYS_UNCONNECTED__5, 
         SYNOPSYS_UNCONNECTED__6, SYNOPSYS_UNCONNECTED__7, 
         SYNOPSYS_UNCONNECTED__8, SYNOPSYS_UNCONNECTED__9}) );
-  SUB_TC_OP sub_98_C136 ( .A(1'b0), .B(product_5i[25:0]), .Z({N55, N54, N53, 
-        N52, N51, N50, N49, N48, N47, N46, N45, N44, N43, N42, N41, N40, 
-        SYNOPSYS_UNCONNECTED__10, SYNOPSYS_UNCONNECTED__11, 
+  SUB_TC_OP sub_121_C159 ( .A(1'b0), .B(product_5i[25:0]), .Z({N221, N220, 
+        N219, N218, N217, N216, N215, N214, N213, N212, N211, N210, N209, N208, 
+        N207, N206, SYNOPSYS_UNCONNECTED__10, SYNOPSYS_UNCONNECTED__11, 
         SYNOPSYS_UNCONNECTED__12, SYNOPSYS_UNCONNECTED__13, 
         SYNOPSYS_UNCONNECTED__14, SYNOPSYS_UNCONNECTED__15, 
         SYNOPSYS_UNCONNECTED__16, SYNOPSYS_UNCONNECTED__17, 
         SYNOPSYS_UNCONNECTED__18, SYNOPSYS_UNCONNECTED__19}) );
-  SUB_TC_OP sub_98_C145 ( .A(1'b0), .B(product_7r[25:0]), .Z({N106, N105, N104, 
-        N103, N102, N101, N100, N99, N98, N97, N96, N95, N94, N93, N92, N91, 
-        SYNOPSYS_UNCONNECTED__20, SYNOPSYS_UNCONNECTED__21, 
+  SUB_TC_OP sub_121_C168 ( .A(1'b0), .B(product_7r[25:0]), .Z({N438, N437, 
+        N436, N435, N434, N433, N432, N431, N430, N429, N428, N427, N426, N425, 
+        N424, N423, SYNOPSYS_UNCONNECTED__20, SYNOPSYS_UNCONNECTED__21, 
         SYNOPSYS_UNCONNECTED__22, SYNOPSYS_UNCONNECTED__23, 
         SYNOPSYS_UNCONNECTED__24, SYNOPSYS_UNCONNECTED__25, 
         SYNOPSYS_UNCONNECTED__26, SYNOPSYS_UNCONNECTED__27, 
         SYNOPSYS_UNCONNECTED__28, SYNOPSYS_UNCONNECTED__29}) );
-  SUB_TC_OP sub_99_C135 ( .A(1'b0), .B({N21, N20, N19, N18, N17, N16, N15, N14, 
-        N13, N12, N11, N10, N9, N8, N7, N6}), .Z({N37, N36, N35, N34, N33, N32, 
-        N31, N30, N29, N28, N27, N26, N25, N24, N23, N22}) );
-  SUB_TC_OP sub_99_C136 ( .A(1'b0), .B({N55, N54, N53, N52, N51, N50, N49, N48, 
-        N47, N46, N45, N44, N43, N42, N41, N40}), .Z({N71, N70, N69, N68, N67, 
-        N66, N65, N64, N63, N62, N61, N60, N59, N58, N57, N56}) );
-  SUB_TC_OP sub_99_C145 ( .A(1'b0), .B({N106, N105, N104, N103, N102, N101, 
-        N100, N99, N98, N97, N96, N95, N94, N93, N92, N91}), .Z({N122, N121, 
-        N120, N119, N118, N117, N116, N115, N114, N113, N112, N111, N110, N109, 
-        N108, N107}) );
-  SUB_TC_OP sub_98_C146 ( .A(1'b0), .B(product_7i[25:0]), .Z({N140, N139, N138, 
-        N137, N136, N135, N134, N133, N132, N131, N130, N129, N128, N127, N126, 
-        N125, SYNOPSYS_UNCONNECTED__30, SYNOPSYS_UNCONNECTED__31, 
+  SUB_TC_OP sub_122_C158 ( .A(1'b0), .B({N187, N186, N185, N184, N183, N182, 
+        N181, N180, N179, N178, N177, N176, N175, N174, N173, N172}), .Z({N203, 
+        N202, N201, N200, N199, N198, N197, N196, N195, N194, N193, N192, N191, 
+        N190, N189, N188}) );
+  SUB_TC_OP sub_122_C159 ( .A(1'b0), .B({N221, N220, N219, N218, N217, N216, 
+        N215, N214, N213, N212, N211, N210, N209, N208, N207, N206}), .Z({N237, 
+        N236, N235, N234, N233, N232, N231, N230, N229, N228, N227, N226, N225, 
+        N224, N223, N222}) );
+  SUB_TC_OP sub_122_C168 ( .A(1'b0), .B({N438, N437, N436, N435, N434, N433, 
+        N432, N431, N430, N429, N428, N427, N426, N425, N424, N423}), .Z({N454, 
+        N453, N452, N451, N450, N449, N448, N447, N446, N445, N444, N443, N442, 
+        N441, N440, N439}) );
+  SUB_TC_OP sub_121_C169 ( .A(1'b0), .B(product_7i[25:0]), .Z({N472, N471, 
+        N470, N469, N468, N467, N466, N465, N464, N463, N462, N461, N460, N459, 
+        N458, N457, SYNOPSYS_UNCONNECTED__30, SYNOPSYS_UNCONNECTED__31, 
         SYNOPSYS_UNCONNECTED__32, SYNOPSYS_UNCONNECTED__33, 
         SYNOPSYS_UNCONNECTED__34, SYNOPSYS_UNCONNECTED__35, 
         SYNOPSYS_UNCONNECTED__36, SYNOPSYS_UNCONNECTED__37, 
         SYNOPSYS_UNCONNECTED__38, SYNOPSYS_UNCONNECTED__39}) );
-  SUB_TC_OP sub_99_C146 ( .A(1'b0), .B({N140, N139, N138, N137, N136, N135, 
-        N134, N133, N132, N131, N130, N129, N128, N127, N126, N125}), .Z({N156, 
-        N155, N154, N153, N152, N151, N150, N149, N148, N147, N146, N145, N144, 
-        N143, N142, N141}) );
-  SELECT_OP C89 ( .DATA1({N37, N36, N35, N34, N33, N32, N31, N30, N29, N28, 
-        N27, N26, N25, N24, N23, N22}), .DATA2(product_5r[25:10]), .CONTROL1(
-        N0), .CONTROL2(N5), .Z({\temp_r[5][15] , \temp_r[5][14] , 
+  SUB_TC_OP sub_122_C169 ( .A(1'b0), .B({N472, N471, N470, N469, N468, N467, 
+        N466, N465, N464, N463, N462, N461, N460, N459, N458, N457}), .Z({N488, 
+        N487, N486, N485, N484, N483, N482, N481, N480, N479, N478, N477, N476, 
+        N475, N474, N473}) );
+  SELECT_OP C89 ( .DATA1({N203, N202, N201, N200, N199, N198, N197, N196, N195, 
+        N194, N193, N192, N191, N190, N189, N188}), .DATA2(product_5r[25:10]), 
+        .CONTROL1(N0), .CONTROL2(N171), .Z({\temp_r[5][15] , \temp_r[5][14] , 
         \temp_r[5][13] , \temp_r[5][12] , \temp_r[5][11] , \temp_r[5][10] , 
         \temp_r[5][9] , \temp_r[5][8] , \temp_r[5][7] , \temp_r[5][6] , 
         \temp_r[5][5] , \temp_r[5][4] , \temp_r[5][3] , \temp_r[5][2] , 
         \temp_r[5][1] , \temp_r[5][0] }) );
-  GTECH_BUF B_0 ( .A(N4), .Z(N0) );
-  SELECT_OP C90 ( .DATA1({N71, N70, N69, N68, N67, N66, N65, N64, N63, N62, 
-        N61, N60, N59, N58, N57, N56}), .DATA2(product_5i[25:10]), .CONTROL1(
-        N1), .CONTROL2(N39), .Z({\temp_i[5][15] , \temp_i[5][14] , 
+  GTECH_BUF B_0 ( .A(N170), .Z(N0) );
+  SELECT_OP C90 ( .DATA1({N237, N236, N235, N234, N233, N232, N231, N230, N229, 
+        N228, N227, N226, N225, N224, N223, N222}), .DATA2(product_5i[25:10]), 
+        .CONTROL1(N1), .CONTROL2(N205), .Z({\temp_i[5][15] , \temp_i[5][14] , 
         \temp_i[5][13] , \temp_i[5][12] , \temp_i[5][11] , \temp_i[5][10] , 
         \temp_i[5][9] , \temp_i[5][8] , \temp_i[5][7] , \temp_i[5][6] , 
         \temp_i[5][5] , \temp_i[5][4] , \temp_i[5][3] , \temp_i[5][2] , 
         \temp_i[5][1] , \temp_i[5][0] }) );
-  GTECH_BUF B_1 ( .A(N38), .Z(N1) );
-  SELECT_OP C91 ( .DATA1({N122, N121, N120, N119, N118, N117, N116, N115, N114, 
-        N113, N112, N111, N110, N109, N108, N107}), .DATA2(product_7r[25:10]), 
-        .CONTROL1(N2), .CONTROL2(N90), .Z({\temp_r[7][15] , \temp_r[7][14] , 
+  GTECH_BUF B_1 ( .A(N204), .Z(N1) );
+  SELECT_OP C91 ( .DATA1({N454, N453, N452, N451, N450, N449, N448, N447, N446, 
+        N445, N444, N443, N442, N441, N440, N439}), .DATA2(product_7r[25:10]), 
+        .CONTROL1(N2), .CONTROL2(N422), .Z({\temp_r[7][15] , \temp_r[7][14] , 
         \temp_r[7][13] , \temp_r[7][12] , \temp_r[7][11] , \temp_r[7][10] , 
         \temp_r[7][9] , \temp_r[7][8] , \temp_r[7][7] , \temp_r[7][6] , 
         \temp_r[7][5] , \temp_r[7][4] , \temp_r[7][3] , \temp_r[7][2] , 
         \temp_r[7][1] , \temp_r[7][0] }) );
-  GTECH_BUF B_2 ( .A(N89), .Z(N2) );
-  SELECT_OP C92 ( .DATA1({N156, N155, N154, N153, N152, N151, N150, N149, N148, 
-        N147, N146, N145, N144, N143, N142, N141}), .DATA2(product_7i[25:10]), 
-        .CONTROL1(N3), .CONTROL2(N124), .Z({\temp_i[7][15] , \temp_i[7][14] , 
+  GTECH_BUF B_2 ( .A(N421), .Z(N2) );
+  SELECT_OP C92 ( .DATA1({N488, N487, N486, N485, N484, N483, N482, N481, N480, 
+        N479, N478, N477, N476, N475, N474, N473}), .DATA2(product_7i[25:10]), 
+        .CONTROL1(N3), .CONTROL2(N456), .Z({\temp_i[7][15] , \temp_i[7][14] , 
         \temp_i[7][13] , \temp_i[7][12] , \temp_i[7][11] , \temp_i[7][10] , 
         \temp_i[7][9] , \temp_i[7][8] , \temp_i[7][7] , \temp_i[7][6] , 
         \temp_i[7][5] , \temp_i[7][4] , \temp_i[7][3] , \temp_i[7][2] , 
         \temp_i[7][1] , \temp_i[7][0] }) );
-  GTECH_BUF B_3 ( .A(N123), .Z(N3) );
-  GTECH_NOT I_0 ( .A(N4), .Z(N5) );
-  GTECH_BUF B_4 ( .A(N4), .Z() );
-  GTECH_NOT I_1 ( .A(N38), .Z(N39) );
-  GTECH_BUF B_5 ( .A(N38), .Z() );
-  GTECH_NOT I_2 ( .A(N89), .Z(N90) );
-  GTECH_BUF B_6 ( .A(N89), .Z() );
-  GTECH_NOT I_3 ( .A(N123), .Z(N124) );
-  GTECH_BUF B_7 ( .A(N123), .Z() );
+  GTECH_BUF B_3 ( .A(N455), .Z(N3) );
+  GTECH_NOT I_0 ( .A(N170), .Z(N171) );
+  GTECH_BUF B_4 ( .A(N170), .Z() );
+  GTECH_NOT I_1 ( .A(N204), .Z(N205) );
+  GTECH_BUF B_5 ( .A(N204), .Z() );
+  GTECH_NOT I_2 ( .A(N421), .Z(N422) );
+  GTECH_BUF B_6 ( .A(N421), .Z() );
+  GTECH_NOT I_3 ( .A(N455), .Z(N456) );
+  GTECH_BUF B_7 ( .A(N455), .Z() );
 endmodule
 
 

@@ -1,6 +1,6 @@
 ###################################################################
 
-# Created by write_sdc on Fri Aug 28 16:11:44 2026
+# Created by write_sdc on Sat Aug 29 12:41:31 2026
 
 ###################################################################
 set sdc_version 2.1
@@ -22,7 +22,7 @@ set_case_analysis 0 [get_ports load_en]
 set_case_analysis 0 [get_ports inst_write]
 set_case_analysis 0 [get_ports write_start]
 create_clock [get_ports sys_clk]  -name clk1  -period 3  -waveform {0 1.5}
-set_clock_uncertainty -setup 0.2  [get_clocks clk1]
+set_clock_uncertainty -setup 0.3  [get_clocks clk1]
 set_clock_uncertainty -hold 0.05  [get_clocks clk1]
 set_clock_transition -min -fall 0.1 [get_clocks clk1]
 set_clock_transition -min -rise 0.1 [get_clocks clk1]

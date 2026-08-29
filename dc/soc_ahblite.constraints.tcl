@@ -18,7 +18,7 @@
 foreach {parameter default_value} {
     T_CLKV_PER                 3.0
     T_CLKV_RISE                0.0
-    T_CLK_SETUP_UNCERTAINTY    0.20
+    T_CLK_SETUP_UNCERTAINTY    0.30
     T_CLK_HOLD_UNCERTAINTY     0.05
     T_CLK_TRANSITION           0.10
     T_IO_MAX_RATIO             0.30

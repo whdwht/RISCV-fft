@@ -41,6 +41,31 @@ filenames.log
 sim/build/
 sim_16/build/
 
+# ============ ICC 生成物 ============
+icc/logs_zrt/
+icc/reports/
+icc/results/
+icc/pna_output/
+icc/.markers/
+icc/run_details/
+icc/snapshot/
+icc/legalizer_debug_plots/
+icc/Milkyway.cmd.*
+icc/Milkyway.log.*
+icc/.lock
+icc/.tmp*
+icc/.zr*
+icc/.vers*
+icc/*.attr
+icc/net.acts
+icc/antenna.rule
+icc/icc_output.txt
+icc/set_pad_attributes_on_cell_*.tcl
+icc/*_map.*
+icc/port_mapping.*
+icc/Synopsys_stack_trace_*.txt
+icc/crte_*.txt
+
 # ============ 编辑器 / 系统垃圾 ============
 *.swp
 *.swo

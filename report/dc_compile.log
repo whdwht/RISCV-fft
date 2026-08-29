@@ -1201,10 +1201,11 @@ Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:62: signed to uns
 Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:63: signed to unsigned assignment occurs. (VER-318)
 Presto compilation completed successfully.
 Information: Building the design 'fft8_stage3'. (HDL-193)
-Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:117: unsigned to signed assignment occurs. (VER-318)
-Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:118: unsigned to signed assignment occurs. (VER-318)
-Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:119: signed to unsigned assignment occurs. (VER-318)
-Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:120: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:103: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:140: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:141: unsigned to signed assignment occurs. (VER-318)
+Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:142: signed to unsigned assignment occurs. (VER-318)
+Warning:  /home/master/project/RISCV-fft/hw/fft8/fft8_stages.v:143: signed to unsigned assignment occurs. (VER-318)
 Presto compilation completed successfully.
 Information: Building the design 'ibex_prefetch_buffer' instantiated from design 'ibex_if_stage_00000000_00000000_0_0_0_0_0' with
 	the parameters "BranchPredictor=1'h0". (HDL-193)
@@ -1858,7 +1859,7 @@ source -echo -verbose ${DESIGN_NAME}.constraints.tcl
 foreach {parameter default_value} {
     T_CLKV_PER                 3.0
     T_CLKV_RISE                0.0
-    T_CLK_SETUP_UNCERTAINTY    0.20
+    T_CLK_SETUP_UNCERTAINTY    0.30
     T_CLK_HOLD_UNCERTAINTY     0.05
     T_CLK_TRANSITION           0.10
     T_IO_MAX_RATIO             0.30
@@ -2018,7 +2019,7 @@ INFO: STA_MODE                  = functional
 echo "INFO: clk1 period               = $T_CLKV_PER ns"
 INFO: clk1 period               = 3.0 ns
 echo "INFO: clk1 setup/hold margin    = $T_CLK_SETUP_UNCERTAINTY / $T_CLK_HOLD_UNCERTAINTY ns"
-INFO: clk1 setup/hold margin    = 0.20 / 0.05 ns
+INFO: clk1 setup/hold margin    = 0.30 / 0.05 ns
 echo "INFO: synchronous input max/min = $T_SYNC_INPUT_MAX / $T_SYNC_INPUT_MIN ns"
 INFO: synchronous input max/min = 0.9 / 0.00 ns
 echo "INFO: reset release max/min     = $T_RESET_RELEASE_MAX / $T_RESET_RELEASE_MIN ns"
@@ -2037,7 +2038,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     O-2018.06-SP1
-Date:        Fri Aug 28 16:08:59 2026
+Date:        Sat Aug 29 12:38:35 2026
 ****************************************
 
                    Name                                            Total
@@ -6910,7 +6911,6 @@ Information: Command 'set_resource_implementation' is obsolete and is being igno
 # set compile_auto_ungroup_override_wlm true;
 set_host_options -max_cores 8
 Warning: You requested 8 cores. However, the host icpc only has 4 available cores. The tool will ignore the request and use -max_cores 4. (UIO-230)
-Warning: You requested 8 cores. However, load on host icpc is 1.48. Tool will ignore the request and use 3 cores. (UIO-231)
 1
 1
 # disable register merging
@@ -6954,7 +6954,7 @@ rtl_load_resistance_factor = "0.0"
 compile_ultra -no_autoungroup -no_seq_output_inversion
 Information: Performing power optimization. (PWR-850)
 Alib files are up-to-date.
-Information: Running optimization using a maximum of 3 cores. (OPT-1500)
+Information: Running optimization using a maximum of 4 cores. (OPT-1500)
 Information: Evaluating DesignWare library utilization. (UISN-27)
 
 ============================================================================
@@ -6975,22 +6975,44 @@ Information: State dependent leakage is now switched from on to off.
   Beginning Pass 1 Mapping
   ------------------------
   Processing 'fft8_pl'
-Memory usage for J1 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J1 task 565 Mbytes -- main task 565 Mbytes.
   Processing 'ibex_register_file_ff_0_00000020_0'
-Memory usage for J2 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J2 task 565 Mbytes -- main task 565 Mbytes.
   Processing 'ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0'
 Information: Added key list 'DesignWare' to design 'ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0'. (DDB-72)
 Information: The register 'mcountinhibit_q_reg[1]' is a constant and will be removed. (OPT-1206)
-Memory usage for J3 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J3 task 565 Mbytes -- main task 565 Mbytes.
   Processing 'ibex_multdiv_fast_RV32M2'
  Implement Synthetic for 'ibex_multdiv_fast_RV32M2'.
 Information: Added key list 'DesignWare' to design 'ibex_multdiv_fast_RV32M2'. (DDB-72)
-Memory usage for J4 task 577 Mbytes -- main task 564 Mbytes.
-  Processing 'rom_32x64'
-  Processing 'ibex_counter_CounterWidth64_0'
- Implement Synthetic for 'ibex_counter_CounterWidth64_0'.
-Memory usage for J5 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_decoder_0_2_0_0'
+Memory usage for J4 task 578 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_core_00000000_00000000'
+  Processing 'ibex_ex_block_2_0_0'
+  Processing 'rom'
+Information: The register 'ahbl_hsize_d0_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'ahbl_hsize_d0_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'ahbl_hsize_d0_reg[2]' is a constant and will be removed. (OPT-1206)
+  Processing 'butterfly2_0'
+ Implement Synthetic for 'butterfly2_0'.
+Memory usage for J5 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'fft8_top_I_slave0_ahblite_interconnection__'
+  Processing 'inst_sram_I_dahbl_slave_ahblite_interconnection__'
+Information: The register 'ahbl_hsize_d0_reg[0]' is a constant and will be removed. (OPT-1206)
+Information: The register 'ahbl_hsize_d0_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'ahbl_hsize_d0_reg[2]' is a constant and will be removed. (OPT-1206)
+  Processing 'ibex_csr_18_0_0'
+Memory usage for J6 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'soc_ahblite'
+ Implement Synthetic for 'soc_ahblite'.
+  Processing 'sub_system'
+  Processing 'ibex_csr_32_0_0_0'
+  Processing 'ibex_wb_stage_0'
+Memory usage for J7 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_fetch_fifo_00000002'
+ Implement Synthetic for 'ibex_fetch_fifo_00000002'.
+  Processing 'ibex_load_store_unit'
+Information: The register 'lsu_err_q_reg' is a constant and will be removed. (OPT-1206)
+Information: The register 'pmp_err_q_reg' is a constant and will be removed. (OPT-1206)
   Processing 'ibex_csr_32_0_00000001'
 Information: The register 'rdata_q_reg[0]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[1]' is a constant and will be removed. (OPT-1206)
@@ -7000,13 +7022,21 @@ Information: The register 'rdata_q_reg[4]' is a constant and will be removed. (O
 Information: The register 'rdata_q_reg[5]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[6]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[7]' is a constant and will be removed. (OPT-1206)
-Memory usage for J6 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_alu_RV32B0'
-Information: Added key list 'DesignWare' to design 'ibex_alu_RV32B0'. (DDB-72)
- Implement Synthetic for 'ibex_alu_RV32B0'.
-  Processing 'ibex_compressed_decoder'
-  Processing 'decoder'
-  Processing 'ibex_csr_6_0_0_1'
+Memory usage for J8 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'fft8_stage3'
+ Implement Synthetic for 'fft8_stage3'.
+Information: Added key list 'DesignWare' to design 'fft8_stage3'. (DDB-72)
+  Processing 'ibex_prefetch_buffer_0'
+Information: The register 'rdata_pmp_err_q_reg[1]' is a constant and will be removed. (OPT-1206)
+Information: The register 'rdata_pmp_err_q_reg[0]' is a constant and will be removed. (OPT-1206)
+ Implement Synthetic for 'ibex_prefetch_buffer_0'.
+  Processing 'fft8_stage2'
+ Implement Synthetic for 'fft8_stage2'.
+Information: Added key list 'DesignWare' to design 'fft8_stage2'. (DDB-72)
+Memory usage for J9 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_id_stage_0_2_0_0_0_0_0_0'
+  Processing 'ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__'
+  Processing 'fft8_stage1'
   Processing 'ibex_csr_6_0_0_0'
 Information: The register 'rdata_q_reg[0]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[1]' is a constant and will be removed. (OPT-1206)
@@ -7014,132 +7044,102 @@ Information: The register 'rdata_q_reg[2]' is a constant and will be removed. (O
 Information: The register 'rdata_q_reg[3]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[4]' is a constant and will be removed. (OPT-1206)
 Information: The register 'rdata_q_reg[5]' is a constant and will be removed. (OPT-1206)
-Memory usage for J7 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_load_store_unit'
-Information: The register 'lsu_err_q_reg' is a constant and will be removed. (OPT-1206)
-Information: The register 'pmp_err_q_reg' is a constant and will be removed. (OPT-1206)
+Memory usage for J10 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_decoder_0_2_0_0'
+  Processing 'ibex_csr_32_0_40000003'
+  Processing 'ibex_csr_3_0_4'
+  Processing 'prim_clock_gating'
+Memory usage for J11 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'rom_32x64'
+  Processing 'ibex_counter_CounterWidth64_0'
+ Implement Synthetic for 'ibex_counter_CounterWidth64_0'.
+Memory usage for J12 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_controller_0_0'
+ Implement Synthetic for 'ibex_controller_0_0'.
+  Processing 'ibex_compressed_decoder'
+  Processing 'decoder'
+  Processing 'ibex_csr_6_0_10'
+Memory usage for J13 task 565 Mbytes -- main task 565 Mbytes.
+  Processing 'ibex_alu_RV32B0'
+Information: Added key list 'DesignWare' to design 'ibex_alu_RV32B0'. (DDB-72)
+ Implement Synthetic for 'ibex_alu_RV32B0'.
   Processing 'ibex_if_stage_00000000_00000000_0_0_0_0_0'
 Information: The register 'pc_id_o_reg[0]' is a constant and will be removed. (OPT-1206)
   Processing 'data_sram_I_slave0_ahblite_interconnection__'
-  Processing 'ibex_csr_18_0_0'
-Memory usage for J8 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_core_00000000_00000000'
-  Processing 'ibex_ex_block_2_0_0'
-  Processing 'ibex_csr_32_0_0_0'
-  Processing 'ibex_csr_3_0_4'
-Memory usage for J9 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_fetch_fifo_00000002'
- Implement Synthetic for 'ibex_fetch_fifo_00000002'.
-  Processing 'fft8_stage3'
- Implement Synthetic for 'fft8_stage3'.
-Information: Added key list 'DesignWare' to design 'fft8_stage3'. (DDB-72)
-  Processing 'fft8_stage1'
-  Processing 'ibex_wb_stage_0'
-Memory usage for J10 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'soc_ahblite'
- Implement Synthetic for 'soc_ahblite'.
-  Processing 'sub_system'
-  Processing 'ibex_csr_32_0_40000003'
-Memory usage for J11 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_controller_0_0'
- Implement Synthetic for 'ibex_controller_0_0'.
-  Processing 'ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__'
-  Processing 'fft8_stage2'
- Implement Synthetic for 'fft8_stage2'.
-Information: Added key list 'DesignWare' to design 'fft8_stage2'. (DDB-72)
-  Processing 'ibex_csr_6_0_10'
-Memory usage for J12 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'ibex_id_stage_0_2_0_0_0_0_0_0'
-  Processing 'ibex_prefetch_buffer_0'
-Information: The register 'rdata_pmp_err_q_reg[1]' is a constant and will be removed. (OPT-1206)
-Information: The register 'rdata_pmp_err_q_reg[0]' is a constant and will be removed. (OPT-1206)
- Implement Synthetic for 'ibex_prefetch_buffer_0'.
-  Processing 'rom'
-Information: The register 'ahbl_hsize_d0_reg[0]' is a constant and will be removed. (OPT-1206)
-Information: The register 'ahbl_hsize_d0_reg[1]' is a constant and will be removed. (OPT-1206)
-Information: The register 'ahbl_hsize_d0_reg[2]' is a constant and will be removed. (OPT-1206)
-  Processing 'butterfly2_0'
- Implement Synthetic for 'butterfly2_0'.
-Memory usage for J13 task 564 Mbytes -- main task 564 Mbytes.
-  Processing 'fft8_top_I_slave0_ahblite_interconnection__'
-  Processing 'inst_sram_I_dahbl_slave_ahblite_interconnection__'
-Information: The register 'ahbl_hsize_d0_reg[0]' is a constant and will be removed. (OPT-1206)
-Information: The register 'ahbl_hsize_d0_reg[1]' is a constant and will be removed. (OPT-1206)
-Information: The register 'ahbl_hsize_d0_reg[2]' is a constant and will be removed. (OPT-1206)
-  Processing 'prim_clock_gating'
-Memory usage for J14 task 564 Mbytes -- main task 564 Mbytes.
+  Processing 'ibex_csr_6_0_0_1'
+Memory usage for J14 task 565 Mbytes -- main task 565 Mbytes.
 
   Updating timing information
-Information: Changed minimum wire load model for 'soc_ahblite_DW01_inc_J11_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'soc_ahblite_DW01_inc_J7_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'rom_32x64' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'rom' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'inst_sram_I_dahbl_slave_ahblite_interconnection__' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_45J10_122_628_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_46J10_123_628_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_47J10_124_628_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_49J10_126_6834_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_8' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_9' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_10' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_1_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J13_0_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_1_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_1_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J5_0_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_11' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_pl' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7148,9 +7148,9 @@ Information: Changed minimum wire load model for 'data_sram_I_slave0_ahblite_int
 Information: Changed minimum wire load model for 'decoder' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_csr_6_0_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J12_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J12_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_csr_6_0_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_csr_32_0_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7173,16 +7173,16 @@ Information: Changed minimum wire load model for 'ibex_load_store_unit' from 'Ze
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DW01_dec_J4_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J4_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J7_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J14_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_alu_RV32B0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_ex_block_2_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_controller_0_0_DW01_add_J12_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_controller_0_0_DW01_add_J13_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_controller_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_decoder_0_2_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_id_stage_0_2_0_0_0_0_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_compressed_decoder' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_prefetch_buffer_0_DW01_add_J13_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_prefetch_buffer_0_DW01_add_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_prefetch_buffer_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_if_stage_00000000_00000000_0_0_0_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7227,9 +7227,9 @@ Information: Complementing port 'is_equal_result_o' in design 'ibex_alu_RV32B0'.
 	 The new name of the port is 'is_equal_result_o_BAR'. (OPT-319)
 Information: Complementing port 'wr_en_i' in design 'ibex_csr_3_0_4'.
 	 The new name of the port is 'wr_en_i_BAR'. (OPT-319)
-Information: Complementing port 'wr_en_i' in design 'ibex_csr_6_0_0_1'.
-	 The new name of the port is 'wr_en_i_BAR'. (OPT-319)
 Information: Complementing port 'wr_en_i' in design 'ibex_csr_32_0_0_0'.
+	 The new name of the port is 'wr_en_i_BAR'. (OPT-319)
+Information: Complementing port 'wr_en_i' in design 'ibex_csr_6_0_0_1'.
 	 The new name of the port is 'wr_en_i_BAR'. (OPT-319)
 Information: The register 'x_rom_ahbl/ahbl_haddr_d0_reg[0]' is a constant and will be removed. (OPT-1206)
 Information: The register 'x_rom_ahbl/ahbl_haddr_d0_reg[1]' is a constant and will be removed. (OPT-1206)
@@ -7286,7 +7286,6 @@ Information: The register 'x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.pr
 Information: Added key list 'DesignWare' to design 'soc_ahblite'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_11'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_1'. (DDB-72)
-Information: Added key list 'DesignWare' to design 'butterfly2_2'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_3'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_4'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_5'. (DDB-72)
@@ -7295,48 +7294,52 @@ Information: Added key list 'DesignWare' to design 'butterfly2_7'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_8'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_9'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_10'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'butterfly2_2'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'butterfly2_0'. (DDB-72)
 Information: Updating design information... (UID-85)
-Memory usage for J15 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J16 task 564 Mbytes -- main task 564 Mbytes.
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Memory usage for J17 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J18 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J19 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J20 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J15 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J16 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J17 task 565 Mbytes -- main task 565 Mbytes.
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_2_DW01_add_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_2_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Memory usage for J18 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J19 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J20 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J21 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J22 task 565 Mbytes -- main task 565 Mbytes.
   Mapping Optimization (Phase 1)
-Memory usage for J21 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J22 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J23 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J24 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J23 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J24 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J25 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J26 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J27 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J28 task 565 Mbytes -- main task 565 Mbytes.
 Information: Added key list 'DesignWare' to design 'ibex_prefetch_buffer_0'. (DDB-72)
-Memory usage for J25 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J26 task 564 Mbytes -- main task 564 Mbytes.
+Memory usage for J29 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J30 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J31 task 565 Mbytes -- main task 565 Mbytes.
   Mapping Optimization (Phase 2)
-Memory usage for J27 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J28 task 564 Mbytes -- main task 564 Mbytes.
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_7' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_6' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_5' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_4' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_3' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Memory usage for J32 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J33 task 565 Mbytes -- main task 565 Mbytes.
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_2_DW01_add_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_2_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_1_DW01_inc_J27_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_1'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_0'. (DDB-72)
 Information: The register 'x_sub_system/x_core/id_stage_i/controller_i/nmi_mode_q_reg' is a constant and will be removed. (OPT-1206)
 Information: The register 'x_sub_system/x_core/cs_registers_i/u_dcsr_csr/rdata_q_reg[30]' is a constant and will be removed. (OPT-1206)
 Information: Removing unused design 'ibex_csr_3_0_4'. (OPT-1055)
-Information: Removing unused design 'ibex_csr_6_0_0_1'. (OPT-1055)
 Information: Removing unused design 'ibex_csr_32_0_0_0'. (OPT-1055)
+Information: Removing unused design 'ibex_csr_6_0_0_1'. (OPT-1055)
 
   Beginning Constant Register Removal
   -----------------------------------
@@ -7351,6 +7354,8 @@ Information: Removing unused design 'ibex_csr_32_0_0_0'. (OPT-1055)
   Global Optimization (Phase 4)
   Global Optimization (Phase 5)
   Global Optimization (Phase 6)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 7)
   Global Optimization (Phase 8)
   Global Optimization (Phase 9)
@@ -7359,77 +7364,106 @@ Information: Removing unused design 'ibex_csr_32_0_0_0'. (OPT-1055)
   Global Optimization (Phase 12)
   Global Optimization (Phase 13)
   Global Optimization (Phase 14)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_49J10_126_6834_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 15)
   Global Optimization (Phase 16)
   Global Optimization (Phase 17)
   Global Optimization (Phase 18)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_49J10_126_6834_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 19)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_49J10_126_6834_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J13_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 20)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 21)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 22)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 23)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 24)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 25)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 26)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 27)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 28)
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 29)
   Global Optimization (Phase 30)
   Global Optimization (Phase 31)
-  Mapping 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_1'
-  Mapping 'ibex_alu_RV32B0_DW01_add_1'
-Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_48J10_125_9669_J10_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_J5_0_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J25_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_1'. (DDB-72)
+  Mapping 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_0'
+  Mapping 'ibex_alu_RV32B0_DW01_add_0'
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Added key list 'DesignWare' to design 'ibex_fetch_fifo_00000002'. (DDB-72)
-Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_0'. (DDB-72)
 
   Beginning Isolate Ports
   -----------------------
@@ -7441,38 +7475,40 @@ Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:43  169371.7      0.61     746.1       0.2                           2126644.7500      0.00  
-    0:00:46  169957.3      0.00       0.0       0.2                           2124276.0000      0.00  
-    0:00:46  169957.3      0.00       0.0       0.2                           2124276.0000      0.00  
-    0:00:47  169321.7      0.00       0.0     324.5                           2112554.2500      0.00  
-Memory usage for J29 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J30 task 564 Mbytes -- main task 564 Mbytes.
+    0:00:41  170499.7      0.98    1043.8       0.1                           2167679.5000      0.00  
+    0:00:46  171303.7      0.00       0.0       6.0                           2163871.2500      0.00  
+    0:00:46  171303.7      0.00       0.0       6.0                           2163871.2500      0.00  
+    0:00:47  170677.7      0.00       0.0     329.4                           2151393.2500      0.00  
+Memory usage for J34 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J35 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J36 task 565 Mbytes -- main task 565 Mbytes.
 
   Beginning WLM Backend Optimization
   --------------------------------------
-Memory usage for J31 task 564 Mbytes -- main task 564 Mbytes.
-Memory usage for J32 task 564 Mbytes -- main task 564 Mbytes.
-    0:00:53  168331.0      0.06       1.8     322.5                           2059140.7500      0.00  
-    0:00:54  168070.4      0.00       0.0     322.5                           2051306.3750      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
-    0:00:56  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
+Memory usage for J37 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J38 task 565 Mbytes -- main task 565 Mbytes.
+Memory usage for J39 task 565 Mbytes -- main task 565 Mbytes.
+    0:00:54  169629.9      0.03       3.4     326.4                           2098284.0000      0.00  
+    0:00:56  169316.5      0.00       0.0     326.4                           2086402.2500      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
 
 
   Beginning Design Rule Fixing  (max_fanout)  (max_capacitance)
@@ -7482,12 +7518,12 @@ Memory usage for J32 task 564 Mbytes -- main task 564 Mbytes.
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:57  166518.5      0.00       0.0     322.4                           1826838.7500      0.00  
+    0:00:58  167412.3      0.00       0.0     326.4                           1860710.3750      0.00  
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
   Global Optimization (Phase 34)
-    0:00:57  166534.4      0.00       0.0       0.0                           1826726.6250      0.00  
-    0:00:57  166534.4      0.00       0.0       0.0                           1826726.6250      0.00  
+    0:00:59  167430.5      0.00       0.0       0.0                           1860509.8750      0.00  
+    0:00:59  167430.5      0.00       0.0       0.0                           1860509.8750      0.00  
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -7497,7 +7533,7 @@ Memory usage for J32 task 564 Mbytes -- main task 564 Mbytes.
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:57  166534.4      0.00       0.0       0.0                           1826726.6250      0.00  
+    0:00:59  167430.5      0.00       0.0       0.0                           1860509.8750      0.00  
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
   Global Optimization (Phase 37)
@@ -7531,48 +7567,49 @@ Information: Complementing port 'controller_run_o' in design 'ibex_controller_0_
 	 The new name of the port is 'controller_run_o_BAR'. (OPT-319)
 Information: Complementing port 'flush_id_o' in design 'ibex_controller_0_0'.
 	 The new name of the port is 'flush_id_o_BAR'. (OPT-319)
-Information: Complementing port 'counter_val_o[1]' in design 'ibex_counter_CounterWidth64_0'.
-	 The new name of the port is 'counter_val_o[1]_BAR'. (OPT-319)
-Information: Complementing port 'counter_inc_i' in design 'ibex_counter_CounterWidth64_1'.
-	 The new name of the port is 'counter_inc_i_BAR'. (OPT-319)
-    0:01:02  165938.2      0.00       0.0       0.0                           1756829.2500      0.00  
-    0:01:02  165938.2      0.00       0.0       0.0                           1756829.2500      0.00  
-    0:01:02  165938.2      0.00       0.0       0.0                           1756829.2500      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:03  165770.2      0.00       0.0       0.0                           1741926.0000      0.00  
-    0:01:04  166274.7      0.09      64.4       0.0                           1765402.0000      0.00  
+Information: Complementing port 'adder_result_o[26]' in design 'ibex_alu_RV32B0'.
+	 The new name of the port is 'adder_result_o[26]_BAR'. (OPT-319)
+Information: Complementing port 'adder_result_o[22]' in design 'ibex_alu_RV32B0'.
+	 The new name of the port is 'adder_result_o[22]_BAR'. (OPT-319)
+    0:01:04  166769.1      0.00       0.0       0.0                           1806907.6250      0.00  
+    0:01:04  166769.1      0.00       0.0       0.0                           1806907.6250      0.00  
+    0:01:04  166769.1      0.00       0.0       0.0                           1806907.6250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:05  166728.8      0.00       0.0       0.0                           1802093.1250      0.00  
+    0:01:06  167274.1      0.10      86.1       0.0                           1826652.7500      0.00  
 
                                   TOTAL                                                            
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:01:04  166274.7      0.09      64.4       0.0                           1765402.0000      0.00  
-    0:01:06  165186.5      0.09      58.6       0.0                           1723832.1250      0.00  
-    0:01:08  165548.5      0.00       0.0       0.0                           1736367.8750      0.00  
-    0:01:08  165548.5      0.00       0.0       0.0                           1736367.8750      0.00  
-    0:01:09  165340.1      0.00       0.0       0.0                           1722620.5000      0.00  
-    0:01:10  165227.8      0.00       0.0       0.0                           1718224.0000      0.00  
-    0:01:10  165227.8      0.00       0.0       0.0                           1718224.0000      0.00  
-    0:01:11  165227.8      0.00       0.0       0.0                           1718224.0000      0.00  
-    0:01:11  165227.8      0.00       0.0       0.0                           1718224.0000      0.00  
-    0:01:12  164977.3      0.00       0.0       0.0                           1710256.5000      0.00  
+    0:01:06  167274.1      0.10      86.1       0.0                           1826652.7500      0.00  
+    0:01:08  166119.2      0.09      74.0       0.0                           1785333.2500      0.00  
+    0:01:11  166605.4      0.00       0.0       0.0                           1801288.1250      0.00  
+    0:01:11  166605.4      0.00       0.0       0.0                           1801288.1250      0.00  
+    0:01:12  166532.5      0.00       0.0       0.0                           1798994.6250      0.00  
+    0:01:14  166413.4      0.00       0.0       0.0                           1793189.6250      0.00  
+    0:01:14  166404.8      0.00       0.0       0.0                           1792818.0000      0.00  
+    0:01:14  166404.8      0.00       0.0       0.0                           1792818.0000      0.00  
+    0:01:15  166404.8      0.00       0.0       0.0                           1792818.0000      0.00  
+    0:01:15  166404.8      0.00       0.0       0.0                           1792818.0000      0.00  
+    0:01:17  166209.9      0.00       0.0       0.0                           1785159.6250      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7645,7 +7682,7 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:08  208936.6      0.87     921.3       5.7                           3454010.0000      0.00  
+    0:00:08  208364.5      0.71     925.8      10.9                           3473239.2500      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7669,11 +7706,10 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:04  208951.0      0.87     921.3       5.7                           3454023.0000      0.00  
-    0:00:05  208962.5      0.87     921.3       5.7                           3454033.5000      0.00  
-    0:00:07  204237.4      0.87    1060.3     644.9                           3235716.0000      0.00  
-    0:00:08  202822.9      0.85    1152.1     830.9                           3142724.5000      0.00  
-    0:00:11  199866.5      0.85    1601.2     831.9                           3004804.2500      0.00  
+    0:00:05  208378.9      0.71     925.8      10.9                           3473252.2500      0.00  
+    0:00:05  208390.4      0.71     925.8      10.9                           3473262.7500      0.00  
+    0:00:07  203522.2      0.71     923.2     773.8                           3248364.7500      0.00  
+    0:00:11  199210.4      0.69    1388.0     778.8                           3025456.0000      0.00  
 
 
   Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_fanout)  (max_capacitance)
@@ -7683,22 +7719,27 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:11  199866.5      0.85    1601.2     831.9                           3004804.2500     -3.65  
-    0:00:12  199883.3      0.85    1600.9     831.9 x_data_sram/i_sram_block/D[7] 3004852.0000     -2.78  
-    0:00:12  199904.9      0.85    1600.9     831.9 x_data_sram/i_sram_block/D[22] 3005309.0000     -2.06  
-    0:00:13  199942.4      0.85    1601.2     831.9 x_data_sram/i_sram_block/A[3] 3005978.5000     -1.41  
-    0:00:13  199981.7      0.85    1601.6     831.9 x_isram_ahbl/i_sram_block/GWEN 3006490.0000     -0.63  
-    0:00:14  200035.0      0.85    1602.4     831.9 x_isram_ahbl/i_sram_block/A[8] 3007421.5000     -0.09  
+    0:00:12  199210.4      0.69    1388.0     778.8                           3025456.0000     -3.93  
+    0:00:12  199235.3      0.69    1388.1     778.8 x_data_sram/i_sram_block/D[7] 3025741.7500     -2.77  
+    0:00:13  199258.4      0.69    1388.1     778.8 x_data_sram/i_sram_block/D[23] 3026205.0000     -2.01  
+    0:00:14  199291.0      0.69    1388.4     778.8 x_data_sram/i_sram_block/A[3] 3026786.2500     -1.42  
+    0:00:14  199333.3      0.69    1389.0     778.8 x_data_sram/i_sram_block/A[9] 3027436.2500     -1.04  
+    0:00:15  199381.3      0.69    1389.8     778.8 x_isram_ahbl/i_sram_block/A[7] 3028237.5000     -0.14  
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated black box outputs. (PWR-428)
-    0:00:18  199544.0      0.19     321.0     831.2 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[26]/D 3130056.5000     -0.00  
-    0:00:21  199340.0      0.14     169.8     831.1 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]/D 3125199.7500     -0.01  
-    0:00:23  199213.3      0.10      73.2     831.1 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]/D 3123349.7500     -0.01  
-    0:00:26  199286.2      0.05      11.8     831.1 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]/D 3125462.5000     -0.01  
-    0:00:28  199118.7      0.02       1.0     831.1 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]/D 3119502.0000     -0.01  
-    0:00:30  199021.3      0.00       0.1     831.1 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[12]/D 3116202.0000     -0.01  
-    0:00:31  198998.2      0.00       0.0     831.1                           3115325.7500     -0.01  
+    0:00:19  199384.1      0.26     449.0     778.7 x_sub_system/x_core/cs_registers_i/minstret_counter_i/counter_q_reg[15]/D 3140265.2500     -0.02  
+    0:00:21  199136.5      0.21     346.7     778.7 x_data_sram/i_sram_block/A[9] 3133163.0000     -0.03  
+    0:00:23  198961.7      0.19     295.3     778.6 x_data_sram/i_sram_block/A[9] 3130693.0000     -0.05  
+    0:00:25  198864.8      0.15     183.2     778.5 x_data_sram/i_sram_block/A[9] 3132139.0000     -0.05  
+    0:00:28  198972.8      0.11      86.6     778.5 x_data_sram/i_sram_block/A[9] 3141445.7500     -0.05  
+    0:00:30  198891.7      0.09      72.9     778.5 x_data_sram/i_sram_block/A[9] 3138840.0000     -0.05  
+    0:00:32  198856.1      0.07      37.4     778.5 x_data_sram/i_sram_block/A[2] 3137108.7500     -0.05  
+    0:00:33  198818.7      0.06      43.8     778.5 x_data_sram/i_sram_block/A[9] 3136406.7500     -0.05  
+    0:00:35  198774.5      0.05      21.0     778.5 x_data_sram/i_sram_block/A[9] 3135204.7500     -0.05  
+    0:00:36  198779.3      0.04      10.2     778.5 x_data_sram/i_sram_block/A[9] 3135081.0000     -0.05  
+    0:00:37  198773.6      0.04       8.7     778.5 x_data_sram/i_sram_block/A[9] 3135146.0000     -0.05  
+    0:00:37  198767.3      0.03       7.9     778.5                           3134907.5000     -0.05  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7753,41 +7794,39 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:04  200220.8      0.00       0.0      10.9                           3041676.2500      0.00  
-    0:00:04  200220.8      0.00       0.0      10.9                           3041676.2500      0.00  
-    0:00:04  200220.8      0.00       0.0      10.9                           3041676.2500      0.00  
-    0:00:04  200220.8      0.00       0.0      10.9                           3041676.2500      0.00  
-    0:00:04  200220.8      0.00       0.0      10.9                           3041676.2500      0.00  
-    0:00:09  169343.3      0.91    1401.0       6.0                           1827490.8750      0.00  
-    0:00:09  167813.6      0.81    1207.1       6.0                           1782595.7500      0.00  
-    0:00:09  167242.4      0.76    1113.5       6.0                           1767698.2500      0.00  
-    0:00:09  167153.6      0.76    1110.9       6.0                           1764575.3750      0.00  
-    0:00:09  167114.2      0.75    1102.0       6.0                           1763542.1250      0.00  
-    0:00:09  167091.2      0.75    1102.0       6.0                           1763179.3750      0.00  
-    0:00:09  167091.2      0.75    1102.0       6.0                           1763179.3750      0.00  
-    0:00:09  167091.2      0.75    1102.0       6.0                           1763179.3750      0.00  
-    0:00:09  167091.2      0.75    1102.0       6.0                           1763179.3750      0.00  
-    0:00:09  167091.2      0.75    1102.0       6.0                           1763179.3750      0.00  
-    0:00:09  167093.1      0.75    1102.0       0.0                           1763175.8750      0.00  
-    0:00:09  167093.1      0.75    1102.0       0.0                           1763175.8750      0.00  
-    0:00:09  167093.1      0.75    1102.0       0.0                           1763175.8750      0.00  
-    0:00:09  167093.1      0.75    1102.0       0.0                           1763175.8750      0.00  
-    0:00:10  167092.6      0.75    1101.8       0.0                           1762402.2500      0.00  
-    0:00:10  167198.7      0.50     705.7       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[5][18]/D 1765331.7500      0.00  
-    0:00:11  167288.0      0.44     585.1       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[2][2]/D 1767429.2500      0.00  
-    0:00:11  167359.0      0.39     533.9       4.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[4][12]/D 1770453.0000      0.00  
-    0:00:12  167430.1      0.36     467.5       4.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[21][0]/D 1773088.0000      0.00  
-    0:00:12  167480.9      0.29     364.1       4.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[25][0]/D 1775494.8750      0.00  
-    0:00:13  167547.2      0.22     274.0       4.0 x_data_sram/i_sram_block/A[3] 1777946.1250      0.00  
-    0:00:14  167628.3      0.18     234.6       4.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[3][27]/D 1780277.6250      0.00  
-    0:00:14  167711.3      0.17     226.4       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/rdata_q_reg[0][4]/D 1781784.2500      0.00  
-    0:00:15  167775.7      0.13     158.2       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/rdata_q_reg[0][4]/D 1784636.0000      0.00  
-    0:00:17  168211.0      0.06      73.3       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1798272.1250      0.00  
-    0:00:18  168266.7      0.05      51.0       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1800223.1250      0.00  
-    0:00:19  168342.5      0.01      10.1       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1804221.5000      0.00  
-    0:00:19  168357.4      0.01       5.5       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1804903.8750      0.00  
-    0:00:20  168368.0      0.00       0.0       4.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1805544.5000      0.00  
-    0:00:20  168373.7      0.00       0.0       4.0                           1805848.6250      0.00  
+    0:00:04  200002.9      0.03       5.2      16.5                           3079896.2500      0.00  
+    0:00:05  200056.6      0.03       5.2      16.5                           3079936.5000      0.00  
+    0:00:05  200056.6      0.03       5.2      16.5                           3079936.5000      0.00  
+    0:00:05  200048.5      0.03       5.2      16.5                           3079866.7500      0.00  
+    0:00:05  200048.5      0.03       5.2      16.5                           3079866.7500      0.00  
+    0:00:09  172705.3      0.68     859.6       6.0                           1967969.7500      0.00  
+    0:00:10  169901.6      0.56     660.6       6.0                           1894222.2500      0.00  
+    0:00:10  169439.3      0.54     638.9       6.0                           1881320.3750      0.00  
+    0:00:10  169331.8      0.53     627.5       6.0                           1878273.1250      0.00  
+    0:00:10  169309.3      0.53     627.5       6.0                           1877158.0000      0.00  
+    0:00:10  169309.3      0.53     627.5       6.0                           1877158.0000      0.00  
+    0:00:10  169309.3      0.53     627.5       6.0                           1877158.0000      0.00  
+    0:00:10  169309.3      0.53     627.5       6.0                           1877158.0000      0.00  
+    0:00:10  169309.3      0.53     627.5       6.0                           1877158.0000      0.00  
+    0:00:10  169313.6      0.53     624.7       1.0                           1877209.8750      0.00  
+    0:00:10  169320.8      0.53     623.6       0.0                           1877431.8750      0.00  
+    0:00:10  169320.8      0.53     623.6       0.0                           1877431.8750      0.00  
+    0:00:10  169320.8      0.53     623.6       0.0                           1877431.8750      0.00  
+    0:00:10  169320.8      0.53     623.6       0.0                           1877431.8750      0.00  
+    0:00:10  169322.7      0.53     619.7       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[11][5]/D 1876814.1250      0.00  
+    0:00:11  169471.0      0.42     516.9       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[14][0]/D 1879716.7500      0.00  
+    0:00:12  169649.6      0.38     462.2      16.0 x_sub_system/x_core/cs_registers_i/minstret_counter_i/counter_q_reg[35]/D 1883567.0000      0.00  
+    0:00:12  169747.5      0.21     230.8      16.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[21][30]/D 1886165.3750      0.00  
+    0:00:13  169760.0      0.15     147.0      16.0 x_data_sram/i_sram_block/A[6] 1887672.0000      0.00  
+    0:00:14  169789.7      0.12     100.1      16.0 x_data_sram/i_sram_block/A[6] 1888438.2500      0.00  
+    0:00:14  169807.0      0.10      80.2      16.0 x_data_sram/i_sram_block/A[6] 1889209.5000      0.00  
+    0:00:15  169817.6      0.09      71.4      16.0 x_data_sram/i_sram_block/A[6] 1889928.7500      0.00  
+    0:00:16  170099.8      0.07      38.2      16.0 x_data_sram/i_sram_block/A[6] 1895650.5000      0.00  
+    0:00:16  170180.5      0.05      20.8      16.0 x_data_sram/i_sram_block/A[9] 1898242.8750      0.00  
+    0:00:17  170190.5      0.05      15.9      16.0 x_data_sram/i_sram_block/A[9] 1898262.0000      0.00  
+    0:00:18  170236.6      0.04       4.5      16.0 x_data_sram/i_sram_block/A[9] 1899719.5000      0.00  
+    0:00:18  170228.9      0.03       2.7      16.0 x_data_sram/i_sram_block/A[9] 1899279.3750      0.00  
+    0:00:18  170222.7      0.03       2.6      16.0                           1899080.5000      0.00  
 
 
 
@@ -7798,11 +7837,16 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:20  168373.7      0.00       0.0       4.0                           1805848.6250      0.00  
-    0:00:20  168373.7      0.00       0.0       4.0                           1805848.6250      0.00  
-    0:00:20  168369.9      0.00       0.0       4.0                           1805767.1250      0.00  
-    0:00:21  168356.9      0.00       0.0      39.5                           1803786.8750      0.00  
-    0:00:22  168029.1      0.00       0.0      39.5                           1790388.6250      0.00  
+    0:00:18  170222.7      0.03       2.6      16.0                           1899080.5000      0.00  
+    0:00:18  170225.6      0.03       1.9      16.0 x_data_sram/i_sram_block/A[9] 1898964.6250      0.00  
+    0:00:19  170232.3      0.02       1.4      16.0 x_data_sram/i_sram_block/A[9] 1898953.8750      0.00  
+    0:00:19  170192.5      0.02       1.2      16.0 x_data_sram/i_sram_block/A[4] 1897558.0000      0.00  
+    0:00:19  170126.2      0.01       0.4      16.0 x_data_sram/i_sram_block/A[3] 1895300.8750      0.00  
+    0:00:20  170107.0      0.00       0.0      16.0 x_data_sram/i_sram_block/A[3] 1894186.7500      0.00  
+    0:00:20  170112.8      0.00       0.0      16.0                           1894248.6250      0.00  
+    0:00:20  170047.5      0.00       0.0      16.0                           1893075.1250      0.00  
+    0:00:22  169388.9      0.00       0.0     188.4                           1874395.5000      0.00  
+    0:00:22  169388.9      0.00       0.0     188.4                           1874395.5000      0.00  
 
 
   Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_fanout)  (max_capacitance)
@@ -7812,9 +7856,9 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:23  168029.1      0.00       0.0      39.5                           1790388.6250     -1.32  
-    0:00:23  168034.9      0.00       0.0       4.0 u_fft8_top/u_fft/rst      1790430.5000     -1.32  
-    0:00:23  168032.5      0.00       0.0       0.0                           1790306.3750     -1.32  
+    0:00:22  169388.9      0.00       0.0     188.4                           1874395.5000     -1.35  
+    0:00:22  169400.5      0.00       0.0      46.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/n157 1874430.3750     -1.35  
+    0:00:22  169404.3      0.00       0.0       0.0                           1874440.8750     -1.35  
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -7824,30 +7868,35 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:23  168032.5      0.00       0.0       0.0                           1790306.3750     -1.32  
-    0:00:23  168032.5      0.00       0.0       0.0                           1790306.3750     -1.32  
-    0:00:24  167780.0      0.08      51.1       0.0                           1783173.5000     -1.32  
-    0:00:24  167759.8      0.08      50.9       0.0                           1783006.0000     -1.32  
-    0:00:24  167746.9      0.08      50.9       0.0                           1782916.3750     -1.32  
-    0:00:24  167739.7      0.08      50.9       0.0                           1782881.3750     -1.32  
-    0:00:24  167732.5      0.08      50.9       0.0                           1782849.0000     -1.32  
-    0:00:24  167732.5      0.08      50.9       0.0                           1782849.0000     -1.32  
-    0:00:25  167777.6      0.01       1.8       0.0 x_data_sram/i_sram_block/A[4] 1784084.0000     -1.32  
-    0:00:26  167786.2      0.00       0.0       0.0                           1784328.6250     -1.32  
-    0:00:26  167743.5      0.00       0.0       0.0                           1784024.0000     -1.32  
-    0:00:26  167710.9      0.00       0.0       0.0                           1783435.7500     -1.32  
-    0:00:26  167645.1      0.00       0.0       0.0                           1782969.2500     -1.31  
-    0:00:27  167609.6      0.00       0.0       0.0                           1782683.2500     -1.31  
-    0:00:27  167606.7      0.00       0.0       0.0                           1782609.1250     -1.31  
-    0:00:28  167602.4      0.00       0.0       0.0                           1782589.6250     -1.31  
-    0:00:29  167596.1      0.00       0.0       0.0                           1782514.2500     -1.31  
-    0:00:30  167598.1      0.00       0.0       0.0 u_fft8_top/u_fft/vpipe_reg[1]/D 1782528.2500     -1.31  
-    0:00:32  167651.3      0.00       0.0       0.0 x_data_sram/i_sram_block/D[19] 1782650.0000     -0.49  
-    0:00:35  167677.7      0.00       0.0       0.0 x_data_sram/i_sram_block/A[8] 1782025.0000     -0.09  
+    0:00:22  169404.3      0.00       0.0       0.0                           1874440.8750     -1.35  
+    0:00:22  169404.3      0.00       0.0       0.0                           1874440.8750     -1.35  
+    0:00:23  169155.2      0.14     104.7       0.0                           1866256.2500     -1.35  
+    0:00:23  169128.8      0.14     104.3       0.0                           1865876.8750     -1.35  
+    0:00:23  169115.8      0.14     104.2       0.0                           1865708.1250     -1.35  
+    0:00:23  169111.5      0.14     104.2       0.0                           1865688.6250     -1.35  
+    0:00:24  169107.2      0.14     104.2       0.0                           1865664.0000     -1.35  
+    0:00:24  169107.2      0.14     104.2       0.0                           1865664.0000     -1.35  
+    0:00:24  169139.8      0.01       1.1       0.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/rdata_q_reg[1][3]/D 1866142.1250     -1.35  
+    0:00:25  169138.9      0.00       0.0       0.0                           1865947.0000     -1.35  
+    0:00:25  169129.7      0.00       0.0       0.0                           1865757.8750     -1.35  
+    0:00:25  169107.2      0.00       0.0       0.0                           1865573.5000     -1.35  
+    0:00:26  169043.8      0.00       0.0       0.0                           1864795.6250     -1.35  
+    0:00:26  169036.1      0.00       0.0       0.0                           1864604.7500     -1.35  
+    0:00:26  169029.9      0.00       0.0       0.0                           1864412.2500     -1.35  
+    0:00:27  168962.7      0.00       0.0       0.0                           1863624.1250     -1.35  
+    0:00:27  168958.4      0.00       0.0       0.0                           1863604.7500     -1.35  
+    0:00:28  168951.7      0.00       0.0       0.0                           1863547.7500     -1.35  
+    0:00:28  168944.0      0.00       0.0       0.0                           1863420.0000     -1.35  
+    0:00:29  168942.5      0.00       0.0       0.0                           1863402.1250     -1.35  
+    0:00:30  168932.0      0.00       0.0       0.0                           1863226.1250     -1.35  
+    0:00:31  168930.5      0.00       0.0       0.0                           1863199.1250     -1.35  
+    0:00:32  168931.5      0.00       0.0       0.0 x_data_sram/i_sram_block/GWEN 1863180.6250     -1.34  
+    0:00:33  168986.2      0.00       0.0       0.0 x_data_sram/i_sram_block/D[21] 1863340.8750     -0.73  
+    0:00:35  169052.0      0.00       0.0       0.0 x_data_sram/i_sram_block/A[9] 1863658.5000     -0.08  
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated black box outputs. (PWR-428)
-    0:00:37  167691.7      0.00       0.0       0.0                           1891177.3750      0.00  
+    0:00:37  169063.0      0.00       0.0       0.0                           1964931.6250      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7871,42 +7920,38 @@ Information: Uniquified 1 instances of design 'fft8_pl'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_register_file_ff_0_00000020_0'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_cs_registers_0_00000001_0_0_0_0_00000000_00000028_0_00000000_00000004_0_2_0'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_multdiv_fast_RV32M2'. (OPT-1056)
-Information: Uniquified 1 instances of design 'rom_32x64'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_counter_CounterWidth64_1'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_decoder_0_2_0_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_00000001'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_alu_RV32B0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_compressed_decoder'. (OPT-1056)
-Information: Uniquified 1 instances of design 'decoder'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_6_0_0_2'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_load_store_unit'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_if_stage_00000000_00000000_0_0_0_0_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'data_sram_I_slave0_ahblite_interconnection__'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_18_0_0'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_core_00000000_00000000'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_ex_block_2_0_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_6'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_fetch_fifo_00000002'. (OPT-1056)
-Information: Uniquified 1 instances of design 'fft8_stage3'. (OPT-1056)
-Information: Uniquified 1 instances of design 'fft8_stage1'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_wb_stage_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'sub_system'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_40000003'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_controller_0_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__'. (OPT-1056)
-Information: Uniquified 1 instances of design 'fft8_stage2'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_6_0_10'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_id_stage_0_2_0_0_0_0_0_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_prefetch_buffer_0'. (OPT-1056)
 Information: Uniquified 1 instances of design 'rom'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_11'. (OPT-1056)
 Information: Uniquified 1 instances of design 'fft8_top_I_slave0_ahblite_interconnection__'. (OPT-1056)
 Information: Uniquified 1 instances of design 'inst_sram_I_dahbl_slave_ahblite_interconnection__'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_18_0_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'sub_system'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_6'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_wb_stage_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_fetch_fifo_00000002'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_load_store_unit'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_00000001'. (OPT-1056)
+Information: Uniquified 1 instances of design 'fft8_stage3'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_prefetch_buffer_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'fft8_stage2'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_id_stage_0_2_0_0_0_0_0_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection__'. (OPT-1056)
+Information: Uniquified 1 instances of design 'fft8_stage1'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_decoder_0_2_0_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_40000003'. (OPT-1056)
 Information: Uniquified 1 instances of design 'prim_clock_gating'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_counter_CounterWidth64_0'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_2'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_3'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_5'. (OPT-1056)
+Information: Uniquified 1 instances of design 'rom_32x64'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_counter_CounterWidth64_1'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_controller_0_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_compressed_decoder'. (OPT-1056)
+Information: Uniquified 1 instances of design 'decoder'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_6_0_10'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_alu_RV32B0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_if_stage_00000000_00000000_0_0_0_0_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'data_sram_I_slave0_ahblite_interconnection__'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_6_0_0_2'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_0'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_1'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_2'. (OPT-1056)
@@ -7918,8 +7963,12 @@ Information: Uniquified 1 instances of design 'butterfly2_7'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_8'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_9'. (OPT-1056)
 Information: Uniquified 1 instances of design 'butterfly2_10'. (OPT-1056)
-Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_4'. (OPT-1056)
 Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_1'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_3'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_5'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_counter_CounterWidth64_0'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_4'. (OPT-1056)
+Information: Uniquified 1 instances of design 'ibex_csr_32_0_0_2'. (OPT-1056)
 1
 change_names -rules verilog -hier
 Warning: The specified replacement character (_) is conflicting with the specified allowed or restricted character.   (UCN-4)
@@ -8038,7 +8087,7 @@ Report : timing_requirements
         -attributes
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Fri Aug 28 16:11:46 2026
+Date   : Sat Aug 29 12:41:33 2026
 ****************************************
 
 Description                            Setup               Hold
@@ -8062,8 +8111,8 @@ TIMING EXCEPTION                       FALSE               FALSE
 # write -f ddc -hier -output "${netList_path}/${DESIGN_NAME}.abstract.ddc"
 exit
 
-Memory usage for main task 760 Mbytes.
-Memory usage for this session 760 Mbytes.
-CPU usage for this session 278 seconds ( 0.08 hours ).
+Memory usage for main task 773 Mbytes.
+Memory usage for this session 773 Mbytes.
+CPU usage for this session 366 seconds ( 0.10 hours ).
 
 Thank you...
