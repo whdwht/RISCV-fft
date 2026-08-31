@@ -5,6 +5,8 @@
 `timescale 1ns/1ps
 module tb_soc;
 
+    localparam realtime RESET_RELEASE_TCO_NS = 0.30;
+
     logic clk, rstn;
 
     logic [31:0] mem0 [0:1023];
@@ -85,15 +87,15 @@ endtask
 	 inst_write=1;
          write_start=0;
         rstn = 1'b0;
-        #20;
-        rstn = 1'b1;
+        repeat (2) @(posedge clk);
+        #(RESET_RELEASE_TCO_NS) rstn = 1'b1;
         #10;
 	mem_tran();
         # 100;
 	load_en = 1'b0;
  	rstn = 1'b0;
-	#20;
-        rstn = 1'b1;
+	repeat (2) @(posedge clk);
+        #(RESET_RELEASE_TCO_NS) rstn = 1'b1;
         #100000;
         $finish(2);
     end

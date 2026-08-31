@@ -3,7 +3,7 @@
 Report : cell
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 Attributes:
@@ -44,58 +44,58 @@ u85                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
 u86                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u87                       CKND0BWP12T     tcbn65gplusbwp12twc
-                                                          1.440000  
-u88                       CKND0BWP12T     tcbn65gplusbwp12twc
-                                                          1.440000  
-u89                       CKND0BWP12T     tcbn65gplusbwp12twc
-                                                          1.440000  
+u87                       ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u88                       ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
+u89                       IOA21D2BWP12T   tcbn65gplusbwp12twc
+                                                          4.800000  
 u90                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
 u91                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u92                       CKMUX2D0BWP12T  tcbn65gplusbwp12twc
-                                                          4.800000  
-u93                       TIELBWP12T      tcbn65gplusbwp12twc
+u92                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u94                       MUX2D1BWP12T    tcbn65gplusbwp12twc
-                                                          4.800000  
-u95                       ND2D0BWP12T     tcbn65gplusbwp12twc
-                                                          1.920000  
-u96                       CKND0BWP12T     tcbn65gplusbwp12twc
+u93                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
+u94                       CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u95                       CKND1BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u96                       CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
 u97                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
 u98                       CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u99                       CKND0BWP12T     tcbn65gplusbwp12twc
+u99                       TIELBWP12T      tcbn65gplusbwp12twc
                                                           1.440000  
 u100                      NR2D0BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u101                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+u101                      ND2D2BWP12T     tcbn65gplusbwp12twc
+                                                          3.360000  
+u102                      CKND2D0BWP12T   tcbn65gplusbwp12twc
                                                           1.920000  
-u102                      CKND0BWP12T     tcbn65gplusbwp12twc
+u103                      CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u103                      NR2D0BWP12T     tcbn65gplusbwp12twc
+u104                      NR2D0BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u104                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+u105                      CKND2D0BWP12T   tcbn65gplusbwp12twc
                                                           1.920000  
-u105                      CKND0BWP12T     tcbn65gplusbwp12twc
+u106                      CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u106                      NR2D0BWP12T     tcbn65gplusbwp12twc
+u107                      NR2D0BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u107                      CKND0BWP12T     tcbn65gplusbwp12twc
-                                                          1.440000  
 u108                      CKND2D0BWP12T   tcbn65gplusbwp12twc
                                                           1.920000  
-u109                      NR2D0BWP12T     tcbn65gplusbwp12twc
+u109                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u110                      NR2D0BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u110                      CKND2D0BWP12T   tcbn65gplusbwp12twc
+u111                      CKND2D0BWP12T   tcbn65gplusbwp12twc
                                                           1.920000  
-u111                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
-u112                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
+u112                      IOA21D1BWP12T   tcbn65gplusbwp12twc
+                                                          3.360000  
 u113                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u114                      MUX2D0BWP12T    tcbn65gplusbwp12twc
@@ -120,12 +120,12 @@ u123                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u124                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
-u125                      IOA21D1BWP12T   tcbn65gplusbwp12twc
-                                                          3.360000  
-u126                      ND2D0BWP12T     tcbn65gplusbwp12twc
-                                                          1.920000  
-u127                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+u125                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
+u126                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+                                                          4.320000  
+u127                      IOA21D1BWP12T   tcbn65gplusbwp12twc
+                                                          3.360000  
 u128                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u129                      MUX2D0BWP12T    tcbn65gplusbwp12twc
@@ -144,39 +144,39 @@ u135                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u136                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
-u137                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
+u137                      IOA21D2BWP12T   tcbn65gplusbwp12twc
+                                                          4.800000  
 u138                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u139                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
 u140                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
-u141                      IOA21D1BWP12T   tcbn65gplusbwp12twc
-                                                          3.360000  
-u142                      CKND0BWP12T     tcbn65gplusbwp12twc
-                                                          1.440000  
-u143                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+u141                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
-u144                      MUX2D0BWP12T    tcbn65gplusbwp12twc
+u142                      MUX2D0BWP12T    tcbn65gplusbwp12twc
                                                           4.320000  
-u145                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
-u146                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
-u147                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
-u148                      MUX2D0BWP12T    tcbn65gplusbwp12twc
-                                                          4.320000  
-u149                      MAOI22D0BWP12T  tcbn65gplusbwp12twc
+u143                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u144                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u145                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u146                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u147                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u148                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u149                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u150                      MUX2D1BWP12T    tcbn65gplusbwp12twc
+                                                          4.800000  
+u151                      MAOI22D1BWP12T  tcbn65gplusbwp12twc
                                                           3.840000  
-u150                      MAOI22D0BWP12T  tcbn65gplusbwp12twc
+u152                      MAOI22D1BWP12T  tcbn65gplusbwp12twc
                                                           3.840000  
-u151                      OR2D0BWP12T     tcbn65gplusbwp12twc
-                                                          2.880000  
-u152                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
-                                                          2.880000  
-u153                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+u153                      OR2D0BWP12T     tcbn65gplusbwp12twc
                                                           2.880000  
 u154                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
@@ -238,20 +238,20 @@ u182                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
 u183                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
-u184                      BUFFD1BWP12T    tcbn65gplusbwp12twc
+u184                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u185                      CKAN2D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u186                      CKND2BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u185                      CKND0BWP12T     tcbn65gplusbwp12twc
+u187                      CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
-u186                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+u188                      CKND0BWP12T     tcbn65gplusbwp12twc
+                                                          1.440000  
+u189                      AOI21D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
-u187                      OA21D0BWP12T    tcbn65gplusbwp12twc
+u190                      OA21D0BWP12T    tcbn65gplusbwp12twc
                                                           3.360000  
-u188                      AOI21D0BWP12T   tcbn65gplusbwp12twc
-                                                          2.880000  
-u189                      OA21D0BWP12T    tcbn65gplusbwp12twc
-                                                          3.360000  
-u190                      BUFFD1BWP12T    tcbn65gplusbwp12twc
-                                                          1.920000  
 u191                      AOI21D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
 u192                      OA21D0BWP12T    tcbn65gplusbwp12twc
@@ -260,47 +260,43 @@ u193                      AOI21D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
 u194                      OA21D0BWP12T    tcbn65gplusbwp12twc
                                                           3.360000  
-u195                      ND2D1BWP12T     tcbn65gplusbwp12twc
-                                                          1.920000  
-u196                      IOA21D2BWP12T   tcbn65gplusbwp12twc
-                                                          4.800000  
-u197                      ND2D1BWP12T     tcbn65gplusbwp12twc
-                                                          1.920000  
-u198                      IOA21D2BWP12T   tcbn65gplusbwp12twc
-                                                          4.800000  
-u199                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+u195                      AOI21D0BWP12T   tcbn65gplusbwp12twc
                                                           2.880000  
-u200                      NR2D0BWP12T     tcbn65gplusbwp12twc
+u196                      OA21D0BWP12T    tcbn65gplusbwp12twc
+                                                          3.360000  
+u197                      AOI21D0BWP12T   tcbn65gplusbwp12twc
+                                                          2.880000  
+u198                      NR2D0BWP12T     tcbn65gplusbwp12twc
                                                           1.920000  
-u201                      ND2D1BWP12T     tcbn65gplusbwp12twc
-                                                          1.920000  
-u202                      CKND0BWP12T     tcbn65gplusbwp12twc
+u199                      CKND0BWP12T     tcbn65gplusbwp12twc
                                                           1.440000  
+u200                      ND2D1BWP12T     tcbn65gplusbwp12twc
+                                                          1.920000  
 u_fft8_top                soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
-                                                          30389.759917
+                                                          30909.599982
                                                                     h, n, p
 x_data_fabric             soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
-                                                          951.360014
+                                                          991.200015
                                                                     h, n, p
 x_data_sram               soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
-                                                          39834.868756
+                                                          39849.748755
                                                                     b, h, n, p
 x_isram_ahbl              soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
-                                                          40175.668767
+                                                          40173.268767
                                                                     b, h, n, p
-x_rom_ahbl                soc_ahblite_rom_0               1193.279988
+x_rom_ahbl                soc_ahblite_rom_0               1357.919992
                                                                     h, n
-x_sub_system              soc_ahblite_sub_system_0        56011.200704
+x_sub_system              soc_ahblite_sub_system_0        56080.800643
                                                                     b, h, n
 --------------------------------------------------------------------------------
-Total 136 cells                                           169063.018152
+Total 134 cells                                           169871.338161
 1
  
 ****************************************
 Report : reference
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 Attributes:
@@ -318,14 +314,14 @@ Reference          Library       Unit Area   Count    Total Area   Attributes
 -----------------------------------------------------------------------------
 AOI21D0BWP12T      tcbn65gplusbwp12twc
                                   2.880000       5     14.400001  
-BUFFD1BWP12T       tcbn65gplusbwp12twc
-                                  1.920000       2      3.840000  
 CKAN2D0BWP12T      tcbn65gplusbwp12twc
-                                  2.880000      32     92.160004  
-CKMUX2D0BWP12T     tcbn65gplusbwp12twc
-                                  4.800000       1      4.800000  
+                                  2.880000      33     95.040004  
 CKND0BWP12T        tcbn65gplusbwp12twc
-                                  1.440000      18     25.920001  
+                                  1.440000      16     23.040001  
+CKND1BWP12T        tcbn65gplusbwp12twc
+                                  1.440000       1      1.440000  
+CKND2BWP12T        tcbn65gplusbwp12twc
+                                  1.920000       1      1.920000  
 CKND2D0BWP12T      tcbn65gplusbwp12twc
                                   1.920000       4      7.680000  
 EDFCNQD1BWP12T     tcbn65gplusbwp12twc
@@ -334,16 +330,16 @@ IOA21D1BWP12T      tcbn65gplusbwp12twc
                                   3.360000       2      6.720000  
 IOA21D2BWP12T      tcbn65gplusbwp12twc
                                   4.800000       2      9.600000  
-MAOI22D0BWP12T     tcbn65gplusbwp12twc
+MAOI22D1BWP12T     tcbn65gplusbwp12twc
                                   3.840000       2      7.680000  
 MUX2D0BWP12T       tcbn65gplusbwp12twc
-                                  4.320000      34    146.880006  
+                                  4.320000      28    120.960005  
 MUX2D1BWP12T       tcbn65gplusbwp12twc
-                                  4.800000       1      4.800000  
-ND2D0BWP12T        tcbn65gplusbwp12twc
-                                  1.920000       2      3.840000  
+                                  4.800000       8     38.400002  
 ND2D1BWP12T        tcbn65gplusbwp12twc
                                   1.920000       3      5.760000  
+ND2D2BWP12T        tcbn65gplusbwp12twc
+                                  3.360000       1      3.360000  
 NR2D0BWP12T        tcbn65gplusbwp12twc
                                   1.920000       5      9.600000  
 OA21D0BWP12T       tcbn65gplusbwp12twc
@@ -355,17 +351,17 @@ TIEHBWP12T         tcbn65gplusbwp12twc
 TIELBWP12T         tcbn65gplusbwp12twc
                                   1.440000       1      1.440000  
 soc_ahblite_ahblite_I_ahblite_m0_ahblite_interconnection__I_ahblite_m1_ahblite_interconnection__I_ahblite_m2_ahblite_interconnection__I_ahblite_m3_ahblite_interconnection__I_ahblite_m4_ahblite_interconnection__I_ahblite_m5_ahblite_interconnection__I_ahblite_m6_ahblite_interconnection__I_ahblite_m7_ahblite_interconnection__I_ahblite_m8_ahblite_interconnection__I_ahblite_m9_ahblite_interconnection__I_ahblite_m10_ahblite_interconnection__I_ahblite_m11_ahblite_interconnection__I_ahblite_m12_ahblite_interconnection__I_ahblite_m13_ahblite_interconnection__I_ahblite_m14_ahblite_interconnection___0
-                                951.360014       1    951.360014  h, n
+                                991.200015       1    991.200015  h, n
 soc_ahblite_data_sram_I_slave0_ahblite_interconnection___0
-                              39834.868756       1  39834.868756  b, h, n
+                              39849.748755       1  39849.748755  b, h, n
 soc_ahblite_fft8_top_I_slave0_ahblite_interconnection___0
-                              30389.759917       1  30389.759917  h, n
+                              30909.599982       1  30909.599982  h, n
 soc_ahblite_inst_sram_I_dahbl_slave_ahblite_interconnection___0
-                              40175.668767       1  40175.668767  b, h, n
-soc_ahblite_rom_0              1193.279988       1   1193.279988  h, n
-soc_ahblite_sub_system_0      56011.200704       1  56011.200704  b, h, n
+                              40173.268767       1  40173.268767  b, h, n
+soc_ahblite_rom_0              1357.919992       1   1357.919992  h, n
+soc_ahblite_sub_system_0      56080.800643       1  56080.800643  b, h, n
 -----------------------------------------------------------------------------
-Total 25 references                                 169063.018152
+Total 25 references                                 169871.338161
 1
  
 ****************************************
@@ -373,7 +369,7 @@ Report : port
         -verbose
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 
@@ -588,7 +584,7 @@ inst_wdata[31]
               --      --      --      --      --      -- 
 inst_write    --      --      --      --      --      -- 
 load_en       --      --      --      --      --      -- 
-rstn          0.10    --      0.50    --    clk1      --    
+rstn          0.20    --      0.50    --    clk1      --    
 rx_dma_ack    --      --      --      --      --      -- 
 scl_ext       --      --      --      --      --      -- 
 sclk_ext      --      --      --      --      --      -- 
@@ -786,7 +782,7 @@ uart_tx       --      --      --      --      --      0.00
 Report : isolate_ports
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 ================================================================================
@@ -799,7 +795,7 @@ Port Name     Cell Name      Inst.Name      Type      Forced Insertion
 Report : net
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 
@@ -866,19 +862,17 @@ soc_ahblite_ibex_csr_32_0_0_0
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_csr_18_0_0_0
                        ZeroWireload      tcbn65gplusbwp12twc
-soc_ahblite_ibex_csr_32_0_0_3
+soc_ahblite_ibex_csr_32_0_0_4
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_csr_6_0_0_0
-                       ZeroWireload      tcbn65gplusbwp12twc
-soc_ahblite_ibex_csr_32_0_0_4
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_csr_32_0_00000001_0
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_csr_32_0_40000003_0
                        ZeroWireload      tcbn65gplusbwp12twc
-soc_ahblite_ibex_csr_32_0_0_2
+soc_ahblite_ibex_csr_32_0_0_3
                        ZeroWireload      tcbn65gplusbwp12twc
-soc_ahblite_ibex_csr_32_0_0_5
+soc_ahblite_ibex_csr_32_0_0_2
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_csr_32_0_0_1
                        ZeroWireload      tcbn65gplusbwp12twc
@@ -911,6 +905,8 @@ soc_ahblite_butterfly2_2
 soc_ahblite_butterfly2_1
                        ZeroWireload      tcbn65gplusbwp12twc
 soc_ahblite_ibex_fetch_fifo_00000002_0
+                       ZeroWireload      tcbn65gplusbwp12twc
+soc_ahblite_ibex_csr_32_0_0_5
                        ZeroWireload      tcbn65gplusbwp12twc
 
 
@@ -1156,9 +1152,9 @@ ahbl_ic3_hrdata[30]
 ahbl_ic3_hrdata[31]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 ahbl_ic3_hready
-      8         1        0.01      0.01      0.01      0.01      0.01      0.00       9    
+      8         1        0.02      0.02      0.02      0.02      0.02      0.00       9    
 ahbl_ic3_hsel
-      7         1        0.01      0.01      0.01      0.01      0.01      0.00       8    
+      8         1        0.01      0.01      0.01      0.01      0.01      0.00       9    
 ahbl_ic3_htrans_1_
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 ahbl_ic3_hwdata[0]
@@ -1396,11 +1392,11 @@ dahbl_haddr[0]
 dahbl_haddr[1]
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 dahbl_haddr[2]
-      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+      3         1        0.01      0.01      0.00      0.01      0.00      0.00       4    
 dahbl_haddr[3]
-      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 dahbl_haddr[4]
-      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 dahbl_haddr[5]
       3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 dahbl_haddr[6]
@@ -1410,19 +1406,19 @@ dahbl_haddr[7]
 dahbl_haddr[8]
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 dahbl_haddr[9]
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+      2         1        0.01      0.01      0.01      0.01      0.01      0.00       3    
 dahbl_haddr[10]
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 dahbl_haddr[11]
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 dahbl_haddr[28]
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+      2         1        0.01      0.01      0.01      0.01      0.01      0.00       3    
 dahbl_haddr[29]
-      3         1        0.01      0.01      0.01      0.01      0.01      0.00       4    
+      4         1        0.01      0.01      0.01      0.01      0.01      0.00       5    
 dahbl_haddr[30]
-      4         1        0.01      0.01      0.01      0.01      0.01      0.00       5    
+      5         1        0.01      0.01      0.01      0.01      0.01      0.00       6    
 dahbl_haddr[31]
-      4         1        0.01      0.01      0.01      0.01      0.01      0.00       5    
+      4         1        0.02      0.02      0.02      0.02      0.02      0.00       5    
 dahbl_hrdata[0]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 dahbl_hrdata[1]
@@ -1488,13 +1484,13 @@ dahbl_hrdata[30]
 dahbl_hrdata[31]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 dahbl_hready
-     15         1        0.02      0.02      0.02      0.02      0.02      0.00      16    
+     15         1        0.03      0.03      0.03      0.03      0.03      0.00      16    
 dahbl_hsize[0]
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 dahbl_hsize[1]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 dahbl_htrans_1_
-     27         1        0.04      0.04      0.04      0.04      0.04      0.00      28    
+     27         1        0.06      0.06      0.06      0.06      0.06      0.00      28    
 dahbl_hwdata[0]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 dahbl_hwdata[1]
@@ -1882,11 +1878,11 @@ inst_wdata[30]
 inst_wdata[31]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 inst_write
-     22         1        0.03      0.03      0.03      0.03      0.03      0.00      23    
+     53         1        0.07      0.07      0.07      0.07      0.07      0.00      54    
 load_en
       4         1        0.00      0.00      0.00      0.00      0.00      0.00       5    
 n28
-      4         1        0.00      0.00      0.00      0.00      0.00      0.00       5    
+      4         1        0.01      0.01      0.00      0.01      0.00      0.00       5    
 n29
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 n30
@@ -1906,31 +1902,31 @@ n36
 n37
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 n181
-     15         1        0.03      0.03      0.03      0.03      0.03      0.00      16    
+     85         1        0.20      0.20      0.20      0.20      0.20      0.00      86    
 n182
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 n183
-      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 n184
       3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n185
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n186
-      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 n187
-      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
+      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
 n188
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
-n189
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
-n190
+n189
       2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+n190
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n191
       3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n192
       3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n193
-      2         1        0.00      0.00      0.00      0.00      0.00      0.00       3    
+      3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n194
       3         1        0.00      0.00      0.00      0.00      0.00      0.00       4    
 n195
@@ -1944,20 +1940,16 @@ n198
 n199
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 n200
-     18         1        0.03      0.03      0.03      0.03      0.03      0.00      19    
+     32         1        0.07      0.07      0.06      0.07      0.06      0.00      33    
 n201
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 n202
       5         1        0.01      0.01      0.01      0.01      0.01      0.00       6    
 n203
-     31         1        0.03      0.03      0.03      0.03      0.03      0.00      32    
-n204
-     32         1        0.07      0.07      0.07      0.07      0.07      0.00      33    
-n205
-     27         1        0.06      0.06      0.06      0.06      0.06      0.00      28    
-n232
+      1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
+n230
       8         1        0.01      0.01      0.01      0.01      0.01      0.00       9    dr
-net78997
+net78463
       0         1        0.00      0.00      0.00      0.00      0.00      0.00       1    dr
 r_iahbl_hrdata[0]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
@@ -2024,7 +2016,7 @@ r_iahbl_hrdata[30]
 r_iahbl_hrdata[31]
       1         1        0.00      0.00      0.00      0.00      0.00      0.00       2    
 rstn
-     27         1        0.06      0.06      0.06      0.06      0.06      0.00      28    
+     87         1        0.19      0.19      0.19      0.19      0.19      0.00      88    
 rx_dma_req
       1         1        0.05      0.05      0.05      0.05      0.05      0.00       2    
 scl
@@ -2044,10 +2036,10 @@ uart_tx
 write_start
      10         1        0.02      0.02      0.02      0.02      0.02      0.00      11    
 -----------------------------------------------------------------------------------------------
-Total 561 nets
-   3410       561     1002.67   1002.67   1002.63   1002.67   1002.63      0.00    3971
+Total 559 nets
+   3498       559     1002.96   1002.96   1002.92   1002.96   1002.92      0.00    4057
 Maximum
    2437         1     1001.00   1001.00   1001.00   1001.00   1001.00      0.00    2438
 Average
-   6.08      1.00        1.79      1.79      1.79      1.79      1.79      0.00    7.08
+   6.26      1.00        1.79      1.79      1.79      1.79      1.79      0.00    7.26
 1

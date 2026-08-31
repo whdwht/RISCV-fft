@@ -148,6 +148,15 @@ set_app_var routeopt_restrict_tns_to_size_only true
 route_opt -incremental
 }
 
+# PrimeTime signoff uses extracted SPEF and can expose small electrical
+# violations that the general timing-driven passes leave at the boundary.
+# Close the stricter ICC implementation guardbands explicitly before handoff.
+set saved_routeopt_drc_over_timing [get_app_var routeopt_drc_over_timing]
+set_app_var routeopt_drc_over_timing true
+route_opt -incremental -only_design_rule
+set_app_var routeopt_drc_over_timing $saved_routeopt_drc_over_timing
+unset saved_routeopt_drc_over_timing
+
 ## To limit route_opt to specific optimizations :
 #  route_opt -incremental -only_xtalk_reduction : only xtalk reduction 
 #  route_opt -incremental -only_hold_time : only hold fixing 

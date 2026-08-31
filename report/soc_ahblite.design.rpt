@@ -3,7 +3,7 @@
 Report : design
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 Design allows ideal nets on clock nets.
@@ -145,7 +145,7 @@ Design Parameters:
 Report : compile_options
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:33 2026
+Date   : Sat Aug 29 16:19:23 2026
 ****************************************
 
 Design                                   Compile Option         Value
@@ -260,7 +260,7 @@ soc_ahblite_ibex_csr_18_0_0_0            flatten                false
                                          structure_boolean      false
                                          structure_timing       true
 
-soc_ahblite_ibex_csr_32_0_0_3            flatten                false
+soc_ahblite_ibex_csr_32_0_0_4            flatten                false
                                          structure              true
                                          structure_boolean      false
                                          structure_timing       true
@@ -270,7 +270,7 @@ soc_ahblite_ibex_csr_6_0_0_0             flatten                false
                                          structure_boolean      false
                                          structure_timing       true
 
-soc_ahblite_ibex_csr_32_0_0_4            flatten                false
+soc_ahblite_ibex_csr_32_0_0_5            flatten                false
                                          structure              true
                                          structure_boolean      false
                                          structure_timing       true
@@ -285,12 +285,12 @@ soc_ahblite_ibex_csr_32_0_40000003_0     flatten                false
                                          structure_boolean      false
                                          structure_timing       true
 
-soc_ahblite_ibex_csr_32_0_0_2            flatten                false
+soc_ahblite_ibex_csr_32_0_0_3            flatten                false
                                          structure              true
                                          structure_boolean      false
                                          structure_timing       true
 
-soc_ahblite_ibex_csr_32_0_0_5            flatten                false
+soc_ahblite_ibex_csr_32_0_0_2            flatten                false
                                          structure              true
                                          structure_boolean      false
                                          structure_timing       true

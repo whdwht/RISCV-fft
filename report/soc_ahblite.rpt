@@ -3,13 +3,13 @@
 Report : qor
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 12:41:32 2026
+Date   : Sat Aug 29 16:19:21 2026
 ****************************************
 
 
   Timing Path Group 'clk1'
   -----------------------------------
-  Levels of Logic:              64.00
+  Levels of Logic:              57.00
   Critical Path Length:          2.71
   Critical Path Slack:           0.00
   Critical Path Clk Period:      3.00
@@ -25,12 +25,12 @@ Date   : Sat Aug 29 12:41:32 2026
   -----------------------------------
   Hierarchical Cell Count:         53
   Hierarchical Port Count:      12285
-  Leaf Cell Count:              18313
-  Buf/Inv Cell Count:            3309
-  Buf Cell Count:                 577
-  Inv Cell Count:                2732
+  Leaf Cell Count:              17919
+  Buf/Inv Cell Count:            2944
+  Buf Cell Count:                 456
+  Inv Cell Count:                2488
   CT Buf/Inv Cell Count:            0
-  Combinational Cell Count:     15028
+  Combinational Cell Count:     14634
   Sequential Cell Count:         3283
   Macro Count:                      2
   -----------------------------------
@@ -38,21 +38,21 @@ Date   : Sat Aug 29 12:41:32 2026
 
   Area
   -----------------------------------
-  Combinational Area:    53646.720256
-  Noncombinational Area: 36471.360395
-  Buf/Inv Area:           5826.240145
-  Total Buffer Area:          1541.76
-  Total Inverter Area:        4284.48
+  Combinational Area:    53966.400247
+  Noncombinational Area: 36960.000414
+  Buf/Inv Area:           5194.080131
+  Total Buffer Area:          1323.36
+  Total Inverter Area:        3870.72
   Macro/Black Box Area:  78944.937500
   Net Area:                  0.000000
   -----------------------------------
-  Cell Area:            169063.018152
-  Design Area:          169063.018152
+  Cell Area:            169871.338161
+  Design Area:          169871.338161
 
 
   Design Rules
   -----------------------------------
-  Total Number of Nets:         19159
+  Total Number of Nets:         18834
   Nets With Violations:             0
   Max Trans Violations:             0
   Max Cap Violations:               0
@@ -64,11 +64,11 @@ Date   : Sat Aug 29 12:41:32 2026
   Compile CPU Statistics
   -----------------------------------------
   Resource Sharing:                    0.01
-  Logic Optimization:                  0.96
-  Mapping Optimization:               73.07
+  Logic Optimization:                  1.00
+  Mapping Optimization:              135.61
   -----------------------------------------
-  Overall Compile Time:               79.01
-  Overall Compile Wall Clock Time:    39.31
+  Overall Compile Time:              145.10
+  Overall Compile Wall Clock Time:    63.84
 
   --------------------------------------------------------------------
 
