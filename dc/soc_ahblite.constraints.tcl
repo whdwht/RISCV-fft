@@ -39,6 +39,17 @@ foreach {parameter default_value} {
     }
 }
 
+# Long-running PPA scans override only the functional clock period.  Keep the
+# existing Tcl variable override mechanism for interactive DC use while also
+# accepting a process-level value shared with post-layout simulation.
+if {[info exists env(CLOCK_PERIOD_NS)] && $env(CLOCK_PERIOD_NS) ne ""} {
+    if {![string is double -strict $env(CLOCK_PERIOD_NS)] ||
+        $env(CLOCK_PERIOD_NS) <= 0.0} {
+        error "CLOCK_PERIOD_NS must be a positive number, got '$env(CLOCK_PERIOD_NS)'"
+    }
+    set T_CLKV_PER [expr {double($env(CLOCK_PERIOD_NS))}]
+}
+
 if {![info exists T_CLKV_FALL]} {
     set T_CLKV_FALL [expr {$T_CLKV_PER / 2.0}]
 }

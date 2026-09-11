@@ -21,6 +21,14 @@ case "${2:-}" in
     ;;
 esac
 
+if ! [[ "${CLOCK_PERIOD_NS}" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] ||
+    ! awk -v value="${CLOCK_PERIOD_NS}" 'BEGIN { exit !(value > 0.0) }'; then
+  echo "CLOCK_PERIOD_NS must be a positive number: ${CLOCK_PERIOD_NS}" >&2
+  exit 2
+fi
+timing_clk_half_ns="$(awk -v period="${CLOCK_PERIOD_NS}" \
+  'BEGIN { printf "%.12g", period / 2.0 }')"
+
 case "${mode}" in
   func)
     check_arg=""
@@ -30,7 +38,7 @@ case "${mode}" in
     ;;
   max)
     check_arg="--max"
-    clk_half_ns="1.5"
+    clk_half_ns="${timing_clk_half_ns}"
     compile_mode_args=(+define+NTC+RECREM \
       +sdfverbose +neg_tchk -negdelay -sdfretain \
       -sdf "max:tb_soc.x_soc:${WC_SDF}")
@@ -38,7 +46,7 @@ case "${mode}" in
     ;;
   min)
     check_arg="--min"
-    clk_half_ns="1.5"
+    clk_half_ns="${timing_clk_half_ns}"
     compile_mode_args=(+define+NTC+RECREM \
       +sdfverbose +neg_tchk -negdelay -sdfretain \
       -sdf "min:tb_soc.x_soc:${BC_SDF}")
@@ -46,7 +54,7 @@ case "${mode}" in
     ;;
   power)
     check_arg="--min"
-    clk_half_ns="1.5"
+    clk_half_ns="${timing_clk_half_ns}"
     compile_mode_args=(+define+NTC+RECREM \
       +sdfverbose +neg_tchk -negdelay -sdfretain \
       -sdf "min:tb_soc.x_soc:${BC_SDF}")

@@ -4,9 +4,10 @@ puts "RM-Info: Running script [info script]\n"
 ## Wenxun: Our Variables
 ###############################
 
-## TO DO: Set your own height/width/io2core/ring_w/ring_p
-## soc_ahblite: 2x RA1HD_4KB 顶部并排(窄gap) + 下部标准单元区 (util ~58%)
-set CORE_HEIGHT 560
+## soc_ahblite: 2x RA1HD_4KB 顶部并排(窄gap) + 下部标准单元区。
+## 扫描脚本通过环境变量覆盖尺寸；依赖脚本的默认值保持原基线。
+set CORE_WIDTH  [expr {double($::env(ICC_CORE_WIDTH))}]
+set CORE_HEIGHT [expr {double($::env(ICC_CORE_HEIGHT))}]
 set IO2CORE 40
 set POWER_RING_WIDTH 10
 set POWER_RING_PITCH 5
@@ -14,15 +15,25 @@ set POWER_RING_PITCH 5
 ## SRAM 实际尺寸 (RA1HD_4KB.vclef: SIZE 177.86 BY 221.93, PG pin为M4水平rail)
 set SRAM_W 177.86
 set SRAM_H 221.93
-set SRAM_SIDE_MARGIN 20
+set SRAM_MIN_SIDE_MARGIN 20
 set SRAM_TOP_MARGIN  15
 set SRAM_KEEPOUT 8
 
 ## 窄gap: 刚好容纳 VDD+GND 成对 strap (10+5+10, 两侧各留5 => 35)
 set SRAM_GAP 35
 
-## CORE_WIDTH 由布局反推 (不再手工填 470)
-set CORE_WIDTH [expr 2*$SRAM_SIDE_MARGIN + 2*$SRAM_W + $SRAM_GAP]   ;# = 430.72
+## 两块 SRAM 作为一个组在 core 中水平居中。430.72um 时两侧各20um，
+## 与原始 floorplan 完全一致；扫更宽的 core 时两侧对称增大。
+set SRAM_GROUP_W [expr {2.0*$SRAM_W + $SRAM_GAP}]
+set SRAM_SIDE_MARGIN [expr {($CORE_WIDTH - $SRAM_GROUP_W) / 2.0}]
+if {$SRAM_SIDE_MARGIN < ($SRAM_MIN_SIDE_MARGIN - 0.000001)} {
+  puts stderr "RM-Error: ICC_CORE_WIDTH=$CORE_WIDTH leaves only $SRAM_SIDE_MARGIN um per SRAM side; minimum is $SRAM_MIN_SIDE_MARGIN um"
+  exit 2
+}
+if {$CORE_HEIGHT < 520.0} {
+  puts stderr "RM-Error: ICC_CORE_HEIGHT=$CORE_HEIGHT is below the scan-supported minimum of 520 um"
+  exit 2
+}
 
 ## SRAM 摆放: 指令SRAM左上, 数据SRAM右上, 均贴core顶部
 set INST_SRAM_X [expr $IO2CORE + $SRAM_SIDE_MARGIN]                          ;# 60
@@ -52,6 +63,7 @@ set TIEHICELL "TIEHBWP12T"
 set TIELOCELL "TIELBWP12T"
 set MAP_LAYER_FILE $::env(GDS_LAYER_MAP)
 set TIEDOWN_RULE_PITCH 20
+puts "RM-Info: core scan dimensions = ${CORE_WIDTH} x ${CORE_HEIGHT} um"
 ##########################################################################################
 # Variables for IC Compiler Reference Methodology, IC Compiler Design Planning Reference 
 # Methodology, and IC Compiler Hierarchical Reference Methodology 

@@ -21,6 +21,7 @@ set REQUIRED_ENV_VARS {
   ICC_OPT_MAX_TRANSITION ICC_OPT_MAX_CAPACITANCE
   ICC_OPT_SRAM_DATA_MAX_TRANSITION
   ICC_ROUTE_OPT_AREA_RECOVERY
+  ICC_CORE_WIDTH ICC_CORE_HEIGHT
 }
 foreach env_var $REQUIRED_ENV_VARS {
   if {![info exists ::env($env_var)] || $::env($env_var) == ""} {
