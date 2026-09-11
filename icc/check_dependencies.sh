@@ -114,6 +114,26 @@ check_nonnegative_number ICC_OPT_MAX_TRANSITION "${ICC_OPT_MAX_TRANSITION}"
 check_nonnegative_number ICC_OPT_MAX_CAPACITANCE "${ICC_OPT_MAX_CAPACITANCE}"
 check_nonnegative_number ICC_OPT_SRAM_DATA_MAX_TRANSITION \
     "${ICC_OPT_SRAM_DATA_MAX_TRANSITION}"
+check_nonnegative_number ICC_CORE_WIDTH "${ICC_CORE_WIDTH}"
+check_nonnegative_number ICC_CORE_HEIGHT "${ICC_CORE_HEIGHT}"
+
+if [[ "${ICC_CORE_WIDTH}" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] && \
+    awk -v value="${ICC_CORE_WIDTH}" 'BEGIN { exit !(value >= 430.72) }'; then
+    printf 'ok   %-24s %s >= 430.72\n' ICC_CORE_WIDTH_MIN "${ICC_CORE_WIDTH}"
+else
+    printf 'BAD  %-24s %s (minimum is 430.72 um)\n' \
+        ICC_CORE_WIDTH_MIN "${ICC_CORE_WIDTH}" >&2
+    errors=$((errors + 1))
+fi
+
+if [[ "${ICC_CORE_HEIGHT}" =~ ^([0-9]+([.][0-9]*)?|[.][0-9]+)$ ]] && \
+    awk -v value="${ICC_CORE_HEIGHT}" 'BEGIN { exit !(value >= 520.0) }'; then
+    printf 'ok   %-24s %s >= 520.0\n' ICC_CORE_HEIGHT_MIN "${ICC_CORE_HEIGHT}"
+else
+    printf 'BAD  %-24s %s (scan-supported minimum is 520.0 um)\n' \
+        ICC_CORE_HEIGHT_MIN "${ICC_CORE_HEIGHT}" >&2
+    errors=$((errors + 1))
+fi
 
 number_pattern='^([0-9]+([.][0-9]*)?|[.][0-9]+)$'
 if [[ "${ICC_RESET_RELEASE_MIN}" =~ ${number_pattern} && \

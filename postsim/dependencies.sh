@@ -16,8 +16,10 @@ _postsim_dependency_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 : "${GATE_TB:=${POSTSIM_ROOT}/tb/tb_soc.sv}"
 : "${WC_SDF:=${PROJECT_ROOT}/pt/runs/wc_max/my_wc_max.sdf}"
 : "${BC_SDF:=${PROJECT_ROOT}/pt/runs/bc_min/my_bc_min.sdf}"
+: "${CLOCK_PERIOD_NS:=3.0}"
 
 export PROJECT_ROOT POSTSIM_ROOT POSTSIM_BUILD_DIR VCS_BIN VERDI_BIN NETLIST
 export STD_CELL_MODEL SRAM_MODEL VMEM GATE_TB WC_SDF BC_SDF
+export CLOCK_PERIOD_NS
 
 unset _postsim_dependency_dir

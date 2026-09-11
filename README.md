@@ -53,6 +53,66 @@ W16^k: Q10 定点旋转因子 (946/392, 724/724, ...), CPU 用 M 扩展完成复
 | 5. 门级后仿 | VCS | `make -C postsim all` | 功能预跑 + max/min SDF，testbench 自动核对 16 点结果 |
 | 6. 功耗分析 | PrimeTime PX | `make -C pt power_all` | BC/min SDF 生成执行窗 VCD；tc 角 + spef.max 统计 SoC/FFT 功耗与能量 |
 
+## 主频与核心面积自动扫描
+
+`scan_ppa.py` 将 DC、ICC、PT 三角 STA、门级执行窗 VCD 和 PT PX 串成可断点续跑的
+PPA 扫描。脚本兼容本机的 Python 2.7，也可使用 Python 3；完整扫描耗时较长，建议先
+检查默认矩阵和外部依赖：
+
+```bash
+python scan_ppa.py --dry-run
+bash icc/check_dependencies.sh
+make -C pt check
+make -C postsim check
+```
+
+默认矩阵包含 8 个主频和 5 个核心面积档，共 40 个实现点：
+
+- 主频：250、275、300、325、333.333、350、375、400 MHz；
+- 核心尺寸：430.72×520、430.72×540、430.72×560、450.72×580、
+  470.72×600 µm。
+
+开始扫描或从已有断点继续使用同一个命令：
+
+```bash
+python scan_ppa.py
+python scan_ppa.py --status
+```
+
+状态、隔离工作区、DC 频率缓存及结果默认放在 `scan_runs/default/`。可用
+`--run-dir <目录>` 启动另一组互不干扰的扫描。每个阶段开始和完成时都会原子更新
+`state.json`；ICC 还会复用自身的阶段 marker。扫描互斥使用内核 `flock`，因此
+`.lock` 文件会作为所有者元数据长期保留，文件存在本身不表示扫描仍在运行；进程退出
+后内核会自动释放锁。许可证服务器暂时失联或许可证已被
+占满时，扫描器默认每 60 秒自动重试当前阶段（可用 `--license-retry-delay` 调整），
+并把各次失败日志保存为 `*.attempt-NNN.log`；Ctrl-C 后仍可断点续跑。工具崩溃、
+缺文件、永久许可证配置错误或报告损坏会停止在当前阶段，修复环境后重新执行即可重试。
+若 VCS 已正常运行但某个设计点
+门级自检失败或出现 SDF timing-check violation，扫描器会记录 `postsim_pass=false`、
+跳过该点无效的功耗分析并自动继续后续组合。若确认其他工具失败的点永久无法实现，
+可用 `python scan_ppa.py --skip-current` 标记并继续。
+
+PT 收敛要求 WC setup、TC setup/hold 和 BC hold 全部通过，并且没有项目级
+transition/capacitance/fanout 违例。只有收敛点继续执行窗口功耗，门级自检还要求
+FFT16 保持 506 周期。主要结果为：
+
+- `summary.csv`：便于表格处理的完整 40 点矩阵；
+- `summary.md`：时序、面积、功耗和归一化指标总表及能效排名；
+- `results.json`：结构化结果；
+- `points/<point>/reports/`：逐点文本报告，`logs/` 为阶段控制日志。
+
+系统面积取 ICC 最终、经过 site/row 吸附后的 core area，并同时记录 Design Area 和
+利用率。FFT16 计算时间取 `506 × 时钟周期`。归一化使用固定当前基线：3 ns、
+240791.52 µm²、34.3 mW，即：
+
+```text
+计算密度比 = (T_baseline × A_baseline) / (T_point × A_point)
+计算能效比 = (T_baseline × P_baseline) / (T_point × P_point)
+```
+
+扫描始终在隔离工作区运行，不覆盖仓库当前的综合网表和后端结果。为控制磁盘占用，
+逐点长期保存文本报告，不复制大型 GDS、SPEF、SDF 和 VCD。
+
 ## PT 签核与门级后仿
 
 以下两个检查只验证工具、库、网表、约束和寄生文件是否存在，不会取许可证：

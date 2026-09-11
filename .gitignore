@@ -42,6 +42,7 @@ sim/build/
 sim_16/build/
 postsim/build/
 pt/runs/
+scan_runs/
 
 # ============ ICC 生成物 ============
 icc/logs_zrt/
@@ -69,6 +70,8 @@ icc/Synopsys_stack_trace_*.txt
 icc/crte_*.txt
 
 # ============ 编辑器 / 系统垃圾 ============
+*.pyc
+__pycache__/
 *.swp
 *.swo
 *.swn

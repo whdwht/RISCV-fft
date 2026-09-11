@@ -15,6 +15,9 @@ module tb_soc;
   logic [31:0] expected_result [0:31];
   logic [31:0] cycle_count, timeout_cycles;
   logic measure_enable, completion_pending, finished;
+  logic fft_write_pending, result_write_pending;
+  logic [2:0] fft_write_index;
+  logic [5:0] result_write_index;
   logic dump_vcd_enable;
   realtime clk_half_ns, power_window_start_ns, power_window_end_ns;
   integer fft_input_count, fft_done_count, result_write_count;
@@ -34,14 +37,8 @@ module tb_soc;
   );
 
   // ICC removes address bits that do not participate in the implemented
-  // memory-map decode.  Hierarchical references to those optimized output
-  // bits read as Z, so rebuild the canonical software-visible addresses from
-  // the retained high decode nibble and the low 4-KiB offset.
-  wire [31:0] observed_data_addr = {
-    x_soc.x_sub_system.x_core.data_addr_o[31:28],
-    16'h0000,
-    x_soc.x_sub_system.x_core.data_addr_o[11:0]
-  };
+  // memory-map decode.  The instruction low bits remain available for the
+  // timeout diagnostic below.
   wire [31:0] observed_instr_addr = {
     20'h00000,
     x_soc.x_sub_system.x_core.instr_addr_o[11:2],
@@ -235,6 +232,10 @@ module tb_soc;
     cycle_count = 32'h0;
     measure_enable = 1'b0;
     completion_pending = 1'b0;
+    fft_write_pending = 1'b0;
+    result_write_pending = 1'b0;
+    fft_write_index = 3'b0;
+    result_write_index = 6'b0;
     finished = 1'b0;
     fft_input_count = 0;
     fft_done_count = 0;
@@ -260,35 +261,42 @@ module tb_soc;
       cycle_count <= cycle_count + 1'b1;
   end
 
-  // Use the retained core interface ports. The post-route netlist no longer
-  // preserves the RTL-level x_sub_system.data_* intermediate signal names.
-  always @(posedge clk) begin : fft_input_scoreboard
-    integer input_address_index;
-    if (!rstn) begin
+  // Observe accepted AHB writes at the destination slave and check their data
+  // one cycle later (the AHB data phase).  Sampling the core request/grant
+  // ports on the root clock is unreliable after clock-tree insertion because
+  // those signals and the core clock arrive with routed skew.
+  always @(posedge x_soc.u_fft8_top.pclk) begin : fft_input_scoreboard
+    if (!x_soc.u_fft8_top.preset) begin
       fft_input_count <= 0;
-    end else if (measure_enable &&
-        x_soc.x_sub_system.x_core.data_req_o &&
-        x_soc.x_sub_system.x_core.data_gnt_i &&
-        x_soc.x_sub_system.x_core.data_we_o &&
-        observed_data_addr >= FFT_BASE &&
-        observed_data_addr <= FFT_BASE + 32'h1c) begin
-      if (fft_input_count >= 16)
-        $fatal(1, "CPU+FFT16 TEST FAIL: unexpected extra FFT input write");
-      input_address_index =
-        (observed_data_addr - FFT_BASE) >> 2;
-      if (input_address_index != (fft_input_count & 7))
-        $fatal(1, "FFT input address order mismatch: write=%0d addr=%h",
-               fft_input_count, observed_data_addr);
-      if ($isunknown(x_soc.x_sub_system.x_core.data_wdata_o) ||
-          x_soc.x_sub_system.x_core.data_wdata_o !==
-            expected_fft_input[fft_input_count])
-        $fatal(1, "FFT input[%0d] mismatch: expected=%h observed=%h",
-               fft_input_count, expected_fft_input[fft_input_count],
-               x_soc.x_sub_system.x_core.data_wdata_o);
-      $display("FFT16 INPUT[%0d] addr=%h data=%h PASS",
-               fft_input_count, observed_data_addr,
-               x_soc.x_sub_system.x_core.data_wdata_o);
-      fft_input_count <= fft_input_count + 1;
+      fft_write_pending <= 1'b0;
+      fft_write_index <= 3'b0;
+    end else if (measure_enable) begin
+      if (fft_write_pending) begin
+        if (fft_input_count >= 16)
+          $fatal(1, "CPU+FFT16 TEST FAIL: unexpected extra FFT input write");
+        if (fft_write_index != (fft_input_count & 7))
+          $fatal(1, "FFT input address order mismatch: write=%0d index=%0d",
+                 fft_input_count, fft_write_index);
+        if ($isunknown(x_soc.u_fft8_top.slave0_hwdata) ||
+            x_soc.u_fft8_top.slave0_hwdata !==
+              expected_fft_input[fft_input_count])
+          $fatal(1, "FFT input[%0d] mismatch: expected=%h observed=%h",
+                 fft_input_count, expected_fft_input[fft_input_count],
+                 x_soc.u_fft8_top.slave0_hwdata);
+        $display("FFT16 INPUT[%0d] addr=%h data=%h PASS",
+                 fft_input_count,
+                 FFT_BASE + ({29'b0, fft_write_index} << 2),
+                 x_soc.u_fft8_top.slave0_hwdata);
+        fft_input_count <= fft_input_count + 1;
+      end
+
+      fft_write_pending <= x_soc.u_fft8_top.slave0_hready &&
+                           x_soc.u_fft8_top.slave0_hsel &&
+                           x_soc.u_fft8_top.slave0_htrans[1] &&
+                           !x_soc.u_fft8_top.slave0_haddr[5];
+      fft_write_index <= x_soc.u_fft8_top.slave0_haddr[4:2];
+    end else begin
+      fft_write_pending <= 1'b0;
     end
   end
 
@@ -301,38 +309,51 @@ module tb_soc;
     end
   end
 
-  // Check accepted CPU stores rather than depending on SRAM macro internals.
-  always @(posedge clk) begin : result_scoreboard
-    integer result_index;
-    if (!rstn) begin
+  // Sample only stable module ports half a cycle away from the active edge.
+  // Internal net names and even the synthesized hwrite port polarity can vary
+  // between scan points.  The result address range is write-only in this test,
+  // so hsel/htrans/address uniquely identify its 32 stores.  Check hwdata at
+  // the following falling edge, matching the AHB address/data pipeline.
+  always @(negedge x_soc.x_data_sram.clk) begin : result_scoreboard
+    if (!x_soc.x_data_sram.rstn) begin
       result_write_count <= 0;
       completion_pending <= 1'b0;
-    end else if (measure_enable &&
-        x_soc.x_sub_system.x_core.data_req_o &&
-        x_soc.x_sub_system.x_core.data_gnt_i &&
-        x_soc.x_sub_system.x_core.data_we_o &&
-        observed_data_addr >= RESULT_BASE &&
-        observed_data_addr <= RESULT_LAST) begin
-      result_index =
-        (observed_data_addr - RESULT_BASE) >> 2;
-      if ($isunknown(x_soc.x_sub_system.x_core.data_wdata_o) ||
-          x_soc.x_sub_system.x_core.data_wdata_o !== expected_result[result_index])
-        $fatal(1, "FFT16 result word[%0d] addr=%h expected=%h observed=%h",
-               result_index, observed_data_addr,
-               expected_result[result_index],
-               x_soc.x_sub_system.x_core.data_wdata_o);
-      $display("FFT16 RESULT[%0d] addr=%h data=%h PASS",
-               result_index, observed_data_addr,
-               x_soc.x_sub_system.x_core.data_wdata_o);
-      result_write_count <= result_write_count + 1;
-      if (observed_data_addr == RESULT_LAST)
-        completion_pending <= 1'b1;
+      result_write_pending <= 1'b0;
+      result_write_index <= 6'b0;
+    end else if (measure_enable) begin
+      if (result_write_pending) begin
+        if ($isunknown(x_soc.x_data_sram.slave0_hwdata) ||
+            x_soc.x_data_sram.slave0_hwdata !==
+              expected_result[result_write_index])
+          $fatal(1, "FFT16 result word[%0d] addr=%h expected=%h observed=%h",
+                 result_write_index,
+                 RESULT_BASE + ({26'b0, result_write_index} << 2),
+                 expected_result[result_write_index],
+                 x_soc.x_data_sram.slave0_hwdata);
+        $display("FFT16 RESULT[%0d] addr=%h data=%h PASS",
+                 result_write_index,
+                 RESULT_BASE + ({26'b0, result_write_index} << 2),
+                 x_soc.x_data_sram.slave0_hwdata);
+        result_write_count <= result_write_count + 1;
+        if (result_write_index == 6'd31)
+          completion_pending <= 1'b1;
+      end
+
+      result_write_pending <= x_soc.x_data_sram.slave0_hready &&
+                              x_soc.x_data_sram.slave0_hsel &&
+                              x_soc.x_data_sram.slave0_htrans[1] &&
+                              x_soc.x_data_sram.slave0_haddr[11:0] >= 12'h040 &&
+                              x_soc.x_data_sram.slave0_haddr[11:0] <= 12'h0bc;
+      result_write_index <= x_soc.x_data_sram.slave0_haddr[7:2] - 6'h10;
+    end else begin
+      result_write_pending <= 1'b0;
     end
   end
 
-  // Sample after scoreboard nonblocking assignments have settled.
-  always @(negedge clk)
-    if (completion_pending && !finished)
+  // The event is triggered after all scoreboard nonblocking assignments from
+  // the final result have settled, so finish_test observes a count of 32.
+  always @(posedge completion_pending)
+    if (!finished)
       finish_test();
 
   initial begin : timeout_guard
