@@ -1,0 +1,8 @@
+category_key,category,instance,area_um2,share_percent
+register_file,通用寄存器堆,x_sub_system/x_core/gen_regfile_ff_register_file_i,25892.160600,40.322026
+execution,执行单元（ALU、乘除法等）,x_sub_system/x_core/ex_block_i,15898.080100,24.758181
+csr,CSR 与计数器,x_sub_system/x_core/cs_registers_i,10002.720100,15.577300
+instruction_fetch,取指单元,x_sub_system/x_core/if_stage_i,5597.760000,8.717427
+instruction_decode,译码与控制,x_sub_system/x_core/id_stage_i,3814.080000,5.939691
+load_store,访存单元,x_sub_system/x_core/load_store_unit_i,1882.080000,2.930975
+cpu_other,其他 CPU 逻辑,<CPU subsystem residual>,1126.560100,1.754399

@@ -1,0 +1,8 @@
+category_key,category,instance,area_um2,share_percent
+cpu_subsystem,CPU 子系统,x_sub_system,64213.440900,35.921019
+fft8_accelerator,FFT8 加速器,u_fft8_top,31626.240100,17.691729
+instruction_sram,指令 SRAM,x_isram_ahbl,40171.348800,22.471865
+data_sram,数据 SRAM,x_data_sram,39893.428800,22.316397
+rom,ROM,x_rom_ahbl,1266.240000,0.708335
+data_fabric,数据总线,x_data_fabric,896.640000,0.501581
+other_top_level,其他顶层逻辑,<top-level residual>,695.519911,0.389074

@@ -31,7 +31,7 @@ except NameError:
 
 
 SCHEMA_VERSION = 1
-EXPECTED_FFT16_CYCLES = 506
+BASELINE_FFT16_CYCLES = 506
 DEFAULT_FREQUENCIES_MHZ = (
     250.0,
     275.0,
@@ -52,7 +52,7 @@ DEFAULT_CORE_SIZES_UM = (
 BASELINE = {
     "frequency_mhz": 1000.0 / 3.0,
     "clock_period_ns": 3.0,
-    "fft16_cycles": EXPECTED_FFT16_CYCLES,
+    "fft16_cycles": BASELINE_FFT16_CYCLES,
     "fft16_time_ns": 1518.0,
     "core_area_um2": 240791.52,
     "soc_total_power_mw": 34.3,
@@ -208,7 +208,7 @@ def make_config():
         "baseline": dict(BASELINE),
         "power_policy": "all_timing_converged_points",
         "area_metric": "icc_final_core_area",
-        "fft16_cycles": EXPECTED_FFT16_CYCLES,
+        "fft16_cycles": BASELINE_FFT16_CYCLES,
     }
 
 
@@ -582,10 +582,10 @@ def parse_power(workspace):
         raise ScanError("PT power summary did not report POWER_RESULT PASS")
     cycles = require_int(window, "POWER_CYCLES", window_path)
     summary_cycles = require_int(summary, "POWER_WINDOW_CYCLES", summary_path)
-    if cycles != EXPECTED_FFT16_CYCLES or summary_cycles != EXPECTED_FFT16_CYCLES:
+    if cycles != summary_cycles:
         raise ScanError(
-            "FFT16 power window must contain %d cycles, got %d/%d"
-            % (EXPECTED_FFT16_CYCLES, cycles, summary_cycles)
+            "FFT16 power-window cycle mismatch between gate simulation and PT: %d/%d"
+            % (cycles, summary_cycles)
         )
     power_mw = require_float(summary, "SOC_TOTAL_POWER_MW", summary_path)
     if power_mw <= 0.0:
@@ -598,6 +598,7 @@ def parse_power(workspace):
             summary, "POWER_WINDOW_DURATION_NS", summary_path
         ),
         "power_window_cycles": cycles,
+        "fft16_cycles": cycles,
         "soc_internal_power_mw": require_float(summary, "SOC_INTERNAL_POWER_MW", summary_path),
         "soc_switching_power_mw": require_float(
             summary, "SOC_SWITCHING_POWER_MW", summary_path
@@ -609,6 +610,25 @@ def parse_power(workspace):
         "fft_total_power_mw": require_float(summary, "FFT_TOTAL_POWER_MW", summary_path),
         "fft_soc_power_percent": require_float(summary, "FFT_SOC_POWER_PERCENT", summary_path),
     }
+
+
+def parse_simulation_cycles(log_path):
+    if not os.path.isfile(log_path) or os.path.getsize(log_path) == 0:
+        raise ScanError("gate simulation log is missing or empty: %s" % log_path)
+    log_text = read_text(log_path)
+    metric = re.search(r"^FFT16_METRIC\s+cycles=([0-9]+)\b", log_text, re.MULTILINE)
+    if metric:
+        cycles = int(metric.group(1))
+    else:
+        legacy = re.search(
+            r"^CPU execution cycles:\s*([0-9]+)\s*$", log_text, re.MULTILINE
+        )
+        if not legacy:
+            raise ScanError("cannot find FFT16 cycle count in %s" % log_path)
+        cycles = int(legacy.group(1))
+    if cycles <= 0:
+        raise ScanError("FFT16 cycle count must be positive in %s" % log_path)
+    return cycles
 
 
 def postsim_validation_failure(workspace):
@@ -636,8 +656,11 @@ def postsim_validation_failure(workspace):
 def finalize_metrics(point):
     result = point["result"]
     period_ns = point["clock_period_ns"]
-    time_ns = EXPECTED_FFT16_CYCLES * period_ns
-    result["fft16_cycles"] = EXPECTED_FFT16_CYCLES
+    cycles = int(result.get("fft16_cycles", BASELINE_FFT16_CYCLES))
+    if cycles <= 0:
+        raise ScanError("FFT16 cycle count must be positive")
+    time_ns = cycles * period_ns
+    result["fft16_cycles"] = cycles
     result["fft16_time_ns"] = time_ns
     result["throughput_fft_per_s"] = 1.0e9 / time_ns
     area = result.get("core_area_um2")
@@ -1371,6 +1394,9 @@ class Scanner(object):
             return
         point["result"]["postsim_pass"] = True
         point["result"].pop("postsim_error", None)
+        point["result"]["fft16_cycles"] = parse_simulation_cycles(
+            os.path.join(self.workspace, "postsim", "build", "power", "run.log")
+        )
         finalize_metrics(point)
 
     def power_pt(self, point):

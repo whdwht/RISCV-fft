@@ -1,0 +1,245 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="2670" viewBox="0 0 1800 2670" role="img" aria-labelledby="title desc">
+  <title id="title">使用8点FFT加速器完成16点FFT的详细计算流程图</title>
+  <desc id="desc">按CPU、AHB与FFT8加速器、数据SRAM三条泳道，展示偶序列FFT、奇序列FFT、Q10旋转因子复乘和最后一级蝶形。</desc>
+  <defs>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef4ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#172554" flood-opacity="0.12"/>
+    </filter>
+    <marker id="blueArrow" markerWidth="11" markerHeight="11" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#2563eb"/>
+    </marker>
+    <marker id="orangeArrow" markerWidth="11" markerHeight="11" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#ea580c"/>
+    </marker>
+    <marker id="greenArrow" markerWidth="11" markerHeight="11" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#059669"/>
+    </marker>
+    <marker id="grayArrow" markerWidth="11" markerHeight="11" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,7 L10,3.5 z" fill="#64748b"/>
+    </marker>
+    <style>
+      .title { font: 700 36px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .subtitle { font: 400 18px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .lane-title { font: 700 25px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .phase { font: 700 22px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #fff; }
+      .box-title { font: 700 19px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #0f172a; }
+      .body { font: 400 16px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #334155; }
+      .small { font: 400 14px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #475569; }
+      .mono { font: 600 14px "DejaVu Sans Mono", "Noto Sans Mono CJK SC", monospace; fill: #1e293b; }
+      .formula { font: 600 17px "DejaVu Sans", "Noto Sans CJK SC", sans-serif; fill: #1e293b; }
+      .edge-blue { font: 600 14px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #1d4ed8; }
+      .edge-orange { font: 600 14px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #c2410c; }
+      .edge-green { font: 600 14px "Noto Sans CJK SC", "Microsoft YaHei", sans-serif; fill: #047857; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="2670" fill="url(#pageBg)"/>
+  <text x="900" y="52" text-anchor="middle" class="title">FFT16 详细计算流程：2 × FFT8 硬件调用 + CPU 合并</text>
+  <text x="900" y="84" text-anchor="middle" class="subtitle">基-2 DIT 分解；W₁₆ᵏ = cos(2πk/16) − j·sin(2πk/16)；蓝色为请求，橙色为返回，绿色为硬件内部计算</text>
+
+  <!-- Swimlane backgrounds -->
+  <rect x="45" y="120" width="535" height="2500" rx="24" fill="#f3f7ff" stroke="#93b4e8" stroke-width="2"/>
+  <rect x="610" y="120" width="675" height="2500" rx="24" fill="#effcf5" stroke="#86d9b0" stroke-width="2"/>
+  <rect x="1315" y="120" width="440" height="2500" rx="24" fill="#fffaf0" stroke="#f0c66c" stroke-width="2"/>
+
+  <rect x="45" y="120" width="535" height="67" rx="24" fill="#dbeafe"/>
+  <rect x="610" y="120" width="675" height="67" rx="24" fill="#d1fae5"/>
+  <rect x="1315" y="120" width="440" height="67" rx="24" fill="#fef3c7"/>
+  <text x="312" y="162" text-anchor="middle" class="lane-title">CPU（Ibex + 软件）</text>
+  <text x="947" y="162" text-anchor="middle" class="lane-title">AHB-Lite + FFT8 加速器</text>
+  <text x="1535" y="162" text-anchor="middle" class="lane-title">Data SRAM</text>
+
+  <!-- Start and split -->
+  <rect x="123" y="215" width="380" height="82" rx="41" fill="#ffffff" stroke="#2563eb" stroke-width="2.5" filter="url(#shadow)"/>
+  <text x="313" y="248" text-anchor="middle" class="box-title">开始：16 个复数时域样本</text>
+  <text x="313" y="276" text-anchor="middle" class="body">x[0], x[1], …, x[15]</text>
+  <line x1="313" y1="297" x2="313" y2="329" stroke="#64748b" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+  <path d="M313 330 L448 390 L313 450 L178 390 Z" fill="#ffffff" stroke="#64748b" stroke-width="2.2" filter="url(#shadow)"/>
+  <text x="313" y="382" text-anchor="middle" class="box-title">按下标奇偶拆分</text>
+  <text x="313" y="410" text-anchor="middle" class="small">Cooley–Tukey 基-2 DIT</text>
+
+  <!-- Phase 1 banner -->
+  <rect x="65" y="479" width="149" height="39" rx="19" fill="#2563eb"/>
+  <text x="139" y="505" text-anchor="middle" class="phase">阶段 1</text>
+  <text x="230" y="505" class="box-title">偶数下标序列 → 第一次 FFT8</text>
+
+  <!-- CPU prepare even -->
+  <rect x="105" y="542" width="415" height="146" rx="17" fill="#ffffff" stroke="#60a5fa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="573" text-anchor="middle" class="box-title">形成 8 点偶序列 e[m] = x[2m]</text>
+  <text x="130" y="606" class="body">lane 0..7 = x[0], x[2], x[4], …, x[14]</text>
+  <text x="130" y="637" class="body">每个复数打包为 32 位：</text>
+  <text x="130" y="666" class="mono">word = {real[15:0], imag[15:0]}</text>
+
+  <!-- AHB even stores -->
+  <line x1="520" y1="615" x2="665" y2="615" stroke="#2563eb" stroke-width="3" marker-end="url(#blueArrow)"/>
+  <text x="592" y="593" text-anchor="middle" class="edge-blue">8 次 sw</text>
+  <rect x="666" y="529" width="565" height="172" rx="17" fill="#ffffff" stroke="#34d399" stroke-width="2" filter="url(#shadow)"/>
+  <text x="948" y="561" text-anchor="middle" class="box-title">AHB 写 FFT8 输入寄存器</text>
+  <text x="694" y="593" class="mono">0x4000_0000 + 4m，m=0..7</text>
+  <text x="694" y="623" class="body">写 +0x00..+0x18：保存 lane 0..6</text>
+  <text x="694" y="653" class="body">写 +0x1C：保存 lane 7，产生 wr_last</text>
+  <text x="694" y="683" class="body">wr_last 清 valid，并在下一拍产生 start_r</text>
+
+  <!-- Pipeline timeline -->
+  <rect x="666" y="726" width="565" height="247" rx="17" fill="#e8fff2" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="948" y="758" text-anchor="middle" class="box-title">FFT8 三级流水计算</text>
+  <rect x="690" y="782" width="76" height="73" rx="10" fill="#fff" stroke="#6ee7b7"/>
+  <rect x="778" y="782" width="95" height="73" rx="10" fill="#fff" stroke="#6ee7b7"/>
+  <rect x="885" y="782" width="95" height="73" rx="10" fill="#fff" stroke="#6ee7b7"/>
+  <rect x="992" y="782" width="95" height="73" rx="10" fill="#fff" stroke="#6ee7b7"/>
+  <rect x="1099" y="782" width="108" height="73" rx="10" fill="#fff" stroke="#6ee7b7"/>
+  <text x="728" y="809" text-anchor="middle" class="mono">C1</text>
+  <text x="728" y="836" text-anchor="middle" class="small">锁存输入</text>
+  <text x="825" y="809" text-anchor="middle" class="mono">C2</text>
+  <text x="825" y="836" text-anchor="middle" class="small">Stage 1</text>
+  <text x="932" y="809" text-anchor="middle" class="mono">C3</text>
+  <text x="932" y="836" text-anchor="middle" class="small">Stage 2</text>
+  <text x="1039" y="809" text-anchor="middle" class="mono">C4</text>
+  <text x="1039" y="836" text-anchor="middle" class="small">Stage 3</text>
+  <text x="1153" y="809" text-anchor="middle" class="mono">C5</text>
+  <text x="1153" y="836" text-anchor="middle" class="small">valid=1</text>
+  <line x1="766" y1="818" x2="778" y2="818" stroke="#059669" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <line x1="873" y1="818" x2="885" y2="818" stroke="#059669" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <line x1="980" y1="818" x2="992" y2="818" stroke="#059669" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <line x1="1087" y1="818" x2="1099" y2="818" stroke="#059669" stroke-width="2" marker-end="url(#greenArrow)"/>
+  <text x="690" y="886" class="body">Stage 1：4 个加减蝶形，配对 (0,4)(2,6)(1,5)(3,7)</text>
+  <text x="690" y="916" class="body">Stage 2：4 个蝶形，使用 W₄⁰=1、W₄¹=−j</text>
+  <text x="690" y="946" class="body">Stage 3：4 个蝶形，使用 W₈⁰…W₈³（724/1024 定点）</text>
+
+  <!-- Even reads and SRAM -->
+  <rect x="105" y="736" width="415" height="217" rx="17" fill="#ffffff" stroke="#60a5fa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="768" text-anchor="middle" class="box-title">CPU 立即执行 8 次 lw</text>
+  <text x="130" y="801" class="mono">lw +0x20, +0x24, …, +0x3C</text>
+  <text x="130" y="835" class="body">第一次读到达而 valid=0：</text>
+  <text x="130" y="866" class="formula">HREADY=0 → load 尚未完成 → CPU 等待</text>
+  <text x="130" y="900" class="body">valid=1 后 HREADY 拉高，返回 E[0..7]</text>
+  <text x="130" y="932" class="small">后续 7 次读取不再等待</text>
+  <path d="M666 894 H600 V846 H520" fill="none" stroke="#ea580c" stroke-width="3" marker-end="url(#orangeArrow)"/>
+  <text x="588" y="875" text-anchor="end" class="edge-orange">HRDATA / HREADY</text>
+
+  <line x1="520" y1="938" x2="1380" y2="938" stroke="#2563eb" stroke-width="3" marker-end="url(#blueArrow)"/>
+  <text x="1110" y="919" class="edge-blue">CPU 用 sw 暂存 E[0..7]</text>
+  <rect x="1380" y="858" width="310" height="107" rx="15" fill="#ffffff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1535" y="891" text-anchor="middle" class="box-title">保存偶序列结果 E</text>
+  <text x="1535" y="923" text-anchor="middle" class="mono">0x1000_0000..001C</text>
+  <text x="1535" y="949" text-anchor="middle" class="small">8 个打包复数</text>
+
+  <!-- Phase 2 -->
+  <rect x="65" y="1009" width="149" height="39" rx="19" fill="#059669"/>
+  <text x="139" y="1035" text-anchor="middle" class="phase">阶段 2</text>
+  <text x="230" y="1035" class="box-title">奇数下标序列 → 第二次 FFT8</text>
+
+  <rect x="105" y="1073" width="415" height="166" rx="17" fill="#ffffff" stroke="#60a5fa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1105" text-anchor="middle" class="box-title">形成 8 点奇序列 o[m] = x[2m+1]</text>
+  <text x="130" y="1139" class="body">lane 0..7 = x[1], x[3], x[5], …, x[15]</text>
+  <text x="130" y="1172" class="body">再次写同一组 FFT 输入地址</text>
+  <text x="130" y="1205" class="body">写 +0x1C 清旧 valid，启动第二次计算</text>
+
+  <line x1="520" y1="1154" x2="665" y2="1154" stroke="#2563eb" stroke-width="3" marker-end="url(#blueArrow)"/>
+  <text x="592" y="1133" text-anchor="middle" class="edge-blue">8 次 sw</text>
+  <rect x="666" y="1073" width="565" height="166" rx="17" fill="#ffffff" stroke="#34d399" stroke-width="2" filter="url(#shadow)"/>
+  <text x="948" y="1105" text-anchor="middle" class="box-title">复用同一个 FFT8 核</text>
+  <text x="694" y="1140" class="body">地址和计算时序与第一次调用完全相同</text>
+  <text x="694" y="1173" class="body">start_r → Stage 1 → Stage 2 → Stage 3 → done</text>
+  <text x="694" y="1206" class="body">第一次输出会被第二次结果覆盖，因此必须先保存 E</text>
+
+  <rect x="105" y="1265" width="415" height="135" rx="17" fill="#ffffff" stroke="#60a5fa" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1297" text-anchor="middle" class="box-title">读取第二次 FFT8 输出</text>
+  <text x="130" y="1331" class="mono">lw +0x20..+0x3C → O[0..7]</text>
+  <text x="130" y="1365" class="body">第一条 lw 同样通过 HREADY 自动等待</text>
+  <path d="M666 1288 H600 V1332 H520" fill="none" stroke="#ea580c" stroke-width="3" marker-end="url(#orangeArrow)"/>
+  <text x="588" y="1316" text-anchor="end" class="edge-orange">O[0..7]</text>
+  <line x1="520" y1="1380" x2="1380" y2="1380" stroke="#2563eb" stroke-width="3" marker-end="url(#blueArrow)"/>
+  <text x="1110" y="1361" class="edge-blue">CPU 用 sw 暂存 O[0..7]</text>
+  <rect x="1380" y="1287" width="310" height="107" rx="15" fill="#ffffff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1535" y="1320" text-anchor="middle" class="box-title">保存奇序列结果 O</text>
+  <text x="1535" y="1352" text-anchor="middle" class="mono">0x1000_0020..003C</text>
+  <text x="1535" y="1378" text-anchor="middle" class="small">8 个打包复数</text>
+
+  <!-- Phase 3 -->
+  <rect x="65" y="1441" width="149" height="39" rx="19" fill="#7c3aed"/>
+  <text x="139" y="1467" text-anchor="middle" class="phase">阶段 3</text>
+  <text x="230" y="1467" class="box-title">CPU 执行 FFT16 的最后一级：对 k=0..7 重复</text>
+
+  <!-- Twiddle lookup in FFT lane as reference -->
+  <rect x="666" y="1507" width="565" height="172" rx="17" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="948" y="1539" text-anchor="middle" class="box-title">Q10 旋转因子表：W₁₆ᵏ = (c − js)/1024</text>
+  <text x="698" y="1574" class="mono">k :  0     1     2     3     4      5      6      7</text>
+  <text x="698" y="1607" class="mono">c : 1024  946   724   392    0   -392   -724   -946</text>
+  <text x="698" y="1640" class="mono">s :   0   392   724   946  1024   946    724    392</text>
+  <text x="698" y="1666" class="small">这是 CPU 软件常数，不是第三次 FFT8 调用</text>
+
+  <!-- Merge CPU flow -->
+  <rect x="105" y="1507" width="415" height="92" rx="17" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1540" text-anchor="middle" class="box-title">初始化 k = 0</text>
+  <text x="313" y="1572" text-anchor="middle" class="body">每次循环产生 X[k] 与 X[k+8]</text>
+  <line x1="313" y1="1599" x2="313" y2="1629" stroke="#64748b" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+
+  <rect x="105" y="1630" width="415" height="126" rx="17" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1661" text-anchor="middle" class="box-title">从 SRAM 读取 E[k] 和 O[k]</text>
+  <text x="130" y="1694" class="mono">E_word @ 0x1000_0000 + 4k</text>
+  <text x="130" y="1725" class="mono">O_word @ 0x1000_0020 + 4k</text>
+  <path d="M1380 1689 H520" fill="none" stroke="#ea580c" stroke-width="3" marker-end="url(#orangeArrow)"/>
+  <text x="1130" y="1670" class="edge-orange">2 次 lw</text>
+
+  <rect x="105" y="1783" width="415" height="133" rx="17" fill="#ffffff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1815" text-anchor="middle" class="box-title">拆包并符号扩展为 32 位</text>
+  <text x="130" y="1848" class="mono">Ere = E_word >>> 16</text>
+  <text x="130" y="1878" class="mono">Eim = (E_word &amp; 0xffff) sign-extend</text>
+  <text x="130" y="1908" class="small">Ore、Oim 使用相同方法</text>
+  <line x1="313" y1="1916" x2="313" y2="1944" stroke="#64748b" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+
+  <rect x="105" y="1945" width="415" height="165" rx="17" fill="#fff7e6" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="1977" text-anchor="middle" class="box-title">CPU 用 4 条 mul 计算 T = W₁₆ᵏ·O[k]</text>
+  <text x="130" y="2012" class="formula">T_re = (c·O_re + s·O_im) &gt;&gt; 10</text>
+  <text x="130" y="2047" class="formula">T_im = (c·O_im − s·O_re) &gt;&gt; 10</text>
+  <text x="130" y="2082" class="small">右移 10 位相当于除以 1024</text>
+
+  <!-- Clarify hardware/software ownership -->
+  <rect x="666" y="1711" width="565" height="148" rx="17" fill="#e8fff2" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+  <text x="948" y="1745" text-anchor="middle" class="box-title">此阶段 FFT8 加速器已经空闲</text>
+  <text x="694" y="1782" class="body">E[0..7]、O[0..7] 已全部返回 CPU 并存入 SRAM</text>
+  <text x="694" y="1816" class="body">W₁₆ 复乘和 FFT16 最后一级蝶形都由 CPU 执行</text>
+  <text x="694" y="1845" class="small">不会进行第三次 FFT8 调用</text>
+
+  <!-- FFT16 final butterfly belongs to the CPU lane -->
+  <line x1="313" y1="2110" x2="313" y2="2139" stroke="#64748b" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+  <rect x="105" y="2140" width="415" height="190" rx="17" fill="#f3efff" stroke="#8b5cf6" stroke-width="2" filter="url(#shadow)"/>
+  <text x="313" y="2173" text-anchor="middle" class="box-title">CPU 执行 FFT16 最后一级基-2蝶形</text>
+  <text x="130" y="2210" class="formula">X_re[k]   = E_re + T_re</text>
+  <text x="130" y="2243" class="formula">X_im[k]   = E_im + T_im</text>
+  <text x="130" y="2280" class="formula">X_re[k+8] = E_re − T_re</text>
+  <text x="130" y="2313" class="formula">X_im[k+8] = E_im − T_im</text>
+
+  <rect x="1380" y="2153" width="310" height="182" rx="17" fill="#ffffff" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+  <text x="1535" y="2185" text-anchor="middle" class="box-title">保存 4 个 32 位结果字</text>
+  <text x="1403" y="2220" class="mono">X[k].re @ +0x40+8k</text>
+  <text x="1403" y="2251" class="mono">X[k].im @ +0x44+8k</text>
+  <text x="1403" y="2287" class="mono">X[k+8].re @ +0x80+8k</text>
+  <text x="1403" y="2318" class="mono">X[k+8].im @ +0x84+8k</text>
+  <line x1="520" y1="2244" x2="1380" y2="2244" stroke="#2563eb" stroke-width="3" marker-end="url(#blueArrow)"/>
+  <text x="1295" y="2225" text-anchor="middle" class="edge-blue">CPU 发出 4 次 sw</text>
+
+  <!-- Loop decision: also a CPU software operation -->
+  <line x1="313" y1="2330" x2="313" y2="2374" stroke="#64748b" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+  <path d="M313 2375 L443 2430 L313 2485 L183 2430 Z" fill="#ffffff" stroke="#7c3aed" stroke-width="2.2" filter="url(#shadow)"/>
+  <text x="313" y="2423" text-anchor="middle" class="box-title">k == 7？</text>
+  <text x="313" y="2451" text-anchor="middle" class="small">8 组蝶形是否完成</text>
+  <path d="M183 2430 H73 V1690 H105" fill="none" stroke="#7c3aed" stroke-width="2.5" marker-end="url(#grayArrow)"/>
+  <text x="83" y="2403" class="body">否：k=k+1</text>
+
+  <!-- Done -->
+  <line x1="443" y1="2430" x2="1380" y2="2430" stroke="#059669" stroke-width="3" marker-end="url(#greenArrow)"/>
+  <text x="1178" y="2411" text-anchor="middle" class="edge-green">是：FFT16 完成</text>
+  <rect x="1380" y="2379" width="310" height="102" rx="51" fill="#dcfce7" stroke="#059669" stroke-width="2.6" filter="url(#shadow)"/>
+  <text x="1535" y="2416" text-anchor="middle" class="box-title">得到 X[0..15]</text>
+  <text x="1535" y="2448" text-anchor="middle" class="body">共 16 个复数频域结果</text>
+
+  <!-- Summary footer -->
+  <rect x="82" y="2546" width="1636" height="53" rx="18" fill="#0f172a"/>
+  <text x="900" y="2580" text-anchor="middle" font-family="Noto Sans CJK SC, Microsoft YaHei, sans-serif" font-size="18" font-weight="600" fill="#fff">总计算结构：FFT16 的 4 层中，两次 FFT8 硬件核调用完成前 3 层；CPU 完成 8 个 W₁₆ 复乘和最后 8 个蝶形</text>
+</svg>

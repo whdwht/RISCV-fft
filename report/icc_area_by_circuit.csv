@@ -1,0 +1,4 @@
+category_key,category,area_um2,share_percent
+combinational,组合逻辑,62858.880589,35.163278
+sequential,时序单元（寄存器、锁存器等）,36959.040422,20.674899
+macro_black_box,宏/黑盒单元（含 SRAM）,78944.937500,44.161823

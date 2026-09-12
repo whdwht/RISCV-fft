@@ -15,8 +15,13 @@ module tb_soc;
   logic [31:0] cycle_count, timeout_cycles;
   logic measure_enable, completion_pending, finished;
   integer fft_input_count, fft_done_count, result_write_count;
+  integer first_even_input_cycle, first_odd_input_cycle;
+  integer first_trigger_cycle, first_done_cycle;
+  integer second_trigger_cycle, second_done_cycle;
+  integer first_result_cycle, final_result_cycle;
+  integer result_bin_done_cycle [0:7];
   string vmem_file, fsdb_file;
-  integer i, fd;
+  integer i, fd, phase_init_index;
 
   soc_ahblite x_soc (
     .sys_clk(clk), .rstn(rstn), .load_en(load_en),
@@ -51,6 +56,7 @@ module tb_soc;
   endtask
 
   task automatic finish_test;
+    integer phase_index;
     begin
       if (fft_input_count != 16)
         $fatal(1, "CPU+FFT16 TEST FAIL: expected 16 FFT input writes, observed %0d",
@@ -61,12 +67,28 @@ module tb_soc;
       if (result_write_count != 32)
         $fatal(1, "CPU+FFT16 TEST FAIL: expected 32 result writes, observed %0d",
                result_write_count);
+      if (first_even_input_cycle < 0 || first_odd_input_cycle < 0)
+        $fatal(1, "CPU+FFT16 TEST FAIL: detailed input milestones are missing");
+      for (phase_index = 0; phase_index < 8; phase_index = phase_index + 1)
+        if (result_bin_done_cycle[phase_index] < 0)
+          $fatal(1, "CPU+FFT16 TEST FAIL: result bin %0d milestone is missing",
+                 phase_index);
 
       finished = 1'b1;
       $display("============================================================");
       $display("CPU+FFT16 TEST PASS: 16 complex results matched the reference");
       $display("FFT8 accelerator calls: %0d", fft_done_count);
       $display("CPU execution cycles: %0d", cycle_count);
+      $display("FFT16_METRIC cycles=%0d trigger1=%0d done1=%0d trigger2=%0d done2=%0d first_result=%0d final_result=%0d",
+               cycle_count, first_trigger_cycle, first_done_cycle,
+               second_trigger_cycle, second_done_cycle,
+               first_result_cycle, final_result_cycle);
+      $display("FFT16_PHASE_METRIC first_even_input=%0d first_odd_input=%0d bin0_done=%0d bin1_done=%0d bin2_done=%0d bin3_done=%0d bin4_done=%0d bin5_done=%0d bin6_done=%0d bin7_done=%0d",
+               first_even_input_cycle, first_odd_input_cycle,
+               result_bin_done_cycle[0], result_bin_done_cycle[1],
+               result_bin_done_cycle[2], result_bin_done_cycle[3],
+               result_bin_done_cycle[4], result_bin_done_cycle[5],
+               result_bin_done_cycle[6], result_bin_done_cycle[7]);
       $display("Simulation time: %0t", $time);
       $display("============================================================");
       $finish;
@@ -169,6 +191,17 @@ module tb_soc;
     fft_input_count = 0;
     fft_done_count = 0;
     result_write_count = 0;
+    first_even_input_cycle = -1;
+    first_odd_input_cycle = -1;
+    first_trigger_cycle = -1;
+    first_done_cycle = -1;
+    second_trigger_cycle = -1;
+    second_done_cycle = -1;
+    first_result_cycle = -1;
+    final_result_cycle = -1;
+    for (phase_init_index = 0; phase_init_index < 8;
+         phase_init_index = phase_init_index + 1)
+      result_bin_done_cycle[phase_init_index] = -1;
 
     repeat (2) @(posedge clk);
     #(RESET_RELEASE_TCO_NS) rstn = 1'b1;
@@ -213,6 +246,14 @@ module tb_soc;
       $display("FFT16 INPUT[%0d] addr=%h data=%h PASS",
                fft_input_count, x_soc.x_sub_system.data_addr,
                x_soc.x_sub_system.data_wdata);
+      if (fft_input_count == 0)
+        first_even_input_cycle <= cycle_count + 1;
+      else if (fft_input_count == 7)
+        first_trigger_cycle <= cycle_count + 1;
+      else if (fft_input_count == 8)
+        first_odd_input_cycle <= cycle_count + 1;
+      else if (fft_input_count == 15)
+        second_trigger_cycle <= cycle_count + 1;
       fft_input_count <= fft_input_count + 1;
     end
   end
@@ -221,6 +262,10 @@ module tb_soc;
     if (!rstn) begin
       fft_done_count <= 0;
     end else if (measure_enable && x_soc.u_fft8_top.done) begin
+      if (fft_done_count == 0)
+        first_done_cycle <= cycle_count + 1;
+      else if (fft_done_count == 1)
+        second_done_cycle <= cycle_count + 1;
       fft_done_count <= fft_done_count + 1;
       $display("FFT8 accelerator call %0d completed", fft_done_count + 1);
     end
@@ -248,9 +293,15 @@ module tb_soc;
       $display("FFT16 RESULT[%0d] addr=%h data=%h PASS",
                result_index, x_soc.x_sub_system.data_addr,
                x_soc.x_sub_system.data_wdata);
+      if (result_write_count == 0)
+        first_result_cycle <= cycle_count + 1;
+      if (result_index >= 17 && (result_index % 2) == 1)
+        result_bin_done_cycle[(result_index - 17) / 2] <= cycle_count + 1;
       result_write_count <= result_write_count + 1;
-      if (x_soc.x_sub_system.data_addr == RESULT_LAST)
+      if (x_soc.x_sub_system.data_addr == RESULT_LAST) begin
+        final_result_cycle <= cycle_count + 1;
         completion_pending <= 1'b1;
+      end
     end
   end
 

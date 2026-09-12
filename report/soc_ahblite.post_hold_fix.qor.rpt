@@ -3,7 +3,7 @@
 Report : qor
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 16:18:13 2026
+Date   : Fri Sep 11 16:27:23 2026
 ****************************************
 
 
@@ -65,11 +65,11 @@ Date   : Sat Aug 29 16:18:13 2026
   Compile CPU Statistics
   -----------------------------------------
   Resource Sharing:                    0.02
-  Logic Optimization:                  5.74
-  Mapping Optimization:               45.18
+  Logic Optimization:                  4.13
+  Mapping Optimization:               24.45
   -----------------------------------------
-  Overall Compile Time:               68.15
-  Overall Compile Wall Clock Time:    47.05
+  Overall Compile Time:               41.61
+  Overall Compile Wall Clock Time:    29.75
 
   --------------------------------------------------------------------
 

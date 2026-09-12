@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<rect width="1200" height="900" fill="#FFFFFF"/>
+<style>text { font-family: "WenQuanYi Micro Hei", "Microsoft YaHei", sans-serif; }</style>
+<text x="600.0" y="48.0" text-anchor="middle" font-size="29" fill="#202124" font-weight="700">DC 三阶段时序与 DRC 对比</text>
+<text x="600.0" y="76.0" text-anchor="middle" font-size="16" fill="#6B7280" font-weight="normal">functional 模式 · 3.0 ns 时钟周期 · slack 为正表示满足约束</text>
+<text x="55.0" y="125.0" text-anchor="start" font-size="21" fill="#202124" font-weight="600">Setup slack</text>
+<text x="1138.0" y="125.0" text-anchor="end" font-size="15" fill="#5F6368" font-weight="normal">(ns)</text>
+<line x1="150" y1="143.0" x2="1145" y2="143.0" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="148.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">+0.20</text>
+<line x1="150" y1="161.1" x2="1145" y2="161.1" stroke="#7A7F87" stroke-width="1.5"/>
+<text x="135.0" y="166.1" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">0</text>
+<line x1="150" y1="224.6" x2="1145" y2="224.6" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="229.6" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">-0.70</text>
+<line x1="150" y1="288.0" x2="1145" y2="288.0" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="293.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">-1.40</text>
+<rect x="274.0" y="159.1" width="112" height="2.0" rx="3" fill="#4C78A8"/>
+<text x="330.0" y="151.1" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">+0.0003</text>
+<rect x="594.0" y="161.1" width="112" height="114.2" rx="3" fill="#F28E2B"/>
+<text x="650.0" y="267.3" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">-1.26</text>
+<rect x="914.0" y="159.1" width="112" height="2.0" rx="3" fill="#59A14F"/>
+<text x="970.0" y="151.1" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">+0.0002</text>
+<line x1="150" y1="288.0" x2="1145" y2="288.0" stroke="#B8BDC5" stroke-width="1"/>
+<text x="55.0" y="360.0" text-anchor="start" font-size="21" fill="#202124" font-weight="600">Hold slack</text>
+<text x="1138.0" y="360.0" text-anchor="end" font-size="15" fill="#5F6368" font-weight="normal">(ns)</text>
+<line x1="150" y1="378.0" x2="1145" y2="378.0" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="383.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">+0.03</text>
+<line x1="150" y1="405.2" x2="1145" y2="405.2" stroke="#7A7F87" stroke-width="1.5"/>
+<text x="135.0" y="410.2" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">0</text>
+<line x1="150" y1="464.1" x2="1145" y2="464.1" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="469.1" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">-0.065</text>
+<line x1="150" y1="523.0" x2="1145" y2="523.0" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="528.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">-0.13</text>
+<rect x="274.0" y="405.2" width="112" height="101.4" rx="3" fill="#4C78A8"/>
+<text x="330.0" y="498.6" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">-0.1119</text>
+<line x1="594.0" y1="405.2" x2="706.0" y2="405.2" stroke="#F28E2B" stroke-width="4"/>
+<text x="650.0" y="396.2" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">0.00</text>
+<rect x="914.0" y="403.2" width="112" height="2.0" rx="3" fill="#59A14F"/>
+<text x="970.0" y="395.2" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">+0.0003</text>
+<line x1="150" y1="523.0" x2="1145" y2="523.0" stroke="#B8BDC5" stroke-width="1"/>
+<text x="55.0" y="595.0" text-anchor="start" font-size="21" fill="#202124" font-weight="600">DRC 违例网络数</text>
+<text x="1138.0" y="595.0" text-anchor="end" font-size="15" fill="#5F6368" font-weight="normal">(count)</text>
+<line x1="150" y1="613.0" x2="1145" y2="613.0" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="618.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">50</text>
+<line x1="150" y1="685.5" x2="1145" y2="685.5" stroke="#E6E8EB" stroke-width="1.0"/>
+<text x="135.0" y="690.5" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">25</text>
+<line x1="150" y1="758.0" x2="1145" y2="758.0" stroke="#7A7F87" stroke-width="1.5"/>
+<text x="135.0" y="763.0" text-anchor="end" font-size="14" fill="#6B7280" font-weight="normal">0</text>
+<line x1="274.0" y1="758.0" x2="386.0" y2="758.0" stroke="#4C78A8" stroke-width="4"/>
+<text x="330.0" y="749.0" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">0</text>
+<rect x="594.0" y="627.5" width="112" height="130.5" rx="3" fill="#F28E2B"/>
+<text x="650.0" y="619.5" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">45</text>
+<line x1="914.0" y1="758.0" x2="1026.0" y2="758.0" stroke="#59A14F" stroke-width="4"/>
+<text x="970.0" y="749.0" text-anchor="middle" font-size="16" fill="#202124" font-weight="600">0</text>
+<line x1="150" y1="758.0" x2="1145" y2="758.0" stroke="#B8BDC5" stroke-width="1"/>
+<circle cx="247.0" cy="832" r="6" fill="#4C78A8"/>
+<text x="260.0" y="838.0" text-anchor="start" font-size="16" fill="#34373C" font-weight="500">初次 compile_ultra 后</text>
+<circle cx="567.0" cy="832" r="6" fill="#F28E2B"/>
+<text x="580.0" y="838.0" text-anchor="start" font-size="16" fill="#34373C" font-weight="500">Hold-only 修复后</text>
+<circle cx="887.0" cy="832" r="6" fill="#59A14F"/>
+<text x="900.0" y="838.0" text-anchor="start" font-size="16" fill="#34373C" font-weight="500">联合增量修复后</text>
+<text x="600.0" y="878.0" text-anchor="middle" font-size="14" fill="#73777F" font-weight="normal">注：Hold-only 阶段只保存两位小数的 QoR，0.00 表示无 hold 违例。</text>
+</svg>

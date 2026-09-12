@@ -121,6 +121,68 @@ class ScanPpaTest(unittest.TestCase):
         self.assertAlmostEqual(1.0, point["result"]["compute_density_ratio"])
         self.assertAlmostEqual(1.0, point["result"]["compute_efficiency_ratio"])
 
+    def test_power_parser_accepts_dynamic_matching_cycle_count(self):
+        write_file(
+            os.path.join(self.root, "postsim", "build", "power", "power_window.rpt"),
+            "POWER_START_NS 100.0\n"
+            "POWER_END_NS 1300.0\n"
+            "POWER_DURATION_NS 1200.0\n"
+            "POWER_CYCLES 400\n",
+        )
+        write_file(
+            os.path.join(self.root, "pt", "runs", "power", "power_summary.rpt"),
+            "POWER_RESULT PASS\n"
+            "POWER_WINDOW_START_NS 100.0\n"
+            "POWER_WINDOW_END_NS 1300.0\n"
+            "POWER_WINDOW_DURATION_NS 1200.0\n"
+            "POWER_WINDOW_CYCLES 400\n"
+            "SOC_INTERNAL_POWER_MW 20.0\n"
+            "SOC_SWITCHING_POWER_MW 5.0\n"
+            "SOC_DYNAMIC_POWER_MW 25.0\n"
+            "SOC_LEAKAGE_POWER_MW 1.0\n"
+            "SOC_TOTAL_POWER_MW 26.0\n"
+            "SOC_WINDOW_ENERGY_NJ 31.2\n"
+            "FFT_TOTAL_POWER_MW 6.0\n"
+            "FFT_SOC_POWER_PERCENT 23.076923\n",
+        )
+
+        result = scan_ppa.parse_power(self.root)
+        self.assertEqual(400, result["fft16_cycles"])
+        point = scan_ppa.build_points(scan_ppa.make_config())[0]
+        point["result"].update(result)
+        scan_ppa.finalize_metrics(point)
+        self.assertEqual(400, point["result"]["fft16_cycles"])
+        self.assertAlmostEqual(1600.0, point["result"]["fft16_time_ns"])
+
+    def test_power_parser_rejects_cycle_mismatch(self):
+        write_file(
+            os.path.join(self.root, "postsim", "build", "power", "power_window.rpt"),
+            "POWER_START_NS 100.0\nPOWER_END_NS 1300.0\n"
+            "POWER_DURATION_NS 1200.0\nPOWER_CYCLES 400\n",
+        )
+        write_file(
+            os.path.join(self.root, "pt", "runs", "power", "power_summary.rpt"),
+            "POWER_RESULT PASS\nPOWER_WINDOW_START_NS 100.0\n"
+            "POWER_WINDOW_END_NS 1300.0\nPOWER_WINDOW_DURATION_NS 1200.0\n"
+            "POWER_WINDOW_CYCLES 401\nSOC_INTERNAL_POWER_MW 20.0\n"
+            "SOC_SWITCHING_POWER_MW 5.0\nSOC_DYNAMIC_POWER_MW 25.0\n"
+            "SOC_LEAKAGE_POWER_MW 1.0\nSOC_TOTAL_POWER_MW 26.0\n"
+            "SOC_WINDOW_ENERGY_NJ 31.2\nFFT_TOTAL_POWER_MW 6.0\n"
+            "FFT_SOC_POWER_PERCENT 23.076923\n",
+        )
+        with self.assertRaises(scan_ppa.ScanError):
+            scan_ppa.parse_power(self.root)
+
+    def test_simulation_cycle_parser_prefers_machine_metric(self):
+        log_path = os.path.join(self.root, "run.log")
+        write_file(
+            log_path,
+            "CPU execution cycles: 506\n"
+            "FFT16_METRIC cycles=388 trigger1=80 done1=85 trigger2=130 "
+            "done2=135 first_result=145 final_result=388\n",
+        )
+        self.assertEqual(388, scan_ppa.parse_simulation_cycles(log_path))
+
     def test_run_stage_is_idempotent_after_checkpoint(self):
         scanner = object.__new__(scan_ppa.Scanner)
         scanner.run_root = self.root
@@ -283,16 +345,9 @@ class ScanPpaTest(unittest.TestCase):
             testbench = handle.read()
 
         self.assertNotIn("x_soc.x_data_sram.ahbl_", testbench)
-        for port_name in (
-            "clk",
-            "rstn",
-            "slave0_hsel",
-            "slave0_haddr",
-            "slave0_htrans",
-            "slave0_hwdata",
-            "slave0_hready",
-        ):
-            self.assertIn("x_soc.x_data_sram.%s" % port_name, testbench)
+        self.assertIn("x_soc.x_data_sram.i_sram_block.mem", testbench)
+        self.assertNotIn("x_soc.x_data_sram.slave0_hready", testbench)
+        self.assertNotIn("x_soc.x_data_sram.ahbl_", testbench)
 
 
 if __name__ == "__main__":

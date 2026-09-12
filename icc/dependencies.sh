@@ -22,7 +22,7 @@ export ICC_RESET_RELEASE_MAX="${ICC_RESET_RELEASE_MAX:-0.50}"
 # Floorplan dimensions used by automated PPA scans.  The defaults reproduce
 # the accepted baseline floorplan exactly.
 export ICC_CORE_WIDTH="${ICC_CORE_WIDTH:-430.72}"
-export ICC_CORE_HEIGHT="${ICC_CORE_HEIGHT:-560}"
+export ICC_CORE_HEIGHT="${ICC_CORE_HEIGHT:-520}"
 
 # Implementation guardband for reset removal. ICC optimizes with the earlier
 # release, then outputs_icc restores ICC_RESET_RELEASE_MIN in the signoff SDC.

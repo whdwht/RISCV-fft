@@ -14,6 +14,7 @@ MARKERS_DIR := $(ICC_ROOT)/.markers
 MW_DESIGN_LIBRARY := $(ICC_ROOT)/soc_ahblite_LIB
 
 ICC_OPTIONS ?= -64bit
+PYTHON ?= python
 # auLoadCLF drives a Tk form even in batch mode.  Milkyway's native null
 # display supplies the required private X server for SSH/headless sessions.
 MW_OPTIONS ?= -nullDisplay
@@ -24,7 +25,7 @@ STAGES := init_design_icc load_clf place_opt_icc clock_opt_cts_icc \
 
 .PHONY: all check_dependencies $(STAGES) ic eco_icc eco focal_opt_icc focal_opt \
 	focal_cleanup_icc focal_cleanup focal_targeted_icc focal_targeted \
-	audit_timing_icc audit_timing clean clean_all
+	audit_timing_icc audit_timing area_report clean clean_all
 
 all: ic
 
@@ -126,6 +127,22 @@ audit_timing_icc: $(MARKERS_DIR)/audit_timing_icc
 $(MARKERS_DIR)/audit_timing_icc: $(MARKERS_DIR)/metal_fill_icc | check_dependencies
 	$(call run_icc,rm_icc_zrt_scripts/audit_timing_icc.tcl,audit_timing_icc)
 audit_timing: audit_timing_icc
+
+# Generate current-design module and circuit-type area reports on demand. This is
+# intentionally separate from outputs_icc so PPA scans do not create a PNG for
+# every implementation point.
+area_report:
+	@set -o pipefail
+	if [[ ! -f "$(MARKERS_DIR)/metal_fill_icc" || ! -d "$(MW_DESIGN_LIBRARY)/CEL" ]]; then
+	    echo "ERROR: final metal_fill_icc implementation is missing; area_report does not rebuild the design." >&2
+	    exit 1
+	fi
+	ICC_ROOT="$(ICC_ROOT)" PROJECT_ROOT="$(PROJECT_ROOT)" "$(ICC_ROOT)/check_dependencies.sh"
+	mkdir -p "$(LOGS_DIR)" "$(REPORTS_DIR)" "$(PROJECT_ROOT)/report"
+	source "$(DEPS_FILE)"
+	cd "$(ICC_ROOT)"
+	"$$ICC_SHELL_BIN" $(ICC_OPTIONS) -f "$(ICC_ROOT)/rm_icc_zrt_scripts/report_area_icc.tcl" 2>&1 | tee "$(LOGS_DIR)/report_area_icc.log"
+	"$(PYTHON)" "$(ICC_ROOT)/summarize_area.py" --project-root "$(PROJECT_ROOT)"
 
 clean_all: clean
 
