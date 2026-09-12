@@ -94,7 +94,7 @@ fi
 compile_cmd=(
   "${VCS_BIN}"
   -full64 -sverilog +v2k -timescale=1ns/1ps
-  -debug_access+all -debug_region+cell -kdb -Mupdate
+  -debug_access+all -debug_region+cell -kdb -Mupdate -licqueue
   -notice +noportcoerce
 )
 compile_cmd+=("${compile_mode_args[@]}")
@@ -110,7 +110,7 @@ compile_cmd+=(
 
 "${compile_cmd[@]}"
 
-run_cmd=(./simv "+VMEM=${VMEM}" "+CLK_HALF_NS=${clk_half_ns}")
+run_cmd=(./simv +vcs+lic+wait "+VMEM=${VMEM}" "+CLK_HALF_NS=${clk_half_ns}")
 # Bash 4.2 treats an empty-array expansion as unbound under `set -u`, even
 # after `run_mode_args=()` has been assigned. Expand it only when nonempty.
 if ((${#run_mode_args[@]})); then

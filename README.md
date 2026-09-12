@@ -1,6 +1,6 @@
 # RISC-V SoC + 8 点 FFT 加速核 —— 前端到签核全流程
 
-基于 lowRISC **Ibex** (RV32IMFC) CPU 与**自研 8 点 FFT 流水线加速核**的 SoC，
+基于 lowRISC **Ibex** (RV32IMC) CPU 与**自研 8 点 FFT 流水线加速核**的 SoC，
 打通 **RTL 仿真 → DC 综合 → ICC 布局布线 → PrimeTime 签核 → 门级后仿 / 功耗分析** 的完整数字前端流程。
 
 16 点 FFT 采用软硬件协同划分：**2 次 8 点硬件加速核 + CPU 软件合并级（DIT 蝶形）**。
@@ -13,7 +13,7 @@
 | 频率 | **333.33 MHz** (3 ns) | 当前 ICC 输出 SDC；wc(SS/0.9V/125℃) 查 setup，bc(FF/1.1V/0℃) 查 hold |
 | 面积 | cell 159.6k µm²（含 2×4KB SRAM 宏） | core 430.72×560，die 510.72×640 µm |
 | 平均功耗 | 由 PT PX 重跑生成 | tc 角 + spef.max + 3 ns 门级执行窗 VCD，time_based |
-| 16 点 FFT | **506 周期 / 1.518 µs** | 3 ns 时钟；二次复位释放 → 末结果字写回，不含程序装载 |
+| 16 点 FFT 汇编基线 | **506 周期 / 1.518 µs** | 3 ns 时钟；C 优化结果由自动基准脚本实测生成 |
 
 ## 16 点 FFT 任务划分（DIT）
 
@@ -27,7 +27,10 @@ W16^k: Q10 定点旋转因子 (946/392, 724/724, ...), CPU 用 M 扩展完成复
 
 - 硬件侧：全展开 3 级流水 `fft8_pl`（butterfly2 × 12），AHB-Lite 从机接口，
   写 8 字自动触发、读通道带 `valid` 等待态握手（软件无需插 NOP）；
-- 软件侧：`fft16.s` 全展开手写汇编（无栈/无 .bss），结果存 data_sram `0x1000_0040~`。
+- 软件侧：默认使用 RV32IMC C 程序。reference 版本保持原 E/O 缓存流程，optimized
+  版本流式读取 O，并对特殊旋转因子消除或合并乘法；结果仍存 data_sram
+  `0x1000_0040~0x1000_00bc`。由于现有 instruction SRAM 的数据端口握手不可用，
+  软件镜像强制 `.rodata` 为空，输入与旋转常数均由 RV32 立即数构造。
 
 ## 目录结构
 
@@ -39,8 +42,49 @@ W16^k: Q10 定点旋转因子 (946/392, 724/724, ...), CPU 用 M 扩展完成复
 ├── icc/            ICC Makefile、dependencies.sh、rm_setup/、主流程 RM 与定制 floorplan/PG 脚本
 ├── pt/             Makefile + 三角STA/SDF + PT PX功耗脚本，输出到 runs/
 ├── postsim/        功能预跑/max/min SDF后仿 + 自检testbench，输出到 build/
+├── sim_16/sw/       FFT16 reference/optimized C、4KB SRAM 链接脚本
+├── run_fft16_sw_benchmark.sh  C 优化、前后仿、功耗与 PNG 报告一键入口
 └── doc/results/    PT 三角时序报告 / 功耗报告 / ICC QoR
 ```
+
+## FFT16 C 软件优化基准
+
+当前机器若没有 Synopsys 许可证，可先完成全部交叉编译和 SRAM/ISA/栈检查：
+
+```bash
+./run_fft16_sw_benchmark.sh --build-only
+./run_fft16_sw_benchmark.sh --dry-run
+```
+
+在有 VCS 与 PrimeTime/PrimePower 许可证的无桌面服务器上运行完整流程：
+
+```bash
+./run_fft16_sw_benchmark.sh
+# 中断、许可证暂时不可用或工具故障修复后继续
+./run_fft16_sw_benchmark.sh --resume
+```
+
+VCS/PrimeTime 使用浮动许可证。脚本默认设置 Synopsys 排队模式，并给 VCS
+编译及仿真加入许可证等待选项；许可证服务器恢复或有令牌释放后会自动继续。
+可随时用 `Ctrl-C` 中断，之后仍用 `--resume` 从已通过的阶段续跑。
+
+脚本会筛选 reference 与 optimized C 的 `-O1/-O2/-O3/-Os`，对入选版本执行
+RTL 前仿、门级功能/功耗后仿和 PT PX，并对最终版本追加 max/min SDF 后仿。
+状态和大型中间文件保存在 `benchmark_runs/fft16_sw/`；最终数据保存为
+`report/fft16_sw_optimization.csv`、`report/fft16_sw_optimal_breakdown.csv` 和
+`report/fft16_sw_optimization.md`。无头绘图除跨版本汇总图外，还会生成当前最优方案的
+`report/fft16_sw_optimal_cycle_pies.png` 与 `report/fft16_sw_optimal_energy_pies.png`：
+前者给出完整算法阶段及 FFT2 后旋转/合并的周期构成，后者分别按硬件层次和
+internal/switching/leakage 给出窗口能耗来源。已有状态可用
+`./run_fft16_sw_benchmark.sh --render-only` 重新绘图。图片使用 PyCairo 直接生成 PNG，
+不需要桌面、Matplotlib、NumPy 或 Pandas。
+该基准的系统性能定义为 `16 / (CPU 完成拍数 × 3 ns)`，单位为
+`point/s`；计算能效定义为 `16 / VCD 窗口 SoC 总能量`，单位为
+`point/J`。VCD 能量由 PT 时域平均 SoC 功率与同一次门级仿真记录的实际窗口时间
+相乘得到。这里的“周期”表示完成时间，而不是直接以时钟拍数作为性能分母。
+细分周期优先采用生成该 VCD 的同一次门级功耗仿真里程碑；硬件层次能耗按 SoC
+顶层互斥实例的平均功耗乘窗口时间计算。PT 文本中的功耗类型分量存在显示舍入，
+因此三类能耗保持报告比例并归一化到窗口总能量，避免图表总和偏离权威总值。
 
 ## 各阶段入口
 
@@ -94,7 +138,8 @@ python scan_ppa.py --status
 
 PT 收敛要求 WC setup、TC setup/hold 和 BC hold 全部通过，并且没有项目级
 transition/capacitance/fanout 违例。只有收敛点继续执行窗口功耗，门级自检还要求
-FFT16 保持 506 周期。主要结果为：
+FFT16 的 testbench、功耗窗口和 PT 报告周期数相互一致；周期可随软件优化动态变化。
+主要结果为：
 
 - `summary.csv`：便于表格处理的完整 40 点矩阵；
 - `summary.md`：时序、面积、功耗和归一化指标总表及能效排名；
@@ -102,7 +147,7 @@ FFT16 保持 506 周期。主要结果为：
 - `points/<point>/reports/`：逐点文本报告，`logs/` 为阶段控制日志。
 
 系统面积取 ICC 最终、经过 site/row 吸附后的 core area，并同时记录 Design Area 和
-利用率。FFT16 计算时间取 `506 × 时钟周期`。归一化使用固定当前基线：3 ns、
+利用率。FFT16 计算时间取 `实测周期 × 时钟周期`。归一化使用固定汇编基线：3 ns、
 240791.52 µm²、34.3 mW，即：
 
 ```text
@@ -318,6 +363,42 @@ make -C icc audit_timing_icc
 ```
 
 复核报告为 `icc/reports/audit_metal_fill_icc.{qor,max.tim,min.tim,power}`。
+
+最终 ICC 系统面积构成可通过独立的只读目标统计，不修改或保存 Milkyway CEL，也不接入
+40 点 PPA 扫描：
+
+```bash
+make -C icc area_report
+```
+
+该目标要求已有最终实现，以只读方式重新打开 `metal_fill_icc`；缺少最终实现时直接报错，
+不会自动重跑布局布线。一次生成系统的两种分类及 CPU 内部分解的饼图与 CSV：
+
+| 分类 | 内容 | 输出文件（位于 `report/`） |
+|---|---|---|
+| 功能模块 | CPU 子系统、FFT8、指令 SRAM、数据 SRAM、ROM、数据总线、其他顶层逻辑 | `icc_area_breakdown.csv`、`icc_area_breakdown.png` |
+| 电路性质 | 组合逻辑、时序单元（寄存器/锁存器等）、宏/黑盒单元（含 SRAM） | `icc_area_by_circuit.csv`、`icc_area_by_circuit.png` |
+| CPU 内部 | 寄存器堆、执行单元、CSR 与计数器、取指、译码与控制、访存、其他 CPU 逻辑 | `icc_cpu_area_breakdown.csv`、`icc_cpu_area_breakdown.png` |
+
+`report/icc_area_breakdown.md` 汇总三张图、面积、占比和统计口径。两张系统饼图均以
+normal/logical cell area（含 SRAM 宏）为分母，图例显示 µm² 和百分比。组合逻辑已包含
+缓冲器/反相器，不重复加入 `Buf/Inv area`；时序单元沿用 ICC 的 `Noncombinational area`
+分类。模块图中 SRAM 宏归入对应 SRAM 模块，电路性质图中归入宏/黑盒。
+Filler、tap 等 physical-only 单元面积以及 core area 在 Markdown 中单列，不混入饼图。
+脚本核对两种分类与总面积、QoR 及 physical summary；数据缺失或不一致时返回非零退出码。
+
+CPU 内部图以 `x_sub_system` 面积为分母，CSV 的 `share_percent` 表示占 CPU 子系统的比例。
+六个命名模块取 `x_core` 下互不重叠的全局面积，执行单元包含 ALU 和乘除法，不重复累加后代。
+“其他 CPU 逻辑”为子系统总面积的残差，包含写回、时钟门控及核心/子系统局部逻辑。
+该图沿用紧凑的 900×720 布局，已有层次报告即可离线生成。
+
+绘图使用 PyCairo（`python -c 'import cairo'` 可检查），支持无显示器运行和 Python 2/3。
+首次导出需要 ICC 许可证。已有 `icc/reports/area_metal_fill_icc.hier.rpt`、
+`area_metal_fill_icc.qor` 和 `area_metal_fill_icc.sum` 时，可不取 ICC 许可证重新汇总：
+
+```bash
+python icc/summarize_area.py --project-root .
+```
 
 ## 声明
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# dc/compile.sh
+dc/compile.sh
 
 make -C icc clean
 make -C icc ic

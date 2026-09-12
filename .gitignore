@@ -43,6 +43,7 @@ sim_16/build/
 postsim/build/
 pt/runs/
 scan_runs/
+benchmark_runs/
 
 # ============ ICC 生成物 ============
 icc/logs_zrt/

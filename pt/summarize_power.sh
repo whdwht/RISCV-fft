@@ -7,6 +7,7 @@ window_file="${2:?${usage}}"
 fft_instance="${3:-u_fft8_top}"
 soc_report="${run_dir}/power_vcd.rpt"
 fft_report="${run_dir}/power_fft8.rpt"
+hierarchy_report="${run_dir}/power_vcd_hier.rpt"
 summary_file="${run_dir}/power_summary.rpt"
 pt_log="${run_dir}/pt.log"
 
@@ -14,7 +15,7 @@ script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 project_root="$(cd "${script_dir}/.." && pwd)"
 bash "${project_root}/postsim/verify_power_window.sh" "${window_file}" >/dev/null
 
-for report in "${soc_report}" "${fft_report}"; do
+for report in "${soc_report}" "${fft_report}" "${hierarchy_report}"; do
   if [[ ! -s "${report}" ]]; then
     echo "Power report is missing or empty: ${report}" >&2
     exit 1
@@ -34,6 +35,62 @@ window_value() {
   local key="$1"
   awk -v key="${key}" '$1 == key { print $2; found = 1; exit }
     END { if (!found) exit 1 }' "${window_file}"
+}
+
+# Hierarchical report values use the dynamic-power unit declared in the
+# matching verbose SoC report.  Only immediate SoC children are selected so
+# the resulting categories are mutually exclusive.
+hierarchy_power_value_mw() {
+  local instance="$1"
+  local raw_value
+  local unit_factor
+  raw_value="$(awk -v target="${instance}" '
+    $1 == target {
+      value = $(NF - 1)
+      if (value !~ /^[-+]?([0-9]+([.][0-9]*)?|[.][0-9]+)([eE][-+]?[0-9]+)?$/)
+        next
+      count++
+      result = value
+    }
+    END {
+      if (count != 1) {
+        printf "Expected one hierarchy row for %s, found %d\n", target, count > "/dev/stderr"
+        exit 1
+      }
+      print result
+    }
+  ' "${hierarchy_report}")"
+  unit_factor="$(awk '
+    function factor(unit) {
+      if (unit == "W")  return 1000.0
+      if (unit == "mW") return 1.0
+      if (unit == "uW") return 0.001
+      if (unit == "nW") return 0.000001
+      if (unit == "pW") return 0.000000001
+      return -1.0
+    }
+    /Dynamic Power Units[[:space:]]*=/ {
+      text = $0
+      sub(/^.*=[[:space:]]*/, "", text)
+      sub(/[[:space:]]*\(.*/, "", text)
+      gsub(/[[:space:]]/, "", text)
+      if      (text ~ /mW$/) unit = "mW"
+      else if (text ~ /uW$/) unit = "uW"
+      else if (text ~ /nW$/) unit = "nW"
+      else if (text ~ /pW$/) unit = "pW"
+      else if (text ~ /W$/)  unit = "W"
+      scale = text
+      sub(/(mW|uW|nW|pW|W)$/, "", scale)
+      result = (scale + 0.0) * factor(unit)
+      found = 1
+    }
+    END {
+      if (!found || result <= 0.0) exit 1
+      print result
+    }
+  ' "${soc_report}")"
+  awk -v value="${raw_value}" -v factor="${unit_factor}" \
+    'BEGIN { printf "%.12g\n", value * factor }'
 }
 
 # PrimeTime verbose reports state the dynamic and leakage units separately.
@@ -131,6 +188,12 @@ fft_switching_mw="$(power_value_mw "${fft_report}" "Net Switching Power" dynamic
 fft_leakage_mw="$(power_value_mw "${fft_report}" "Cell Leakage Power" leakage)"
 fft_total_mw="$(power_value_mw "${fft_report}" "Total Power" dynamic)"
 
+cpu_subsystem_mw="$(hierarchy_power_value_mw x_sub_system)"
+instruction_sram_mw="$(hierarchy_power_value_mw x_isram_ahbl)"
+data_sram_mw="$(hierarchy_power_value_mw x_data_sram)"
+rom_mw="$(hierarchy_power_value_mw x_rom_ahbl)"
+data_fabric_mw="$(hierarchy_power_value_mw x_data_fabric)"
+
 awk \
   -v start_ns="${start_ns}" -v end_ns="${end_ns}" \
   -v duration_ns="${duration_ns}" -v cycles="${cycles}" \
@@ -138,7 +201,11 @@ awk \
   -v soc_internal="${soc_internal_mw}" -v soc_switching="${soc_switching_mw}" \
   -v soc_leakage="${soc_leakage_mw}" -v soc_total="${soc_total_mw}" \
   -v fft_internal="${fft_internal_mw}" -v fft_switching="${fft_switching_mw}" \
-  -v fft_leakage="${fft_leakage_mw}" -v fft_total="${fft_total_mw}" '
+  -v fft_leakage="${fft_leakage_mw}" -v fft_total="${fft_total_mw}" \
+  -v cpu_subsystem="${cpu_subsystem_mw}" \
+  -v instruction_sram="${instruction_sram_mw}" \
+  -v data_sram="${data_sram_mw}" -v rom="${rom_mw}" \
+  -v data_fabric="${data_fabric_mw}" '
   BEGIN {
     soc_dynamic = soc_internal + soc_switching
     fft_dynamic = fft_internal + fft_switching
@@ -147,6 +214,27 @@ awk \
     soc_energy_per_cycle_pj = soc_total * duration_ns / cycles
     fft_energy_per_cycle_pj = fft_total * duration_ns / cycles
     fft_share = (soc_total > 0.0) ? 100.0 * fft_total / soc_total : 0.0
+    type_total = soc_internal + soc_switching + soc_leakage
+    if (type_total <= 0.0 || soc_total <= 0.0) {
+      print "Invalid non-positive SoC power breakdown" > "/dev/stderr"
+      exit 1
+    }
+    # PT prints component powers with fewer significant digits than the total.
+    # Preserve their relative weights while closing allocated energy exactly to
+    # the authoritative total-window energy.
+    type_scale = soc_total / type_total
+    internal_energy_nj = soc_internal * type_scale * duration_ns / 1000.0
+    switching_energy_nj = soc_switching * type_scale * duration_ns / 1000.0
+    leakage_energy_nj = soc_leakage * type_scale * duration_ns / 1000.0
+
+    known_hierarchy = cpu_subsystem + fft_total + instruction_sram + \
+                      data_sram + rom + data_fabric
+    other = soc_total - known_hierarchy
+    if (other < -0.005 * soc_total) {
+      printf "Hierarchy powers exceed SoC total by %.9g mW\n", -other > "/dev/stderr"
+      exit 1
+    }
+    if (other < 0.0) other = 0.0
 
     print "POWER_RESULT PASS"
     printf "POWER_WINDOW_START_NS %.6f\n", start_ns
@@ -161,6 +249,30 @@ awk \
     printf "SOC_TOTAL_POWER_MW %.9g\n", soc_total
     printf "SOC_WINDOW_ENERGY_NJ %.9g\n", soc_energy_nj
     printf "SOC_ENERGY_PER_CYCLE_PJ %.9g\n", soc_energy_per_cycle_pj
+    printf "SOC_INTERNAL_ENERGY_NJ %.9g\n", internal_energy_nj
+    printf "SOC_INTERNAL_ENERGY_PERCENT %.9g\n", 100.0 * soc_internal / type_total
+    printf "SOC_SWITCHING_ENERGY_NJ %.9g\n", switching_energy_nj
+    printf "SOC_SWITCHING_ENERGY_PERCENT %.9g\n", 100.0 * soc_switching / type_total
+    printf "SOC_LEAKAGE_ENERGY_NJ %.9g\n", leakage_energy_nj
+    printf "SOC_LEAKAGE_ENERGY_PERCENT %.9g\n", 100.0 * soc_leakage / type_total
+    printf "SOC_CPU_SUBSYSTEM_POWER_MW %.9g\n", cpu_subsystem
+    printf "SOC_CPU_SUBSYSTEM_ENERGY_NJ %.9g\n", cpu_subsystem * duration_ns / 1000.0
+    printf "SOC_CPU_SUBSYSTEM_ENERGY_PERCENT %.9g\n", 100.0 * cpu_subsystem / soc_total
+    printf "SOC_INSTRUCTION_SRAM_POWER_MW %.9g\n", instruction_sram
+    printf "SOC_INSTRUCTION_SRAM_ENERGY_NJ %.9g\n", instruction_sram * duration_ns / 1000.0
+    printf "SOC_INSTRUCTION_SRAM_ENERGY_PERCENT %.9g\n", 100.0 * instruction_sram / soc_total
+    printf "SOC_DATA_SRAM_POWER_MW %.9g\n", data_sram
+    printf "SOC_DATA_SRAM_ENERGY_NJ %.9g\n", data_sram * duration_ns / 1000.0
+    printf "SOC_DATA_SRAM_ENERGY_PERCENT %.9g\n", 100.0 * data_sram / soc_total
+    printf "SOC_ROM_POWER_MW %.9g\n", rom
+    printf "SOC_ROM_ENERGY_NJ %.9g\n", rom * duration_ns / 1000.0
+    printf "SOC_ROM_ENERGY_PERCENT %.9g\n", 100.0 * rom / soc_total
+    printf "SOC_DATA_FABRIC_POWER_MW %.9g\n", data_fabric
+    printf "SOC_DATA_FABRIC_ENERGY_NJ %.9g\n", data_fabric * duration_ns / 1000.0
+    printf "SOC_DATA_FABRIC_ENERGY_PERCENT %.9g\n", 100.0 * data_fabric / soc_total
+    printf "SOC_OTHER_POWER_MW %.9g\n", other
+    printf "SOC_OTHER_ENERGY_NJ %.9g\n", other * duration_ns / 1000.0
+    printf "SOC_OTHER_ENERGY_PERCENT %.9g\n", 100.0 * other / soc_total
     printf "FFT_INTERNAL_POWER_MW %.9g\n", fft_internal
     printf "FFT_SWITCHING_POWER_MW %.9g\n", fft_switching
     printf "FFT_DYNAMIC_POWER_MW %.9g\n", fft_dynamic

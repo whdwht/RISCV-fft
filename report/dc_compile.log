@@ -1879,6 +1879,16 @@ foreach {parameter default_value} {
         set $parameter $default_value
     }
 }
+# Long-running PPA scans override only the functional clock period.  Keep the
+# existing Tcl variable override mechanism for interactive DC use while also
+# accepting a process-level value shared with post-layout simulation.
+if {[info exists env(CLOCK_PERIOD_NS)] && $env(CLOCK_PERIOD_NS) ne ""} {
+    if {![string is double -strict $env(CLOCK_PERIOD_NS)] ||
+        $env(CLOCK_PERIOD_NS) <= 0.0} {
+        error "CLOCK_PERIOD_NS must be a positive number, got '$env(CLOCK_PERIOD_NS)'"
+    }
+    set T_CLKV_PER [expr {double($env(CLOCK_PERIOD_NS))}]
+}
 if {![info exists T_CLKV_FALL]} {
     set T_CLKV_FALL [expr {$T_CLKV_PER / 2.0}]
 }
@@ -2038,7 +2048,7 @@ check_design
 ****************************************
 check_design summary:
 Version:     O-2018.06-SP1
-Date:        Sat Aug 29 16:15:09 2026
+Date:        Fri Sep 11 16:25:20 2026
 ****************************************
 
                    Name                                            Total
@@ -7332,7 +7342,7 @@ Information: Changed minimum wire load model for 'butterfly2_2_DW01_add_0' from 
 Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_0_DW01_inc_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_counter_CounterWidth64_1_DW01_inc_J27_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_1'. (DDB-72)
 Information: Added key list 'DesignWare' to design 'ibex_counter_CounterWidth64_0'. (DDB-72)
 Information: The register 'x_sub_system/x_core/cs_registers_i/u_dcsr_csr/rdata_q_reg[30]' is a constant and will be removed. (OPT-1206)
@@ -7372,7 +7382,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_982
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 19)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7383,7 +7393,7 @@ Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_0' 
 Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_1_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'butterfly2_0_DW01_sub_J5_0_2' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_fetch_fifo_00000002_DW01_add_J8_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 20)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7392,7 +7402,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 21)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7424,7 +7434,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 25)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7432,7 +7442,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 26)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7440,7 +7450,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 27)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7448,7 +7458,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 28)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_92J9_125_9669_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_93J9_126_9827_1' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
@@ -7456,7 +7466,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
   Global Optimization (Phase 29)
   Global Optimization (Phase 30)
   Global Optimization (Phase 31)
@@ -7468,7 +7478,7 @@ Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_89J9_122_593
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_90J9_123_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'fft8_stage3_DP_OP_91J9_124_5936_J9_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Changed minimum wire load model for 'ibex_multdiv_fast_RV32M2_DP_OP_71J4_122_6124_J30_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
-Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J24_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
+Information: Changed minimum wire load model for 'ibex_alu_RV32B0_DW01_add_J23_0' from 'ZeroWireload' to 'ZeroWireload'. (OPT-171)
 Information: Added key list 'DesignWare' to design 'ibex_fetch_fifo_00000002'. (DDB-72)
 
   Beginning Isolate Ports
@@ -7481,10 +7491,10 @@ Information: Added key list 'DesignWare' to design 'ibex_fetch_fifo_00000002'. (
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:01:04  170445.4      1.07    1155.4       0.1                           2166003.2500      0.00  
-    0:01:21  170912.9      0.00       0.0       0.0                           2162329.7500      0.00  
-    0:01:21  170912.9      0.00       0.0       0.0                           2162329.7500      0.00  
-    0:01:22  170218.9      0.00       0.0     282.5                           2148357.2500      0.00  
+    0:00:42  170445.4      1.07    1155.4       0.1                           2166003.2500      0.00  
+    0:00:46  170912.9      0.00       0.0       0.0                           2162329.7500      0.00  
+    0:00:46  170912.9      0.00       0.0       0.0                           2162329.7500      0.00  
+    0:00:47  170218.9      0.00       0.0     282.5                           2148357.2500      0.00  
 Memory usage for J34 task 565 Mbytes -- main task 565 Mbytes.
 Memory usage for J35 task 565 Mbytes -- main task 565 Mbytes.
 Memory usage for J36 task 565 Mbytes -- main task 565 Mbytes.
@@ -7494,27 +7504,27 @@ Memory usage for J36 task 565 Mbytes -- main task 565 Mbytes.
 Memory usage for J37 task 565 Mbytes -- main task 565 Mbytes.
 Memory usage for J38 task 565 Mbytes -- main task 565 Mbytes.
 Memory usage for J39 task 565 Mbytes -- main task 565 Mbytes.
-    0:01:31  169220.0      0.22      11.7     281.3                           2095311.8750      0.00  
-    0:01:32  169011.2      0.00       0.0     281.3                           2088764.6250      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:53  169220.0      0.22      11.7     281.3                           2095311.8750      0.00  
+    0:00:54  169011.2      0.00       0.0     281.3                           2088764.6250      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
 
 
   Beginning Design Rule Fixing  (max_transition)  (max_fanout)  (max_capacitance)
@@ -7524,12 +7534,12 @@ Memory usage for J39 task 565 Mbytes -- main task 565 Mbytes.
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:01:34  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
+    0:00:56  167190.5      0.00       0.0     281.3                           1862293.0000      0.00  
   Global Optimization (Phase 32)
   Global Optimization (Phase 33)
   Global Optimization (Phase 34)
-    0:01:35  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
-    0:01:35  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
+    0:00:57  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
+    0:00:57  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -7539,7 +7549,7 @@ Memory usage for J39 task 565 Mbytes -- main task 565 Mbytes.
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:01:35  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
+    0:00:57  167212.6      0.00       0.0       0.0                           1862669.8750      0.00  
   Global Optimization (Phase 35)
   Global Optimization (Phase 36)
   Global Optimization (Phase 37)
@@ -7575,44 +7585,44 @@ Information: Complementing port 'flush_id_o' in design 'ibex_controller_0_0'.
 	 The new name of the port is 'flush_id_o_BAR'. (OPT-319)
 Information: Complementing port 'counter_inc_i' in design 'ibex_counter_CounterWidth64_1'.
 	 The new name of the port is 'counter_inc_i_BAR'. (OPT-319)
-    0:01:43  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
-    0:01:43  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
-    0:01:43  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:44  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
-    0:01:46  167243.8      0.11      94.0       0.0                           1829755.0000      0.00  
+    0:01:06  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
+    0:01:06  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
+    0:01:06  167027.3      0.00       0.0       0.0                           1823849.7500      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:08  166797.9      0.00       0.0       0.0                           1809435.1250      0.00  
+    0:01:10  167243.8      0.11      94.0       0.0                           1829755.0000      0.00  
 
                                   TOTAL                                                            
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:01:46  167243.8      0.11      94.0       0.0                           1829755.0000      0.00  
-    0:01:49  165895.5      0.09      66.6       0.0                           1783329.7500      0.00  
-    0:01:54  166319.3      0.00       0.0       0.0                           1797145.1250      0.00  
-    0:01:54  166319.3      0.00       0.0       0.0                           1797145.1250      0.00  
-    0:01:56  166242.5      0.00       0.0       0.0                           1794699.2500      0.00  
-    0:02:03  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
-    0:02:03  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
-    0:02:04  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
-    0:02:04  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
-    0:02:07  165865.7      0.00       0.0       0.0                           1779690.5000      0.00  
+    0:01:11  167243.8      0.11      94.0       0.0                           1829755.0000      0.00  
+    0:01:13  165895.5      0.09      66.6       0.0                           1783329.7500      0.00  
+    0:01:19  166319.3      0.00       0.0       0.0                           1797145.1250      0.00  
+    0:01:19  166319.3      0.00       0.0       0.0                           1797145.1250      0.00  
+    0:01:20  166242.5      0.00       0.0       0.0                           1794699.2500      0.00  
+    0:01:23  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
+    0:01:23  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
+    0:01:23  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
+    0:01:23  166089.9      0.00       0.0       0.0                           1788388.7500      0.00  
+    0:01:25  165865.7      0.00       0.0       0.0                           1779690.5000      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7685,7 +7695,7 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:09  207870.5      0.96    1183.9      15.2                           3460698.0000      0.00  
+    0:00:07  207870.5      0.96    1183.9      15.2                           3460698.0000      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7709,10 +7719,10 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:06  207884.9      0.96    1183.9      15.2                           3460711.0000      0.00  
-    0:00:09  207896.5      0.96    1183.9      15.2                           3460721.2500      0.00  
-    0:00:18  203360.5      1.04    1694.1     328.8                           3222382.5000      0.00  
-    0:00:22  200097.9      1.04    2429.9     328.8                           3062412.2500      0.00  
+    0:00:04  207884.9      0.96    1183.9      15.2                           3460711.0000      0.00  
+    0:00:05  207896.5      0.96    1183.9      15.2                           3460721.2500      0.00  
+    0:00:07  203360.5      1.04    1694.1     328.8                           3222382.5000      0.00  
+    0:00:10  200097.9      1.04    2429.9     328.8                           3062412.2500      0.00  
 
 
   Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_fanout)  (max_capacitance)
@@ -7722,16 +7732,16 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:22  200097.9      1.04    2429.9     328.8                           3062412.2500     -4.64  
-    0:00:23  200129.6      1.04    2430.7     328.8 x_data_sram/i_sram_block/D[9] 3063113.7500     -2.68  
-    0:00:24  200155.0      1.04    2430.7     328.8 x_data_sram/i_sram_block/D[28] 3063711.5000     -1.80  
-    0:00:25  200194.9      1.04    2431.2     328.8 x_data_sram/i_sram_block/A[5] 3064253.0000     -1.30  
-    0:00:25  200226.1      1.04    2431.7     328.8 x_isram_ahbl/i_sram_block/A[0] 3064580.0000     -0.54  
-    0:00:26  200289.4      1.04    2432.9     328.8 x_isram_ahbl/i_sram_block/CEN 3065769.0000     -0.02  
+    0:00:10  200097.9      1.04    2429.9     328.8                           3062412.2500     -4.64  
+    0:00:11  200129.6      1.04    2430.7     328.8 x_data_sram/i_sram_block/D[9] 3063113.7500     -2.68  
+    0:00:12  200155.0      1.04    2430.7     328.8 x_data_sram/i_sram_block/D[28] 3063711.5000     -1.80  
+    0:00:12  200194.9      1.04    2431.2     328.8 x_data_sram/i_sram_block/A[5] 3064253.0000     -1.30  
+    0:00:13  200226.1      1.04    2431.7     328.8 x_isram_ahbl/i_sram_block/A[0] 3064580.0000     -0.54  
+    0:00:13  200289.4      1.04    2432.9     328.8 x_isram_ahbl/i_sram_block/CEN 3065769.0000     -0.02  
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated black box outputs. (PWR-428)
-    0:00:28  200349.9      1.26    2062.0     328.2                           3186077.5000      0.00  
+    0:00:15  200349.9      1.26    2062.0     328.2                           3186077.5000      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -7786,28 +7796,28 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:04  200889.9      0.84    1039.8      13.7                           3089947.5000      0.00  
-    0:00:05  200897.1      0.88    1161.0      13.7                           3085885.0000      0.00  
-    0:00:05  200897.1      0.88    1161.0      13.7                           3085885.0000      0.00  
-    0:00:05  200837.1      0.84    1094.6      13.7                           3084983.7500      0.00  
-    0:00:06  200837.1      0.84    1094.6      13.7                           3084983.7500      0.00  
-    0:00:11  174387.2      0.91    1012.9       1.2                           2027087.2500      0.00  
-    0:00:12  170555.3      0.83     897.6       0.4                           1927935.8750      0.00  
-    0:00:12  169613.1      0.83     894.6       0.4                           1902296.7500      0.00  
+    0:00:03  200889.9      0.84    1039.8      13.7                           3089947.5000      0.00  
+    0:00:04  200897.1      0.88    1161.0      13.7                           3085885.0000      0.00  
+    0:00:04  200897.1      0.88    1161.0      13.7                           3085885.0000      0.00  
+    0:00:04  200837.1      0.84    1094.6      13.7                           3084983.7500      0.00  
+    0:00:04  200837.1      0.84    1094.6      13.7                           3084983.7500      0.00  
+    0:00:10  174387.2      0.91    1012.9       1.2                           2027087.2500      0.00  
+    0:00:11  170555.3      0.83     897.6       0.4                           1927935.8750      0.00  
+    0:00:11  169613.1      0.83     894.6       0.4                           1902296.7500      0.00  
     0:00:12  169262.2      0.83     882.8       0.4                           1892268.8750      0.00  
     0:00:12  169198.9      0.83     875.3       0.4                           1890400.5000      0.00  
-    0:00:13  169148.0      0.83     868.9       0.4                           1889010.6250      0.00  
-    0:00:13  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
-    0:00:13  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
-    0:00:13  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
-    0:00:13  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
-    0:00:13  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
-    0:00:13  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
-    0:00:13  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
-    0:00:13  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
-    0:00:13  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
-    0:00:13  169145.1      0.83     868.8       0.0                           1887725.2500      0.00  
-    0:00:13  169145.1      0.83     868.8       0.0                           1887429.2500      0.00  
+    0:00:12  169148.0      0.83     868.9       0.4                           1889010.6250      0.00  
+    0:00:12  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
+    0:00:12  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
+    0:00:12  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
+    0:00:12  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
+    0:00:12  169143.7      0.83     868.9       0.4                           1888887.6250      0.00  
+    0:00:12  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
+    0:00:12  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
+    0:00:12  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
+    0:00:12  169145.1      0.83     868.9       0.0                           1888946.6250      0.00  
+    0:00:12  169145.1      0.83     868.8       0.0                           1887725.2500      0.00  
+    0:00:12  169145.1      0.83     868.8       0.0                           1887429.2500      0.00  
 
 
 
@@ -7818,37 +7828,37 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:13  169145.1      0.83     868.8       0.0                           1887429.2500      0.00  
-    0:00:16  169506.5      0.26     297.7       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1899978.3750      0.00  
-    0:00:18  169526.2      0.24     260.5       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1900691.2500      0.00  
-    0:00:20  169566.5      0.22     240.2       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1902445.0000      0.00  
-    0:00:21  169635.2      0.22     228.1       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[32]/D 1905148.7500      0.00  
-    0:00:22  169672.1      0.21     217.6       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1906534.6250      0.00  
-    0:00:22  169695.2      0.21     209.9       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1906725.8750      0.00  
-    0:00:27  169836.8      0.17     152.3       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1912139.2500      0.00  
-    0:00:28  169889.6      0.15     114.5       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1915230.0000      0.00  
-    0:00:29  169958.7      0.13      70.3       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[18][1]/D 1918241.5000      0.00  
-    0:00:30  170058.1      0.12      51.3       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[30][1]/D 1921447.1250      0.00  
-    0:00:32  170158.9      0.10      40.1       0.0 x_data_sram/i_sram_block/A[4] 1925084.3750      0.00  
-    0:00:33  170224.1      0.09      32.7       0.0 x_data_sram/i_sram_block/A[1] 1927449.3750      0.00  
-    0:00:33  170244.3      0.08      29.7       0.0 x_data_sram/i_sram_block/A[1] 1927933.8750      0.00  
-    0:00:34  170252.5      0.08      28.7       0.0 x_data_sram/i_sram_block/A[0] 1928191.0000      0.00  
-    0:00:34  170287.5      0.08      24.5       0.0 x_data_sram/i_sram_block/A[0] 1929105.3750      0.00  
-    0:00:35  170289.9      0.07      24.2       0.0 x_data_sram/i_sram_block/A[0] 1929538.2500      0.00  
-    0:00:35  170315.3      0.07      22.4       0.0 x_data_sram/i_sram_block/A[0] 1929888.8750      0.00  
-    0:00:35  170329.7      0.07      22.4       0.0 x_data_sram/i_sram_block/A[0] 1930540.5000      0.00  
-    0:00:36  170361.4      0.07      20.5       0.0 x_data_sram/i_sram_block/A[0] 1931331.5000      0.00  
-    0:00:36  170372.9      0.07      20.7       0.0 x_data_sram/i_sram_block/A[0] 1931581.2500      0.00  
-    0:00:37  170394.1      0.06      19.6       0.0 x_data_sram/i_sram_block/A[0] 1932348.8750      0.00  
-    0:00:37  170405.6      0.05      10.7       0.0 x_sub_system/x_core/id_stage_i/imd_val_q_reg[0][0]/D 1932627.6250      0.00  
-    0:00:38  170342.2      0.04       8.2       0.0 x_data_sram/i_sram_block/A[9] 1930254.6250      0.00  
-    0:00:38  170264.0      0.04       8.0       0.0 x_data_sram/i_sram_block/A[8] 1927542.5000      0.00  
-    0:00:38  170267.3      0.02       1.5       0.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1928031.2500      0.00  
-    0:00:39  170262.1      0.01       0.3       0.0 x_data_sram/i_sram_block/A[6] 1927953.7500      0.00  
-    0:00:39  170247.2      0.00       0.0       0.0 x_data_sram/i_sram_block/A[9] 1927218.0000      0.00  
-    0:00:39  170253.9      0.00       0.0       0.0                           1927305.1250      0.00  
-    0:00:40  170168.9      0.00       0.0       0.5                           1923223.8750      0.00  
-    0:00:40  170006.7      0.00       0.0       0.5                           1918701.3750      0.00  
+    0:00:12  169145.1      0.83     868.8       0.0                           1887429.2500      0.00  
+    0:00:14  169506.5      0.26     297.7       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1899978.3750      0.00  
+    0:00:14  169526.2      0.24     260.5       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1900691.2500      0.00  
+    0:00:15  169566.5      0.22     240.2       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[8][4]/D 1902445.0000      0.00  
+    0:00:15  169635.2      0.22     228.1       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[32]/D 1905148.7500      0.00  
+    0:00:15  169672.1      0.21     217.6       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1906534.6250      0.00  
+    0:00:16  169695.2      0.21     209.9       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1906725.8750      0.00  
+    0:00:17  169836.8      0.17     152.3       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1912139.2500      0.00  
+    0:00:17  169889.6      0.15     114.5       0.0 x_sub_system/x_core/cs_registers_i/mcycle_counter_i/counter_q_reg[33]/D 1915230.0000      0.00  
+    0:00:17  169958.7      0.13      70.3       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[18][1]/D 1918241.5000      0.00  
+    0:00:18  170058.1      0.12      51.3       0.0 x_sub_system/x_core/gen_regfile_ff.register_file_i/rf_reg_q_reg[30][1]/D 1921447.1250      0.00  
+    0:00:19  170158.9      0.10      40.1       0.0 x_data_sram/i_sram_block/A[4] 1925084.3750      0.00  
+    0:00:19  170224.1      0.09      32.7       0.0 x_data_sram/i_sram_block/A[1] 1927449.3750      0.00  
+    0:00:20  170244.3      0.08      29.7       0.0 x_data_sram/i_sram_block/A[1] 1927933.8750      0.00  
+    0:00:20  170252.5      0.08      28.7       0.0 x_data_sram/i_sram_block/A[0] 1928191.0000      0.00  
+    0:00:21  170287.5      0.08      24.5       0.0 x_data_sram/i_sram_block/A[0] 1929105.3750      0.00  
+    0:00:21  170289.9      0.07      24.2       0.0 x_data_sram/i_sram_block/A[0] 1929538.2500      0.00  
+    0:00:21  170315.3      0.07      22.4       0.0 x_data_sram/i_sram_block/A[0] 1929888.8750      0.00  
+    0:00:21  170329.7      0.07      22.4       0.0 x_data_sram/i_sram_block/A[0] 1930540.5000      0.00  
+    0:00:21  170361.4      0.07      20.5       0.0 x_data_sram/i_sram_block/A[0] 1931331.5000      0.00  
+    0:00:22  170372.9      0.07      20.7       0.0 x_data_sram/i_sram_block/A[0] 1931581.2500      0.00  
+    0:00:22  170394.1      0.06      19.6       0.0 x_data_sram/i_sram_block/A[0] 1932348.8750      0.00  
+    0:00:23  170405.6      0.05      10.7       0.0 x_sub_system/x_core/id_stage_i/imd_val_q_reg[0][0]/D 1932627.6250      0.00  
+    0:00:23  170342.2      0.04       8.2       0.0 x_data_sram/i_sram_block/A[9] 1930254.6250      0.00  
+    0:00:23  170264.0      0.04       8.0       0.0 x_data_sram/i_sram_block/A[8] 1927542.5000      0.00  
+    0:00:24  170267.3      0.02       1.5       0.0 x_sub_system/x_core/if_stage_i/gen_prefetch_buffer.prefetch_buffer_i/fifo_i/instr_addr_q_reg[2]/D 1928031.2500      0.00  
+    0:00:24  170262.1      0.01       0.3       0.0 x_data_sram/i_sram_block/A[6] 1927953.7500      0.00  
+    0:00:24  170247.2      0.00       0.0       0.0 x_data_sram/i_sram_block/A[9] 1927218.0000      0.00  
+    0:00:24  170253.9      0.00       0.0       0.0                           1927305.1250      0.00  
+    0:00:25  170168.9      0.00       0.0       0.5                           1923223.8750      0.00  
+    0:00:25  170006.7      0.00       0.0       0.5                           1918701.3750      0.00  
 
 
   Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_capacitance)
@@ -7858,8 +7868,8 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:41  170006.7      0.00       0.0       0.5                           1918701.3750     -1.27  
-    0:00:42  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
+    0:00:26  170006.7      0.00       0.0       0.5                           1918701.3750     -1.27  
+    0:00:26  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
 
 
   Beginning Leakage Power Optimization  (max_leakage_power 0)
@@ -7869,30 +7879,30 @@ Information: The target library(s) contains cell(s), other than black boxes, tha
    ELAPSED            WORST NEG   SETUP    DESIGN                              LEAKAGE   MIN DELAY 
     TIME      AREA      SLACK     COST    RULE COST         ENDPOINT            POWER      COST    
   --------- --------- --------- --------- --------- ------------------------- --------- -----------
-    0:00:42  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
-    0:00:42  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
-    0:00:43  169802.2      0.17      26.2       0.0                           1913376.8750     -1.28  
-    0:00:43  169788.3      0.17      25.7       0.0                           1913137.2500     -1.28  
-    0:00:43  169785.4      0.17      25.7       0.0                           1913111.6250     -1.28  
-    0:00:43  169780.1      0.17      25.7       0.0                           1913065.8750     -1.28  
-    0:00:43  169778.7      0.17      25.7       0.0                           1913048.0000     -1.28  
-    0:00:43  169778.7      0.17      25.7       0.0                           1913048.0000     -1.28  
-    0:00:44  169852.6      0.01       1.5       0.0 x_data_sram/i_sram_block/A[6] 1915291.5000     -1.28  
-    0:00:45  169862.7      0.00       0.0       0.0                           1915720.2500     -1.31  
-    0:00:45  169861.3      0.00       0.0       0.0                           1915976.2500     -1.31  
-    0:00:45  169834.4      0.00       0.0       0.0                           1915320.1250     -1.31  
-    0:00:46  169774.9      0.00       0.0       0.0                           1914078.3750     -1.31  
-    0:00:47  169762.9      0.00       0.0       0.0                           1913810.2500     -1.31  
-    0:00:47  169757.6      0.00       0.0       0.0                           1913688.8750     -1.31  
-    0:00:48  169755.7      0.00       0.0       0.0                           1913644.2500     -1.31  
-    0:00:48  169747.0      0.00       0.0       0.0                           1913430.3750     -1.31  
-    0:00:50  169743.7      0.00       0.0       0.0                           1913357.2500     -1.31  
-    0:00:51  169745.6      0.00       0.0       0.0 x_data_sram/i_sram_block/GWEN 1913371.1250     -1.29  
-    0:00:53  169800.3      0.00       0.0       0.0 x_data_sram/i_sram_block/D[21] 1913517.3750     -0.69  
+    0:00:26  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
+    0:00:26  170026.9      0.00       0.0       0.0                           1919011.0000     -1.27  
+    0:00:27  169802.2      0.17      26.2       0.0                           1913376.8750     -1.28  
+    0:00:27  169788.3      0.17      25.7       0.0                           1913137.2500     -1.28  
+    0:00:27  169785.4      0.17      25.7       0.0                           1913111.6250     -1.28  
+    0:00:27  169780.1      0.17      25.7       0.0                           1913065.8750     -1.28  
+    0:00:27  169778.7      0.17      25.7       0.0                           1913048.0000     -1.28  
+    0:00:27  169778.7      0.17      25.7       0.0                           1913048.0000     -1.28  
+    0:00:28  169852.6      0.01       1.5       0.0 x_data_sram/i_sram_block/A[6] 1915291.5000     -1.28  
+    0:00:29  169862.7      0.00       0.0       0.0                           1915720.2500     -1.31  
+    0:00:29  169861.3      0.00       0.0       0.0                           1915976.2500     -1.31  
+    0:00:30  169834.4      0.00       0.0       0.0                           1915320.1250     -1.31  
+    0:00:30  169774.9      0.00       0.0       0.0                           1914078.3750     -1.31  
+    0:00:31  169762.9      0.00       0.0       0.0                           1913810.2500     -1.31  
+    0:00:31  169757.6      0.00       0.0       0.0                           1913688.8750     -1.31  
+    0:00:31  169755.7      0.00       0.0       0.0                           1913644.2500     -1.31  
+    0:00:32  169747.0      0.00       0.0       0.0                           1913430.3750     -1.31  
+    0:00:33  169743.7      0.00       0.0       0.0                           1913357.2500     -1.31  
+    0:00:35  169745.6      0.00       0.0       0.0 x_data_sram/i_sram_block/GWEN 1913371.1250     -1.29  
+    0:00:36  169800.3      0.00       0.0       0.0 x_data_sram/i_sram_block/D[21] 1913517.3750     -0.69  
 Information: State dependent leakage is now switched from off to on.
 Information: Propagating switching activity (low effort zero delay simulation). (PWR-6)
 Warning: Design has unannotated black box outputs. (PWR-428)
-    0:00:58  169871.3      0.00       0.0       0.0                           2018649.0000      0.00  
+    0:00:41  169871.3      0.00       0.0       0.0                           2018649.0000      0.00  
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12tbc.db'
 Loading db file '/home/master/project/3_PR/sram_hde/gen_hde/RA1HD_4KB_ff_1p10v_1p10v_m40c.db'
 Loading db file '/home/master/project/2_dc/day2/library/tcbn65gplusbwp12twc.db'
@@ -8083,7 +8093,7 @@ Report : timing_requirements
         -attributes
 Design : soc_ahblite
 Version: O-2018.06-SP1
-Date   : Sat Aug 29 16:19:25 2026
+Date   : Fri Sep 11 16:28:11 2026
 ****************************************
 
 Description                            Setup               Hold
@@ -8109,6 +8119,6 @@ exit
 
 Memory usage for main task 773 Mbytes.
 Memory usage for this session 773 Mbytes.
-CPU usage for this session 518 seconds ( 0.14 hours ).
+CPU usage for this session 334 seconds ( 0.09 hours ).
 
 Thank you...
